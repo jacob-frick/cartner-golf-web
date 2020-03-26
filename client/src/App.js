@@ -3,8 +3,7 @@ import Dashboard from './components/Dashboard'
 function App() {
   return (
     <div className="App">
-      {/* <h1>Cartner Golf</h1> */}
-      <Dashboard />
+      <h1>Cartner Golf</h1>
     </div>
   );
 }
