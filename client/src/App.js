@@ -1,6 +1,7 @@
 import React from 'react'
 import Dashboard from './components/Dashboard'
 import CreateAccount from './components/CreateAccount'
+import Login from './components/Login'
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,8 +16,11 @@ const App = props => {
         <Route path="/dashboard">
           <Dashboard />
         </Route>
-        <Route path="/">
+        <Route path="/signup">
           <CreateAccount />
+        </Route>
+        <Route path="/">
+          <Login />
         </Route>
       </Switch>
     </Router>
