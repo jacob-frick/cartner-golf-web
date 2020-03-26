@@ -180,7 +180,7 @@ export default function Dashboard() {
             <Badge 
             badgeContent={1} 
             color="secondary"
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            className = {open ? classes.menuButton : classes.menuButtonHidden}
             >
               {/* BadgeContent value will dispaly pending notifications */}
             </Badge>
