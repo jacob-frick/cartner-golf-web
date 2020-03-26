@@ -8,14 +8,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Drawer from '../Drawer'
 import DrawerContext from '../../utils/DrawerContext'
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
@@ -57,6 +55,7 @@ const AppbarComponent = () => {
   const classes = useStyles();
   
   return(
+    <>
     <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
       <Toolbar className={classes.toolbar}>
         <IconButton
@@ -79,6 +78,8 @@ const AppbarComponent = () => {
         </IconButton>
       </Toolbar>
     </AppBar>
+    <Drawer />
+    </>
   )
 
 }
