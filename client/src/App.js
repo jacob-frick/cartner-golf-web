@@ -19,6 +19,8 @@ const App = props => {
         <Route path="/signup">
           <CreateAccount />
         </Route>
+        <Route path="/test">
+        </Route>
         <Route path="/">
           <Login />
         </Route>

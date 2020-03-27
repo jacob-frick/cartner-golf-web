@@ -19,14 +19,10 @@ router.post('/register', (req, res) => {
                     user.save()
                     token= jwt.sign({id: user._id}, process.env.SECRET)
                     res.cookie('jwt',token, { httpOnly: true, secure: true, maxAge: 3600000 })
-                    res.json({user, token})
+                    res.json(token)
                 })
             })
         }
     })
-})
-router.get('/test', (req, res) => {
-    console.log(req)
-    res.end()
 })
 module.exports = router
