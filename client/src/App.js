@@ -1,10 +1,33 @@
 import React from 'react'
-function App() {
+import Dashboard from './components/Dashboard'
+import CreateAccount from './components/CreateAccount'
+import Login from './components/Login'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom"
+
+const App = props => {
+
   return (
-    <div className="App">
-      <h1>Cartner Golf</h1>
-    </div>
-  );
+    <Router>
+      <Switch>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route path="/signup">
+          <CreateAccount />
+        </Route>
+        <Route path="/test">
+        </Route>
+        <Route path="/">
+          <Login />
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
-export default App;
+export default App
+
