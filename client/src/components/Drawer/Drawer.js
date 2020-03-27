@@ -84,38 +84,40 @@ const DrawerComponent = () => {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
-          <ListItemText primary="Matches" />
-          {/* BadgeContent value will dispaly pending notifications */}
+          <ListItemText
+            primary="Matches"
+            aria-label='Matches' />
         </ListItem>
-        {/* <ListItem button>
-          <ListItemIcon>
-          <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItem> */}
         <ListItem button>
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
-          <ListItemText primary="Friends" />
+          <ListItemText
+            primary="Friends"
+            aria-label='Friends'
+          />
+          {/* BadgeContent value will dispaly pending notifications */}
           <Badge
             badgeContent={1}
             color="secondary"
-            className={open ? classes.menuButton : classes.menuButtonHidden}
-          >
+            className={open ? classes.menuButton : classes.menuButtonHidden}>
           </Badge>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <BarChartIcon />
           </ListItemIcon>
-          <ListItemText primary="Account" />
+          <ListItemText
+            primary="Account"
+            aria-label='Account' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <LayersIcon />
           </ListItemIcon>
-          <ListItemText primary="Match History" />
+          <ListItemText
+            primary="Match History"
+            aria-label='Match History' />
         </ListItem>
       </List>
     </Drawer>
