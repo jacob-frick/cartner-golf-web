@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,13 +8,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import Badge from '@material-ui/core/Badge';
+import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 const drawerWidth = 240;
 
@@ -65,15 +66,14 @@ const useStyles = makeStyles((theme) => ({
 
 const DrawerComponent = () => {
   const classes = useStyles();
-  let {open, handleDrawerClose} = useContext(DrawerContext)
-  return(
+  let { open, handleDrawerClose } = useContext(DrawerContext)
+  return (
     <Drawer
       variant="permanent"
       classes={{
         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
       }}
-      open={open}
-    >
+      open={open}>
       <div className={classes.toolbarIcon}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />
@@ -81,43 +81,52 @@ const DrawerComponent = () => {
       </div>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Friends" />
-          <Badge
-            badgeContent={1}
-            color="secondary"
-            className={open ? classes.menuButton : classes.menuButtonHidden}
-          >
+        <Tooltip title='Matches'>
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Matches"
+              aria-label='Matches' />
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Friends'>
+          <ListItem button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Friends"
+              aria-label='Friends' />
             {/* BadgeContent value will dispaly pending notifications */}
-          </Badge>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Customers" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Reports" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LayersIcon />
-          </ListItemIcon>
-          <ListItemText primary="Integrations" />
-        </ListItem>
+            <Badge
+              badgeContent={1}
+              color="secondary"
+              className={open ? classes.menuButton : classes.menuButtonHidden}>
+            </Badge>
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Account'>
+          <ListItem button>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Account"
+              aria-label='Account' />
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Match History'>
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Match History"
+              aria-label='Match History' />
+          </ListItem>
+        </Tooltip>
       </List>
     </Drawer>
   )
