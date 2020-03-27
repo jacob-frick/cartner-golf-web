@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Dashboard from './components/Dashboard'
 import CreateAccount from './components/CreateAccount'
 import Login from './components/Login'
-import axios from './config/axiosConfig.js'
+import Profile from './components/Profile'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom"
 
 const App = props => {
@@ -17,6 +16,9 @@ const App = props => {
       <Switch>
         <Route path="/dashboard">
           <Dashboard />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="/signup">
           <CreateAccount />

@@ -2,11 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 // import Drawer from '@material-ui/core/Drawer';
-// import Box from '@material-ui/core/Box';
-// import Typography from '@material-ui/core/Typography';
-// import Link from '@material-ui/core/Link';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+// import Link from '@material-ui/core/Link';
 import DrawerContext from '../../utils/DrawerContext'
 import Appbar from '../Appbar'
 // function Copyright() {
@@ -63,13 +63,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState({open: false});
+  const [open, setOpen] = React.useState({ open: false });
   open.handleDrawerOpen = () => {
     setOpen({ open: true });
   };
   open.handleDrawerClose = () => {
     setOpen({ open: false });
   };
+
   return (
     <DrawerContext.Provider value={open}>
       <div className={classes.root}>
@@ -79,11 +80,10 @@ export default function Dashboard() {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
+
               {/* Page Info goes here */}
+
             </Grid>
-            {/* <Box pt={4}>
-              <Copyright />
-            </Box> */}
           </Container>
         </main>
       </div>
