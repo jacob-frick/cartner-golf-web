@@ -10,106 +10,123 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import createAccountStyles from './styles.js'
 import axios from 'axios'
+import { Redirect} from 'react-router-dom'
 
 
-export default function CreateAccount() {
+const CreateAccount = props => {
   const classes = createAccountStyles()
-  const [user, setUser] = useState({fname: '', lname: '', email: '', password: ''})
-
+  const [user, setUser] = useState({fname: '', lname: '', email: '', password: '', hasCreated: false})
   const didSubmit = (event) => {
     event.preventDefault()
-    axios.post('/api/register', user)
-      .then(function (response) {
-        console.log(response);
+    axios.post('/api/register', {
+      fname: user.fname,
+      lname: user.lname,
+      email: user.email,
+      password: user.password
+    })
+      .then( ({data: jwt}) => {
+        localStorage.setItem('jwt', JSON.stringify(jwt))
+        setUser({...user, hasCreated: true})
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch( error => {
+        console.error(error)
+      })
   }
   
   const formChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
   }
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={didSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField autoComplete="fname"
-                name="fname"
-                variant="outlined"
-                required
+
+  if (user.hasCreated){
+    return <Redirect to="/dashboard" /> 
+  }
+  else{
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <form className={classes.form} noValidate onSubmit={didSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField autoComplete="fname"
+                  name="fname"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  onChange={(event)=>{formChange(event)}}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lname"
+                  label="Last Name"
+                  name="lname"
+                  autoComplete="lname"
+                  onChange={(event)=>{formChange(event)}}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={(event)=>{formChange(event)}}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  onChange={(event)=>{formChange(event)}}
+                />
+              </Grid>
+            </Grid>
+              <Button
+                type="submit"
                 fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                onChange={(event)=>{formChange(event)}}
-              />
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                disabled = {user.fname && user.lname && user.email && user.password ? false : true}
+              >
+                Sign Up
+              </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link href="/" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lname"
-                label="Last Name"
-                name="lname"
-                autoComplete="lname"
-                onChange={(event)=>{formChange(event)}}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={(event)=>{formChange(event)}}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={(event)=>{formChange(event)}}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
-  )
+          </form>
+        </div>
+      </Container>
+    )
+
+  }
+
 }
+
+export default CreateAccount
