@@ -15,6 +15,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import Badge from '@material-ui/core/Badge';
+import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 const drawerWidth = 240;
 
@@ -80,45 +81,52 @@ const DrawerComponent = () => {
       </div>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Matches"
-            aria-label='Matches' />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Friends"
-            aria-label='Friends'
-          />
-          {/* BadgeContent value will dispaly pending notifications */}
-          <Badge
-            badgeContent={1}
-            color="secondary"
-            className={open ? classes.menuButton : classes.menuButtonHidden}>
-          </Badge>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Account"
-            aria-label='Account' />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LayersIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Match History"
-            aria-label='Match History' />
-        </ListItem>
+        <Tooltip title='Matches'>
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Matches"
+              aria-label='Matches' />
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Friends'>
+          <ListItem button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Friends"
+              aria-label='Friends' />
+            {/* BadgeContent value will dispaly pending notifications */}
+            <Badge
+              badgeContent={1}
+              color="secondary"
+              className={open ? classes.menuButton : classes.menuButtonHidden}>
+            </Badge>
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Matches'>
+          <ListItem button>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Account"
+              aria-label='Account' />
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Match History'>
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Match History"
+              aria-label='Match History' />
+          </ListItem>
+        </Tooltip>
       </List>
     </Drawer>
   )
