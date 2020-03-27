@@ -15,17 +15,17 @@ import { Redirect} from 'react-router-dom'
 
 const CreateAccount = props => {
   const classes = createAccountStyles()
-  const [user, setUser] = useState({fname: '', lname: '', email: '', password: '', hasCreated: false})
+  const [user, setUser] = useState({fname: '', lname: '', username: '', password: '', hasCreated: false})
   const didSubmit = (event) => {
     event.preventDefault()
     axios.post('/api/register', {
       fname: user.fname,
       lname: user.lname,
-      email: user.email,
+      username: user.username,
       password: user.password
     })
       .then( ({data: jwt}) => {
-        localStorage.setItem('jwt', JSON.stringify(jwt))
+        localStorage.setItem('jwt', jwt)
         setUser({...user, hasCreated: true})
       })
       .catch( error => {
@@ -82,10 +82,10 @@ const CreateAccount = props => {
                   variant="outlined"
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
                   onChange={(event)=>{formChange(event)}}
                 />
               </Grid>
@@ -109,7 +109,7 @@ const CreateAccount = props => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                disabled = {user.fname && user.lname && user.email && user.password ? false : true}
+                disabled = {user.fname && user.lname && user.username && user.password ? false : true}
               >
                 Sign Up
               </Button>

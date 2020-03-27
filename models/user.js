@@ -9,7 +9,7 @@ const UserSchema = new Schema({
         type: String,
         required: true
       },
-      email: {
+      username: {
         type: String,
         required: true,
         unique: true 
@@ -17,7 +17,7 @@ const UserSchema = new Schema({
       password: {
         type: String,
         required: true
-  }
+      }
 })
 
 UserSchema.plugin(require('passport-local-mongoose'))
