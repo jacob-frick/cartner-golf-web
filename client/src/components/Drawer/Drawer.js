@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
@@ -65,15 +65,14 @@ const useStyles = makeStyles((theme) => ({
 
 const DrawerComponent = () => {
   const classes = useStyles();
-  let {open, handleDrawerClose} = useContext(DrawerContext)
-  return(
+  let { open, handleDrawerClose } = useContext(DrawerContext)
+  return (
     <Drawer
       variant="permanent"
       classes={{
         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
       }}
-      open={open}
-    >
+      open={open}>
       <div className={classes.toolbarIcon}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />
@@ -85,38 +84,38 @@ const DrawerComponent = () => {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
+          <ListItemText primary="Matches" />
+          {/* BadgeContent value will dispaly pending notifications */}
+        </ListItem>
+        {/* <ListItem button>
+          <ListItemIcon>
+          <ShoppingCartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Orders" />
+        </ListItem> */}
+        <ListItem button>
+          <ListItemIcon>
+            <PeopleIcon />
+          </ListItemIcon>
           <ListItemText primary="Friends" />
           <Badge
             badgeContent={1}
             color="secondary"
             className={open ? classes.menuButton : classes.menuButtonHidden}
           >
-            {/* BadgeContent value will dispaly pending notifications */}
           </Badge>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Customers" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <BarChartIcon />
           </ListItemIcon>
-          <ListItemText primary="Reports" />
+          <ListItemText primary="Account" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <LayersIcon />
           </ListItemIcon>
-          <ListItemText primary="Integrations" />
+          <ListItemText primary="Match History" />
         </ListItem>
       </List>
     </Drawer>
