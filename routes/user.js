@@ -4,6 +4,7 @@ const {User} = require('../models')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+
 router.post('/register', (req, res) => {
     let { fname, lname, email, password } = req.body
     User.findOne({email})
