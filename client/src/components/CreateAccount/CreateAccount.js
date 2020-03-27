@@ -21,11 +21,11 @@ const CreateAccount = props => {
     axios.post('/api/register', {
       fname: user.fname,
       lname: user.lname,
-      email: user.email,
+      username: user.email,
       password: user.password
     })
       .then( ({data: jwt}) => {
-        localStorage.setItem('jwt', JSON.stringify(jwt))
+        localStorage.setItem('jwt', jwt)
         setUser({...user, hasCreated: true})
       })
       .catch( error => {

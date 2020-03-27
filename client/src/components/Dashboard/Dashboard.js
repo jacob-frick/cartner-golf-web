@@ -29,7 +29,6 @@ export default function Dashboard() {
         setAtuh(-1)
       }
     })
-
   if (isAuth === 1) {
     return (
       <DrawerContext.Provider value={open}>
