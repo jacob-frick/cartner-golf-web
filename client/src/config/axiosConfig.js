@@ -7,6 +7,4 @@ axios.interceptors.response.use(response => {
    }
    return error;
  })
-
-
 export default axios

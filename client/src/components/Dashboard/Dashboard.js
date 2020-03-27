@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 // import Drawer from '@material-ui/core/Drawer';
@@ -9,6 +9,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import DrawerContext from '../../utils/DrawerContext'
 import Appbar from '../Appbar'
+import { Redirect } from 'react-router-dom';
+import axios from './../../config/axiosConfig.js'
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -62,31 +64,49 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState({open: false});
+  const classes = useStyles()
+  const [open, setOpen] = React.useState({ open: false })
+  const [isAuth, setAtuh] = React.useState(0)
+
   open.handleDrawerOpen = () => {
     setOpen({ open: true });
-  };
+  }
   open.handleDrawerClose = () => {
     setOpen({ open: false });
-  };
-  return (
-    <DrawerContext.Provider value={open}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <Appbar />
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
-              {/* Page Info goes here */}
-            </Grid>
-            {/* <Box pt={4}>
+  }
+
+  axios.get('/api/authorize', { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } })
+    .then(res => {
+      if (res.status === 200) {
+        setAtuh(1)
+      } else {
+        setAtuh(-1)
+      }
+    })
+
+  if (isAuth === 1) {
+    return (
+      <DrawerContext.Provider value={open}>
+        <div className={classes.root}>
+          <CssBaseline />
+          <Appbar />
+          <main className={classes.content}>
+            <div className={classes.appBarSpacer} />
+            <Container maxWidth="lg" className={classes.container}>
+              <Grid container spacing={3}>
+                {/* Page Info goes here */}
+              </Grid>
+              {/* <Box pt={4}>
               <Copyright />
             </Box> */}
-          </Container>
-        </main>
-      </div>
-    </DrawerContext.Provider>
-  );
+            </Container>
+          </main>
+        </div>
+      </DrawerContext.Provider>
+    )
+  } else if (isAuth === 0) {
+    return (<p></p>)
+  } else {
+    return (<Redirect to='/' />)
+  }
 }
