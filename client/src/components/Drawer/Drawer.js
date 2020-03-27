@@ -107,7 +107,7 @@ const DrawerComponent = () => {
             </Badge>
           </ListItem>
         </Tooltip>
-        <Tooltip title='Matches'>
+        <Tooltip title='Account'>
           <ListItem button>
             <ListItemIcon>
               <BarChartIcon />
