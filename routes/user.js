@@ -9,7 +9,7 @@ router.post('/register', (req, res) => {
     User.findOne({email})
     .then(user => {
         if(user) {
-           res.send("EMAIL EXISTS")
+           res.sendStatus(400)
         } else {
             bcrypt.genSalt(10, (err, salt) => {
                 if(err) console.log('error')
