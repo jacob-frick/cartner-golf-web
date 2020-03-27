@@ -70,7 +70,6 @@ export default function Dashboard() {
   open.handleDrawerClose = () => {
     setOpen({open: false});
   };
-
   return (
     <DrawerContext.Provider value = {open}>
       <div className={classes.root}>
