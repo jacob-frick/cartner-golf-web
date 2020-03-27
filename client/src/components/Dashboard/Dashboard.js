@@ -1,70 +1,16 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-// import Drawer from '@material-ui/core/Drawer';
-// import Box from '@material-ui/core/Box';
-// import Typography from '@material-ui/core/Typography';
-// import Link from '@material-ui/core/Link';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+import React, { useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 import DrawerContext from '../../utils/DrawerContext'
 import Appbar from '../Appbar'
-import { Redirect } from 'react-router-dom';
-import axios from './../../config/axiosConfig.js'
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  title: {
-    flexGrow: 1,
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  fixedHeight: {
-    height: 240,
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
-}));
+import { Redirect } from 'react-router-dom'
+import Authorization from './../../utils/Authorization'
+import dashboardStyles from './styles.js'
 
 export default function Dashboard() {
-  const classes = useStyles()
+  const classes = dashboardStyles()
   const [open, setOpen] = React.useState({ open: false })
   const [isAuth, setAtuh] = React.useState(0)
 
@@ -75,7 +21,7 @@ export default function Dashboard() {
     setOpen({ open: false });
   }
 
-  axios.get('/api/authorize', { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } })
+  Authorization.auth()
     .then(res => {
       if (res.status === 200) {
         setAtuh(1)
@@ -96,9 +42,6 @@ export default function Dashboard() {
               <Grid container spacing={3}>
                 {/* Page Info goes here */}
               </Grid>
-              {/* <Box pt={4}>
-              <Copyright />
-            </Box> */}
             </Container>
           </main>
         </div>
