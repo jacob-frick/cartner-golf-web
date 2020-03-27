@@ -9,7 +9,6 @@ const {Strategy: JWTStrategy, ExtractJwt} = require('passport-jwt')
 
 const app = express()
 const { User } = require('./models')
-app.use(require('./routes'))
 app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -29,8 +28,10 @@ passport.use(new JWTStrategy({
       .catch( error => cb(error))
   ))
   
-
-
+app.use(require('./routes'))
+app.get('/*', (request, response) => {
+  response.sendFile(join(__dirname, 'client', 'build', 'index.html'))
+})
 require('./config/db.js')
     .then(() => app.listen(process.env.PORT || 3001))
     .catch(e => console.error(e))
