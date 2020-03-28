@@ -1,8 +1,8 @@
 import React from 'react'
 import Dashboard from './views/Dashboard'
 import CreateAccount from './views/CreateAccount'
-import Login from './views/Login'
 import Profile from './views/Profile'
+import Home from './views/Home'
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,10 +23,8 @@ const App = props => {
         <Route path="/signup">
           <CreateAccount />
         </Route>
-        <Route path="/test">
-        </Route>
         <Route path="/">
-          <Login />
+          <Home />
         </Route>
       </Switch>
     </Router>

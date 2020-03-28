@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -11,10 +11,11 @@ import Container from '@material-ui/core/Container'
 import createAccountStyles from './styles.js'
 import axios from 'axios'
 import { Redirect} from 'react-router-dom'
-
+import HomeContext from './../../utils/HomeContext'
 
 const CreateAccount = props => {
   const classes = createAccountStyles()
+  const {setPageLogin} = useContext(HomeContext)
   const [user, setUser] = useState({fname: '', lname: '', email: '', password: '', hasCreated: false})
   const didSubmit = (event) => {
     event.preventDefault()
@@ -115,7 +116,7 @@ const CreateAccount = props => {
               </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="/" variant="body2">
+                <Link onClick={setPageLogin} variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

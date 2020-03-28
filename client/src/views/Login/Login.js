@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import HomeContext from './../../utils/HomeContext'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
-  
+  const { setPageCreateAccount } = useContext(HomeContext)
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -84,12 +84,12 @@ export default function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link onClick={setPageCreateAccount} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
