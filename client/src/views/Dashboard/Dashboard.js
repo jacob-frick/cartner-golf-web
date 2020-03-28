@@ -3,9 +3,9 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import DrawerContext from '../../utils/DrawerContext'
-import Appbar from '../Appbar'
+import Appbar from '../../components/Appbar'
 import { Redirect } from 'react-router-dom'
-import Authorization from './../../utils/Authorization'
+import Authorization from '../../utils/Authorization'
 import dashboardStyles from './styles.js'
 
 export default function Dashboard() {

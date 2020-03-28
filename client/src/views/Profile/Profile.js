@@ -1,6 +1,6 @@
 import React from 'react';
 import DrawerContext from '../../utils/DrawerContext'
-import Appbar from '../Appbar'
+import Appbar from '../../components/Appbar'
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';

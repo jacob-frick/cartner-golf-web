@@ -1,8 +1,8 @@
 import React from 'react'
-import Dashboard from './components/Dashboard'
-import CreateAccount from './components/CreateAccount'
-import Login from './components/Login'
-import Profile from './components/Profile'
+import Dashboard from './views/Dashboard'
+import CreateAccount from './views/CreateAccount'
+import Login from './views/Login'
+import Profile from './views/Profile'
 import {
   BrowserRouter as Router,
   Switch,
