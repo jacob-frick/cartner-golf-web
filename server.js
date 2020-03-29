@@ -2,8 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const { join } = require('path')
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
-
+require('./config/passport.js')(passport)
 //Strategy for deployment using JSON web token
 const {Strategy: JWTStrategy, ExtractJwt} = require('passport-jwt')
 
@@ -14,10 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
-passport.use(new LocalStrategy(User.authenticate()))
-//encrypting and decrypting user info
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+
 passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET
@@ -27,7 +23,6 @@ passport.use(new JWTStrategy({
       })
       .catch( error => cb(error))
   ))
-  
 app.use(require('./routes'))
 app.get('/*', (request, response) => {
   response.sendFile(join(__dirname, 'client', 'build', 'index.html'))

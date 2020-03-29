@@ -1,6 +1,4 @@
 import React from 'react'
-import Dashboard from './views/Dashboard'
-import CreateAccount from './views/CreateAccount'
 import Profile from './views/Profile'
 import Home from './views/Home'
 import {
@@ -11,17 +9,19 @@ import {
 
 const App = props => {
 
+  //potential for rememberme
+  // useEffect(() => {
+  //   window.addEventListener("beforeunload", (ev) => {
+  //     ev.preventDefault()
+  //     if(localStorage.getItem('jwt'))
+  //   })
+  // })
+
   return (
     <Router>
       <Switch>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
         <Route path="/profile">
           <Profile />
-        </Route>
-        <Route path="/signup">
-          <CreateAccount />
         </Route>
         <Route path="/">
           <Home />

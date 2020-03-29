@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import HomeContext from './../../utils/HomeContext'
+import axios from '../../config/axiosConfig';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +36,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
-  const { setPageCreateAccount } = useContext(HomeContext)
+  const { setPageCreateAccount, setPageDashboard } = useContext(HomeContext)
+  const [user, setUser] = useState({email: '', password: ''})
+  const formChange = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value })
+  }
+  const didSubmit = (event) => {
+    event.preventDefault()
+    axios.post('/api/users/login',{
+      username: user.email,
+      password: user.password
+    }).then( ({data}) => {
+      if(data.message) {
+        console.log(data.message)
+      }else {
+        localStorage.setItem('jwt', data.token)
+        setPageDashboard()
+      }
+    })
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -46,7 +65,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={didSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -57,6 +76,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(event) => {formChange(event)}}
           />
           <TextField
             variant="outlined"
@@ -67,6 +87,7 @@ export default function Login() {
             label="Password"
             type="password"
             id="password"
+            onChange={(event) => {formChange(event)}}
             autoComplete="current-password"
           />
           <FormControlLabel

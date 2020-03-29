@@ -5,7 +5,7 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
-router.post('/register', (req, res) => {
+router.post('/users/register', (req, res) => {
     let { fname, lname, username, password } = req.body
     User.findOne({ username })
         .then(user => {
@@ -19,12 +19,22 @@ router.post('/register', (req, res) => {
                         User.create({ fname, lname, username, password: hash })
                             .then(user => {
                                 token = jwt.sign({ id: user._id }, process.env.SECRET)
-                                res.cookie('jwt', token, { httpOnly: true, secure: true, maxAge: 3600000 })
-                                res.json(token)
+                                res.json({ id: user._id, token })
                             })
                     })
                 })
             }
         })
 })
+
+router.post('/users/login', (req, res, next) => {
+    passport.authenticate('local', {}, (err, user, message) => {
+        if (message) res.json(message)
+        else {
+            token = jwt.sign({ id: user._id }, process.env.SECRET)
+            res.json({ id: user._id, token })
+        }
+    })(req, res, next)
+})
+
 module.exports = router
