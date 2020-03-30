@@ -79,7 +79,6 @@ export default function Login() {
   const didSubmit = (event) => {
     event.preventDefault()
     //reset error messages
-    setUser({ ...user, emailCheck: false, passwordCheck: false, emailErrorMessage: '', passwordErrorMessage: ''})
     axios.post('/api/users/login',{
       username: user.email,
       password: user.password
@@ -87,10 +86,10 @@ export default function Login() {
       if(data.message) {
         // console.log(data.message)
         if(data.message==='Password Incorrect'){
-          setUser({...user, passwordCheck: true, passwordErrorMessage: 'Incorrect Password'})
+          setUser({...user, passwordCheck: true, passwordErrorMessage: 'Incorrect Password', emailCheck: false, emailErrorMessage: '' })
         }
         else{
-          setUser({ ...user, emailCheck: true, emailErrorMessage: 'Email Does Not Exist' })
+          setUser({ ...user, emailCheck: true, emailErrorMessage: 'Email Does Not Exist', passwordCheck: false, passwordErrorMessage: '' })
         }
       }else {
         localStorage.setItem('jwt', data.token)
