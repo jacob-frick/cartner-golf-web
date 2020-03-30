@@ -36,5 +36,22 @@ router.post('/users/login', (req, res, next) => {
         }
     })(req, res, next)
 })
-
+router.get('/users/username/:uname', passport.authenticate('jwt', { session: false }), (req, res) => {
+    User.findOne({ username: req.params.uname })
+        .then((user) => {
+            if (!user) {
+                res.json({
+                    message: 'No User Found'
+                })
+            } else if (user._id === req.user._id) {
+                res.json({
+                    message: 'Trying to find yourself? Then go golf!'
+                })
+            } else {
+                res.json({
+                    username: user.username
+                })
+            }
+        })
+})
 module.exports = router
