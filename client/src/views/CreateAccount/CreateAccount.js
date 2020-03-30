@@ -15,9 +15,11 @@ import HomeContext from './../../utils/HomeContext'
 const CreateAccount = props => {
   const classes = createAccountStyles()
   const { setPageLogin, setPageDashboard } = useContext(HomeContext)
-  const [user, setUser] = useState({ fname: '', lname: '', email: '', password: ''})
+  const [user, setUser] = useState({ fname: '', lname: '', email: '', password: '', emailCheck: false, emailErrorMessage: ''})
   const didSubmit = (event) => {
     event.preventDefault()
+    //reset error messages
+    setUser({ ...user, emailCheck: false, emailErrorMessage: ''})
     axios.post('/api/users/register', {
       fname: user.fname,
       lname: user.lname,
@@ -30,7 +32,9 @@ const CreateAccount = props => {
         setPageDashboard(true)
       })
       .catch(error => {
-        console.error(error)
+        //Error will only fire if the email has already been taken
+        // console.error(error)
+        setUser({...user, emailCheck: true, emailErrorMessage: 'Email is already in use'})
       })
   }
 
@@ -78,6 +82,8 @@ const CreateAccount = props => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                error = {user.emailCheck}
+                helperText = {user.emailErrorMessage}
                 variant="outlined"
                 required
                 fullWidth
