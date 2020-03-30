@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import GolfCourseIcon from '@material-ui/icons/GolfCourse';
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import createAccountStyles from './styles.js'
@@ -40,15 +40,16 @@ const CreateAccount = props => {
 
 
   return (
+    <div className={classes.backgroundImage}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <div className={`${classes.paper} ${classes.loginStyle}`}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <GolfCourseIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-          </Typography>
+        <Typography className={classes.textCenter} component="h1" variant="h5">
+          Create An Account
+        </Typography>
         <form className={classes.form} noValidate onSubmit={didSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -121,6 +122,7 @@ const CreateAccount = props => {
         </form>
       </div>
     </Container>
+    </div>
   )
 }
 

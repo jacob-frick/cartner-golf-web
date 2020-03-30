@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
     // margin: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    marginTop: '2rem'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -56,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
   textCenter: {
     textAlign: 'center',
     marginTop: '1rem'
+  },
+  header: {
+    textAlign: 'center',
+    fontFamily: 'Open Sans, sans- serif'
   }
 }));
 
@@ -85,11 +90,14 @@ export default function Login() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
         <div className={`${classes.paper} ${classes.loginStyle}`}>
+        <Typography className={classes.header} component="h1" variant="h3">
+            Cartner-Golf
+        </Typography>
         <Avatar className={classes.avatar}>
           <GolfCourseIcon />
         </Avatar>
         <Typography className = {classes.textCenter}component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
         <form className={classes.form} noValidate onSubmit={didSubmit}>
           <TextField
