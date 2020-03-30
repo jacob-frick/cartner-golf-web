@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext} from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -15,27 +15,32 @@ import HomeContext from './../../utils/HomeContext'
 const CreateAccount = props => {
   const classes = createAccountStyles()
   const { setPageLogin, setPageDashboard } = useContext(HomeContext)
-  const [user, setUser] = useState({ fname: '', lname: '', email: '', password: '', emailCheck: false, emailErrorMessage: ''})
+  const [user, setUser] = useState({ fname: '', lname: '', email: '', password: '', confirmPassword: '', emailCheck: false, emailErrorMessage: '', confirmPasswordCheck: false, confirmPasswordErrorMessage: ''})
   const didSubmit = (event) => {
     event.preventDefault()
     //reset error messages
-    setUser({ ...user, emailCheck: false, emailErrorMessage: ''})
-    axios.post('/api/users/register', {
-      fname: user.fname,
-      lname: user.lname,
-      username: user.email,
-      password: user.password
-    })
-      .then(({ data }) => {
-        console.log(data)
-        localStorage.setItem('jwt', data.token)
-        setPageDashboard(true)
+    // setUser({ ...user, emailCheck: false, emailErrorMessage: '', confirmPasswordCheck: false, confirmPasswordErrorMessage: '' })
+    if(user.password !== user.confirmPassword){
+      setUser({ ...user, confirmPasswordCheck: true, confirmPasswordErrorMessage: 'Passwords do not match', emailCheck: false, emailErrorMessage: '',})
+    }
+    else{
+      axios.post('/api/users/register', {
+        fname: user.fname,
+        lname: user.lname,
+        username: user.email,
+        password: user.password
       })
-      .catch(error => {
-        //Error will only fire if the email has already been taken
-        // console.error(error)
-        setUser({...user, emailCheck: true, emailErrorMessage: 'Email is already in use'})
-      })
+        .then(({ data }) => {
+          console.log(data)
+          localStorage.setItem('jwt', data.token)
+          setPageDashboard(true)
+        })
+        .catch(error => {
+          //Error will only fire if the email has already been taken
+          // console.error(error)
+          setUser({ ...user, emailCheck: true, emailErrorMessage: 'Email is already in use', confirmPasswordCheck: false, confirmPasswordErrorMessage: ''})
+        })
+    }
   }
 
   const formChange = (event) => {
@@ -96,6 +101,8 @@ const CreateAccount = props => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                error={user.confirmPasswordCheck}
+                helperText={user.confirmPasswordErrorMessage}
                 variant="outlined"
                 required
                 fullWidth
@@ -103,6 +110,21 @@ const CreateAccount = props => {
                 label="Password"
                 type="password"
                 id="password"
+                autoComplete="current-password"
+                onChange={(event) => { formChange(event) }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                error = {user.confirmPasswordCheck}
+                helperText = {user.confirmPasswordErrorMessage}
+                variant="outlined"
+                required
+                fullWidth
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                id="confirmPassword"
                 autoComplete="current-password"
                 onChange={(event) => { formChange(event) }}
               />
