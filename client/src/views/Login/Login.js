@@ -61,24 +61,37 @@ const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: 'center',
     fontFamily: 'Open Sans, sans- serif'
+  },
+  onLinkHover: {
+    '&: hover': {
+      cursor: 'pointer',
+    }
   }
 }));
 
 export default function Login() {
   const classes = useStyles();
   const { setPageCreateAccount, setPageDashboard } = useContext(HomeContext)
-  const [user, setUser] = useState({email: '', password: ''})
+  const [user, setUser] = useState({email: '', password: '', emailCheck: false, passwordCheck: false, emailErrorMessage: '', passwordErrorMessage: ''})
   const formChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
   }
   const didSubmit = (event) => {
     event.preventDefault()
+    //reset error messages
+    setUser({ ...user, emailCheck: false, passwordCheck: false, emailErrorMessage: '', passwordErrorMessage: ''})
     axios.post('/api/users/login',{
       username: user.email,
       password: user.password
     }).then( ({data}) => {
       if(data.message) {
-        console.log(data.message)
+        // console.log(data.message)
+        if(data.message==='Password Incorrect'){
+          setUser({...user, passwordCheck: true, passwordErrorMessage: 'Incorrect Password'})
+        }
+        else{
+          setUser({ ...user, emailCheck: true, emailErrorMessage: 'Email Does Not Exist' })
+        }
       }else {
         localStorage.setItem('jwt', data.token)
         setPageDashboard()
@@ -101,6 +114,8 @@ export default function Login() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={didSubmit}>
           <TextField
+            error = {user.emailCheck}
+            helperText= {user.emailErrorMessage}
             variant="outlined"
             margin="normal"
             required
@@ -113,6 +128,8 @@ export default function Login() {
             onChange={(event) => {formChange(event)}}
           />
           <TextField
+            error= {user.passwordCheck}
+            helperText = {user.passwordErrorMessage}
             variant="outlined"
             margin="normal"
             required
@@ -144,7 +161,7 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link onClick={setPageCreateAccount} variant="body2">
+              <Link className = {classes.onLinkHover}onClick={setPageCreateAccount} variant="body2">
                 {"No Account? Sign Up"}
               </Link>
             </Grid>
