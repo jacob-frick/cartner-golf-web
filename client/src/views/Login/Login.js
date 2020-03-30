@@ -7,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import GolfCourseIcon from '@material-ui/icons/GolfCourse';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -21,9 +21,23 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  loginStyle: {
+    backgroundColor: 'white',
+    maxHeight: '50%',
+    marginTop: '50%',
+    marginBottom: '50%',
+    paddingBottom: '2rem',
+    paddingRight: '2rem',
+    paddingLeft: '2rem',
+    borderRadius: '.8rem',
+    paddingTop: '1rem',
+    display: 'inline-table'
+  },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    // margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -32,6 +46,17 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  backgroundImage: {
+    display: 'flex',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url(${"../assets/images/backgroundImage.jpg"})`,
+  },
+  textCenter: {
+    textAlign: 'center',
+    marginTop: '1rem'
+  }
 }));
 
 export default function Login() {
@@ -56,13 +81,14 @@ export default function Login() {
     })
   }
   return (
+    <div className={classes.backgroundImage}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+        <div className={`${classes.paper} ${classes.loginStyle}`}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <GolfCourseIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography className = {classes.textCenter}component="h1" variant="h5">
           Sign in
         </Typography>
         <form className={classes.form} noValidate onSubmit={didSubmit}>
@@ -111,12 +137,13 @@ export default function Login() {
             </Grid>
             <Grid item>
               <Link onClick={setPageCreateAccount} variant="body2">
-                {"Don't have an account? Sign Up"}
+                {"No Account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
     </Container>
+    </div>
   )
 }
