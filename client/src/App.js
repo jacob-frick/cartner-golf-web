@@ -1,11 +1,11 @@
 import React from 'react'
-import Dashboard from './components/Dashboard/Dashbard.js'
+import Table from './components/Scoreboard/Table.js'
 
 function App() {
   return (
     <div className="App">
         <h1>Cartner Golf</h1>
-        <Dashboard/>
+        <Table/>
     </div>
   );
 }

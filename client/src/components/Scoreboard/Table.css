@@ -1,14 +1,15 @@
 .typo{
-    text-align: center;
-    color: rgb(28, 104, 104);
-  }
-  .text{
+  text-align: center;
+  color: rgb(4, 95, 32);
+}
+.text{
 font-size: xx-small;
-  }
-  .hole{
-      background-color: rgb(113, 211, 14);
-      color: white;
-  }
-  .blue{
-      background-color: rgb(238, 234, 28);
-  }
+}
+.hole{
+  font-size: xx-large;
+    background-color: rgb(113, 211, 14);
+    color: white;
+}
+.blue{
+    background-color: rgb(248, 245, 53);
+}
