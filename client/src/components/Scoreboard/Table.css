@@ -2,6 +2,13 @@
     text-align: center;
     color: rgb(28, 104, 104);
   }
-  .table{
-      background-color: rgb(160, 231, 89);
+  .text{
+font-size: xx-small;
+  }
+  .hole{
+      background-color: rgb(113, 211, 14);
+      color: white;
+  }
+  .blue{
+      background-color: rgb(238, 234, 28);
   }
