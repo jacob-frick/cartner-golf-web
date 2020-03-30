@@ -27,7 +27,7 @@ const CreateAccount = props => {
       .then(({ data }) => {
         console.log(data)
         localStorage.setItem('jwt', data.token)
-        setPageDashboard()
+        setPageDashboard(true)
       })
       .catch(error => {
         console.error(error)

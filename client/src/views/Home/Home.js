@@ -6,10 +6,16 @@ import Authorization from './../../utils/Authorization'
 import HomeContext from './../../utils/HomeContext'
 
 const Home = () => {
-  const [page, setPage] = useState({ current: 'NONE' })
+  const [page, setPage] = useState({ current: 'NONE', isNewAcc: false })
   const [isAuth, setAuth] = useState(false)
   page.setPageLogin = () => setPage({ current: 'LOGIN' })
-  page.setPageDashboard = () => setPage({ current: 'DASHBOARD' })
+  page.setPageDashboard = (isNewAcc) => {
+    let newAcc = false
+    if(isNewAcc) {
+      newAcc = isNewAcc
+    }
+    setPage({ current: 'DASHBOARD', isNewAcc: newAcc })
+  }
   page.setPageCreateAccount = () => setPage({ current: 'CREATE_ACCOUNT' })
   if (page.current === 'NONE' && !isAuth) {
     Authorization.auth()
@@ -25,7 +31,7 @@ const Home = () => {
   if (page.current === 'LOGIN') {
     return (<HomeContext.Provider value={page}><Login /></HomeContext.Provider>)
   } else if (page.current === 'DASHBOARD') {
-    return (<HomeContext.Provider><Dashboard /></HomeContext.Provider>)
+    return (<HomeContext.Provider value={page}><Dashboard></Dashboard></HomeContext.Provider>)
   } else if (page.current === 'CREATE_ACCOUNT') {
     return (<HomeContext.Provider value={page}><CreateAccount /></HomeContext.Provider>)
   } else {
