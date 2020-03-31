@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from './components/Scoreboard/Table.js'
 
-function App() {
+const App 
   return (
     <div className="App">
         <h1>Cartner Golf</h1>
@@ -10,4 +10,5 @@ function App() {
   );
 }
 
-export default App;
+export default App
+
