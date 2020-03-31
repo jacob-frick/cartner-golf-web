@@ -1,23 +1,90 @@
 import React from 'react'
+import { makeStyles} from '@material-ui/core/styles'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import FormControl from '@material-ui/core/FormControl'
+import Grid from '@material-ui/core/Grid'
+import SearchIcon from '@material-ui/icons/Search'
+import Button from '@material-ui/core/Button'
+import User from './../../utils/User'
+import TextField from '@material-ui/core/TextField'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexGrow: 1
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: '25ch',
+  },
+  searchIcon: {
+    marginTop: '8px'
+  },
+  buttonHeight: {
+    height: '56px',
+    marginTop: '14px'
+  }
+}))
 
 const SearchBar = () => {
-    return (
-        <DrawerContext.Provider value={open}>
-          <div className={classes.root}>
-            <CssBaseline />
-            <Appbar />
-            <main className={classes.content}>
-              <div className={classes.appBarSpacer} />
-              <Container maxWidth="lg" className={classes.container}>
-                <Grid container spacing={3}>
-                  {/* Page Info goes here */}
-                  
-                </Grid>
-              </Container>
-            </main>
-          </div>
-        </DrawerContext.Provider>
-      )
+  const classes = useStyles()
+  const [value, setValues] = React.useState({
+    searchVal: '',
+    error: false,
+    errorMessage: ''
+  })
+
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...value, [prop]: event.target.value, error: false, errorMessage: '' })
+  }
+  const onSubmit = event => {
+    event.preventDefault()
+    if (value.searchVal === '') {
+      setValues({ ...value, error: true, errorMessage: 'Please enter a value to search' })
+    }
+    else {
+      User.findUser(value.searchVal)
+      .then(({data}) => {
+        if(data.message) {
+          setValues({ ...value, error: true, errorMessage: data.message })
+        } else {
+          console.log(data)
+        }
+      })
+    }
+  }
+  return (
+    <FormControl fullWidth className={classes.margin} variant="outlined" >
+      <Grid container spacing={3}>
+        <Grid item sm={10} xs={12}>
+            <TextField
+              error={value.error}
+              helperText={value.errorMessage}
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              name="searchVal"
+              label={<InputAdornment  className={classes.searchIcon} position="start"><SearchIcon />Search</InputAdornment>}
+              type="text"
+              id="searchVal"
+              onChange={handleChange('searchVal')}
+            />
+        </Grid>
+        <Grid item sm={2} xs={12}>
+          <Button className={classes.buttonHeight} variant="contained" fullWidth color="primary" onClick={onSubmit}>
+            Search
+          </Button>
+        </Grid>
+      </Grid>
+    </FormControl >
+
+  )
 }
 
 export default SearchBar

@@ -23,7 +23,7 @@ const OuterNavbar = props => {
             <Appbar />
             <main className={classes.content}>
               <div className={classes.appBarSpacer} />
-              <Container maxWidth="lg" className={classes.container}>
+              <Container maxWidth="xl" className={classes.container}>
                   {/* Page Info goes here */}
                   {props.children}
               </Container>
