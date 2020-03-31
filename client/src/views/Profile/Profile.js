@@ -1,87 +1,22 @@
-import React from 'react';
-import DrawerContext from '../../utils/DrawerContext'
-import Appbar from '../../components/Appbar'
+import React from 'react'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import OuterNavbar from './../../components/OuterNavbar'
+import profileStyles from './styles.js'
 
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Container from '@material-ui/core/Container';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  title: {
-    flexGrow: 1,
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  fixedHeight: {
-    height: 240,
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  }
-}));
-
-export default function Profile() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState({ open: false });
-  open.handleDrawerOpen = () => {
-    setOpen({ open: true });
-  };
-  open.handleDrawerClose = () => {
-    setOpen({ open: false });
-  };
+const Profile = () => {
+  const classes = profileStyles()
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
-  };
-
+  }
   return (
-    <DrawerContext.Provider value={open}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <Appbar />
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+    <OuterNavbar>
+      <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
@@ -141,9 +76,7 @@ export default function Profile() {
                 </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-          </Container>
-        </main>
-      </div>
-    </DrawerContext.Provider>
-  );
+    </OuterNavbar>
+  )
 }
+export default Profile
