@@ -17,7 +17,7 @@ import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 import drawerStyles from './styles.js'
-
+import {Link} from 'react-router-dom'
 
 const DrawerComponent = () => {
   const classes = drawerStyles();
@@ -46,6 +46,18 @@ const DrawerComponent = () => {
               aria-label='Matches' />
           </ListItem>
         </Tooltip>
+        <Link to = '/courses' className = {classes.linkStyles}>
+        <Tooltip title='Courses'>
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Courses"
+              aria-label='Courses' />
+          </ListItem>
+        </Tooltip>
+        </Link>
         <Tooltip title='Friends'>
           <ListItem button>
             <ListItemIcon>
