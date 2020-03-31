@@ -47,14 +47,14 @@ const DrawerComponent = () => {
           </ListItem>
         </Tooltip>
         <Link to = '/courses' className = {classes.linkStyles}>
-        <Tooltip title='Courses'>
+        <Tooltip title='Course Invites'>
           <ListItem button>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Courses"
-              aria-label='Courses' />
+              primary="Course Invites"
+              aria-label='Course Invites' />
           </ListItem>
         </Tooltip>
         </Link>
