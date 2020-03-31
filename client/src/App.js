@@ -1,6 +1,7 @@
 import React from 'react'
 import Profile from './views/Profile'
 import Home from './views/Home'
+import Friends from './views/Friends'
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,6 +23,9 @@ const App = props => {
       <Switch>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/friends">
+          <Friends />
         </Route>
         <Route path="/">
           <Home />
