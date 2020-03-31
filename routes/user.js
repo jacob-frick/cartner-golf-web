@@ -5,6 +5,7 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose');
+
 router.post('/users/register', (req, res) => {
     let { fname, lname, username, password } = req.body
     User.findOne({ username })
@@ -26,6 +27,7 @@ router.post('/users/register', (req, res) => {
             }
         })
 })
+
 router.post('/users/login', (req, res, next) => {
     passport.authenticate('local', {}, (err, user, message) => {
         if (message) res.json(message)
@@ -35,6 +37,7 @@ router.post('/users/login', (req, res, next) => {
         }
     })(req, res, next)
 })
+
 router.get('/users/username/:uname', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findOne({ username: req.params.uname })
         .then((user) => {
@@ -70,6 +73,7 @@ router.post('/users/send/:uid', passport.authenticate('jwt', { session: false })
         res.json(e)
     })
 })
+
 router.post('/users/respond/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
 
 })
