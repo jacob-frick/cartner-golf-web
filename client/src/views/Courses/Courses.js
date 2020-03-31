@@ -1,40 +1,42 @@
-import React, {useState} from 'react'
-import OuterNavBar from '../../components/OuterNavbar'
+import React, {useState, useEffect} from 'react'
 import CourseInvite from '../../components/CourseInvite'
 import Typography from '@material-ui/core/Typography';
-import coursesStyles from './styles.js'
 import Authorization from './../../utils/Authorization'
 import Login from './../Login'
+import OuterNavBar from '../../components/OuterNavbar'
 const Courses = () => {
   const [auth, setAuth] = useState({
     isAuth: false,
-    page: 'NONE'
+    current: 'NONE'
   })
-  if(!auth.isAuth){
-    Authorization.auth()
-    .then( res => {
-      if(res.status===200){
-        setAuth(true)
-        setAuth({...auth, page: 'COURSEINVITE'})
-      }
-      else{
-        setAuth({...auth, page: 'LOGIN'})
-      }
-    })
-  }
-  const classes = coursesStyles();
+  
+  useEffect(() => {
+    if (!auth.isAuth) {
+      Authorization.auth()
+        .then(res => {
+          if (res.status === 200) {
+            setAuth(true)
+            setAuth({ ...auth, current: 'COURSEINVITE' })
+          }
+          else {
+            setAuth({ ...auth, current: 'LOGIN' })
+          }
+        })
+    }
+  }, [])
 
-  if(auth.page === 'COURSEINVITE'){
+
+  if(auth.current === 'COURSEINVITE'){
     return(
       <OuterNavBar>
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Course Invites
-          </Typography>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Course Invites
+        </Typography>
         <CourseInvite />
       </OuterNavBar>
     )
   }
-  else if(auth.page==='LOGIN'){
+  else if(auth.current==='LOGIN'){
     return(
       <Login />
     )
