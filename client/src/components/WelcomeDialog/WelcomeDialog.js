@@ -1,26 +1,22 @@
 import React from 'react'
 
-import WelcomeModalStyles from "./styles";
-// import Modal from '@material-ui/core/Modal'
-
+import WelcomeDialogStyles from "./styles";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
 import Slide from '@material-ui/core/Slide'
-
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />
 })
 
-export default function WelcomModel() {
+export default function WelcomeDialog() {
   const handleClose = () => {
     setOpen(false)
   }
-  const classes = WelcomeModalStyles()
-  // getWelcomeModalStyles is not a pure function, we roll the style only on the first render
+  const classes = WelcomeDialogStyles()
+  // getWelcomeDialogStyles is not a pure function, we roll the style only on the first render
   const [open, setOpen] = React.useState(true)
 
   return (

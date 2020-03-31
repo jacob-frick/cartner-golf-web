@@ -6,7 +6,9 @@ import DrawerContext from '../../utils/DrawerContext'
 import Appbar from '../../components/Appbar'
 import dashboardStyles from './styles.js'
 import HomeContext from '../../utils/HomeContext'
-import WelcomeModel from './../../components/WelcomeModel'
+import WelcomeDialog from '../../components/WelcomeDialog'
+
+
 export default function Dashboard(props) {
   const classes = dashboardStyles()
   const [open, setOpen] = React.useState({ open: false })
@@ -18,11 +20,12 @@ export default function Dashboard(props) {
     setOpen({ open: false });
   }
   const isNewAccModel = () => {
-    if(isNewAcc) {
-      return(<WelcomeModel />)
+    if (isNewAcc) {
+      return (<WelcomeDialog />)
     }
     return <></>
   }
+
   const model = isNewAccModel()
   return (
     <DrawerContext.Provider value={open}>

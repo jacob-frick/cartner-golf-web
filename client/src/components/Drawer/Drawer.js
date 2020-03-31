@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import clsx from 'clsx'
+import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -17,9 +17,14 @@ import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 import drawerStyles from './styles.js'
+import HomeContext from './../../utils/HomeContext'
+
 
 
 const DrawerComponent = () => {
+  const { setPageLogin } = useContext(HomeContext)
+
+
   const classes = drawerStyles();
   let { open, handleDrawerClose } = useContext(DrawerContext)
   return (
@@ -30,7 +35,9 @@ const DrawerComponent = () => {
       }}
       open={open}>
       <div className={classes.toolbarIcon}>
-        <IconButton onClick={handleDrawerClose}>
+        <IconButton
+          onClick={handleDrawerClose}
+          component={Link} to="/Login">
           <ChevronLeftIcon />
         </IconButton>
       </div>
@@ -47,13 +54,16 @@ const DrawerComponent = () => {
           </ListItem>
         </Tooltip>
         <Tooltip title='Friends'>
-          <ListItem button>
+          <ListItem
+            button
+            primary="Friends"
+            aria-label='Friends'
+          // component={Link} to="/friends" 
+          >
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
-            <ListItemText
-              primary="Friends"
-              aria-label='Friends' />
+            <ListItemText />
             {/* BadgeContent value will dispaly pending notifications */}
             <Badge
               badgeContent={1}
@@ -62,24 +72,27 @@ const DrawerComponent = () => {
             </Badge>
           </ListItem>
         </Tooltip>
-        <Tooltip title='Account'>
-          <ListItem button>
+        <Tooltip title='Profile'>
+          <ListItem
+            button
+            primary="Profile"
+            aria-label='Profile'
+            component={Link} to="/profile">
             <ListItemIcon>
-              <BarChartIcon />
+              <PersonOutlineIcon />
             </ListItemIcon>
-            <ListItemText
-              primary="Account"
-              aria-label='Account' />
+            <ListItemText />
           </ListItem>
         </Tooltip>
         <Tooltip title='Match History'>
-          <ListItem button>
+          <ListItem
+            button
+            primary="Match History"
+            aria-label='Match History' >
             <ListItemIcon>
               <LayersIcon />
             </ListItemIcon>
-            <ListItemText
-              primary="Match History"
-              aria-label='Match History' />
+            <ListItemText />
           </ListItem>
         </Tooltip>
       </List>
