@@ -8,9 +8,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import EventNoteIcon from '@material-ui/icons/EventNote'
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import PeopleIcon from '@material-ui/icons/People';
-import LayersIcon from '@material-ui/icons/Layers';
+// import PeopleIcon from '@material-ui/icons/People';
+// import LayersIcon from '@material-ui/icons/Layers';
+import GroupAddIcon from '@material-ui/icons/GroupAdd'
+import MenuBookIcon from '@material-ui/icons/MenuBook'
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import Badge from '@material-ui/core/Badge';
@@ -53,17 +56,17 @@ const DrawerComponent = () => {
               aria-label='Matches' />
           </ListItem>
         </Tooltip>
-        <Link to = '/courses' className = {classes.linkStyles}>
-        <Tooltip title='Course Invites'>
-          <ListItem button>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="Course Invites"
-              aria-label='Course Invites' />
-          </ListItem>
-        </Tooltip>
+        <Link to='/courses' className={classes.linkStyles}>
+          <Tooltip title='Course Invites'>
+            <ListItem button>
+              <ListItemIcon>
+                <EventNoteIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Course Invites"
+                aria-label='Course Invites' />
+            </ListItem>
+          </Tooltip>
         </Link>
         <Tooltip title='Friends'>
           <ListItem
@@ -73,7 +76,7 @@ const DrawerComponent = () => {
           // component={Link} to="/friends" 
           >
             <ListItemIcon>
-              <PeopleIcon />
+              <GroupAddIcon />
             </ListItemIcon>
             <ListItemText />
             {/* BadgeContent value will dispaly pending notifications */}
@@ -84,6 +87,17 @@ const DrawerComponent = () => {
             </Badge>
           </ListItem>
         </Tooltip>
+        <Tooltip title='Match History'>
+          <ListItem
+            button
+            primary="Match History"
+            aria-label='Match History' >
+            <ListItemIcon>
+              <MenuBookIcon />
+            </ListItemIcon>
+            <ListItemText />
+          </ListItem>
+        </Tooltip>
         <Tooltip title='Profile'>
           <ListItem
             button
@@ -92,17 +106,6 @@ const DrawerComponent = () => {
             component={Link} to="/profile">
             <ListItemIcon>
               <PersonOutlineIcon />
-            </ListItemIcon>
-            <ListItemText />
-          </ListItem>
-        </Tooltip>
-        <Tooltip title='Match History'>
-          <ListItem
-            button
-            primary="Match History"
-            aria-label='Match History' >
-            <ListItemIcon>
-              <LayersIcon />
             </ListItemIcon>
             <ListItemText />
           </ListItem>
