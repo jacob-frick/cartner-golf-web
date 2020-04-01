@@ -19,7 +19,7 @@ const drawerStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: 'relative',
-    top: '0rem !important',
+    //top: '0rem !important',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -29,7 +29,7 @@ const drawerStyles = makeStyles((theme) => ({
   },
   drawerPaperClose: {
     overflowX: 'hidden',
-    top: '4rem !important',
+    //top: '4rem !important',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

@@ -20,6 +20,7 @@ import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 import drawerStyles from './styles.js'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 //import HomeContext from './../../utils/HomeContext'
 
 
@@ -39,8 +40,7 @@ const DrawerComponent = () => {
       open={open}>
       <div className={classes.toolbarIcon}>
         <IconButton
-          onClick={handleDrawerClose}
-          component={Link} to="/Login">
+          onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
       </div>
@@ -56,29 +56,24 @@ const DrawerComponent = () => {
               aria-label='Matches' />
           </ListItem>
         </Tooltip>
-        <Link to='/courses' className={classes.linkStyles}>
-          <Tooltip title='Course Invites'>
-            <ListItem button>
-              <ListItemIcon>
-                <EventNoteIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Course Invites"
-                aria-label='Course Invites' />
-            </ListItem>
-          </Tooltip>
-        </Link>
+        <Tooltip title='Course Invites'>
+          <ListItem button>
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Course Invites"
+              aria-label='Course Invites' />
+          </ListItem>
+        </Tooltip>
         <Tooltip title='Friends'>
-          <ListItem
-            button
-            primary="Friends"
-            aria-label='Friends'
-          // component={Link} to="/friends" 
-          >
+          <ListItem button>
             <ListItemIcon>
               <GroupAddIcon />
             </ListItemIcon>
-            <ListItemText />
+            <ListItemText
+              primary='Friends'
+              aria-label='Friends' />
             {/* BadgeContent value will dispaly pending notifications */}
             <Badge
               badgeContent={1}
@@ -88,26 +83,33 @@ const DrawerComponent = () => {
           </ListItem>
         </Tooltip>
         <Tooltip title='Match History'>
-          <ListItem
-            button
-            primary="Match History"
-            aria-label='Match History' >
+          <ListItem button>
             <ListItemIcon>
               <MenuBookIcon />
             </ListItemIcon>
-            <ListItemText />
+            <ListItemText primary="Match History"
+              aria-label='Match History' />
           </ListItem>
         </Tooltip>
         <Tooltip title='Profile'>
           <ListItem
             button
-            primary="Profile"
-            aria-label='Profile'
             component={Link} to="/profile">
             <ListItemIcon>
               <PersonOutlineIcon />
             </ListItemIcon>
-            <ListItemText />
+            <ListItemText primary="Profile"
+              aria-label='Profile' />
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Log Out'>
+          <ListItem
+            button>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log Out"
+              aria-label='Log Out' />
           </ListItem>
         </Tooltip>
       </List>
