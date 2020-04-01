@@ -29,7 +29,7 @@ router.post('/users/respond/:uid', passport.authenticate('jwt', { session: false
 router.get('/users/sent-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
     User.findById(req.user._id).populate({path: 'sent_friend_requests', select: ['fname', 'lname', 'username']})
     .then( user => {
-        res.json(user)
+        res.json(user.sent_friend_requests)
     })
     .catch(e => {
         console.error(e)
