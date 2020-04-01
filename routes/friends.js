@@ -27,12 +27,36 @@ router.post('/users/respond/:uid', passport.authenticate('jwt', { session: false
 })
 
 router.get('/users/sent-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
-    res.json({sent_requests: req.user.sent_friend_requests})
+    User.findById(req.user._id).populate({path: 'sent_friend_requests', select: ['fname', 'lname', 'username']})
+    .then( user => {
+        res.json(user)
+    })
+    .catch(e => {
+        console.error(e)
+        res.sendStatus(400)
+    })
+    // res.json({sent_requests: req.user.sent_friend_requests})
 })
 router.get('/users/rec-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
-    res.json({rec_requests: req.user.rec_friend_requests})
+    User.findById(req.user._id).populate({ path: 'rec_friend_requests', select: ['fname', 'lname', 'username'] })
+        .then(user => {
+            res.json(user.rec_friend_requests)
+        })
+        .catch(e => {
+            console.error(e)
+            res.sendStatus(400)
+        })
+    // res.json({rec_requests: req.user.rec_friend_requests})
 })
 router.get('/users/friends', passport.authenticate('jwt', { session: false }), (req,res) => {
-    res.json({friends: req.user.friends})
+    User.findById(req.user._id).populate({ path: 'friends', select: ['fname', 'lname', 'username'] })
+        .then(user => {
+            res.json(user.friends)
+        })
+        .catch(e => {
+            console.error(e)
+            res.sendStatus(400)
+        })
+    // res.json({friends: req.user.friends})
 })
 module.exports = router
