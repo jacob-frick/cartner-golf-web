@@ -42,6 +42,10 @@ const drawerStyles = makeStyles((theme) => ({
       display: 'flex',
       overflow: 'auto',
       flexDirection: 'column',
+    },
+    linkStyles: {
+      textDecoration: 'none',
+      color: 'black'
     }
   }))
   export default drawerStyles
