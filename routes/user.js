@@ -4,9 +4,8 @@ const { User } = require('../models')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const mongoose = require('mongoose');
 
-router.post('/users/register', (req, res) => {
+router.post('/register', (req, res) => {
     let { fname, lname, username, password } = req.body
     User.findOne({ username })
         .then(user => {
@@ -28,7 +27,7 @@ router.post('/users/register', (req, res) => {
         })
 })
 
-router.post('/users/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
     passport.authenticate('local', {}, (err, user, message) => {
         if (message) res.json(message)
         else {
@@ -38,7 +37,7 @@ router.post('/users/login', (req, res, next) => {
     })(req, res, next)
 })
 
-router.get('/users/username/:uname', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/username/:uname', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findOne({ username: req.params.uname })
         .then((user) => {
             req.user.sent_friend_requests.forEach(element => {
@@ -70,36 +69,6 @@ router.get('/users/username/:uname', passport.authenticate('jwt', { session: fal
             }
         })
 })
-router.get('/users/send/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
-    User.findById(req.params.uid)
-        .then(user => {
-            if (req.user._id.toString() === user._id.toString()) {
-                res.json({ message: 'Unable to send request to self.' })
-            } else {
-                user.rec_friend_requests.push(req.user._id)
-                user.save()
-                req.user.sent_friend_requests.push(req.params.uid)
-                req.user.save()
-                res.json({message: 'SENT'})
-            }
-        })
-        .catch(e => {
-            res.json({ message: 'INVAILD_ID' })
-        })
-})
 
-router.post('/users/respond/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-})
-
-router.get('/users/sent-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
-    res.json({sent_requests: req.user.sent_friend_requests})
-})
-router.get('/users/rec-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
-    res.json({rec_requests: req.user.rec_friend_requests})
-})
-router.get('/users/friends', passport.authenticate('jwt', { session: false }), (req,res) => {
-    res.json({friends: req.user.friends})
-})
 
 module.exports = router
