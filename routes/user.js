@@ -41,40 +41,65 @@ router.post('/users/login', (req, res, next) => {
 router.get('/users/username/:uname', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findOne({ username: req.params.uname })
         .then((user) => {
+            req.user.sent_friend_requests.forEach(element => {
+                if (user._id.toString() === element.toString()) {
+                    res.json({ message: 'Already sent a request' })
+                }
+            })
+            req.user.friends.forEach(element => {
+                if (user._id.toString() === element.toString()) {
+                    res.json({ message: 'This person is already your friend' })
+                }
+            })
+            req.user.rec_friend_requests.forEach(element => {
+                if (user._id.toString() === element.toString()) {
+                    res.json({ message: 'This person already sent you a friend request' })
+                }
+            })
             if (!user) {
-                res.json({
-                    message: 'No User Found'
-                })
+                res.json({ message: 'No User Found'})
             } else if (req.user._id.toString() === user._id.toString()) {
-                res.json({
-                    message: 'Trying to find yourself? Then go golf!'
-                })
+                res.json({ message: 'Trying to find yourself? Then go golf!' })
             } else {
                 res.json({
+                    fname: user.fname,
+                    lname: user.lname,
+                    id: user._id,
                     username: user.username
                 })
             }
         })
 })
-router.post('/users/send/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/users/send/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findById(req.params.uid)
-    .then(user => {
-        if (req.user._id.toString() === user._id.toString()) {
-            res.json({message: 'Unable to send request to self.'})
-        } else {
-            user.rec_friend_requests.push(req.user._id)
-            user.save()
-            req.user.sent_friend_requests.push(req.params.uid)
-            req.user.save()
-            res.sendStatus(200)
-        }
-    })
-    .catch(e => {
-        res.json(e)
-    })
+        .then(user => {
+            if (req.user._id.toString() === user._id.toString()) {
+                res.json({ message: 'Unable to send request to self.' })
+            } else {
+                user.rec_friend_requests.push(req.user._id)
+                user.save()
+                req.user.sent_friend_requests.push(req.params.uid)
+                req.user.save()
+                res.json({message: 'SENT'})
+            }
+        })
+        .catch(e => {
+            res.json({ message: 'INVAILD_ID' })
+        })
 })
 
 router.post('/users/respond/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
 
 })
+
+router.get('/users/sent-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
+    res.json({sent_requests: req.user.sent_friend_requests})
+})
+router.get('/users/rec-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
+    res.json({rec_requests: req.user.rec_friend_requests})
+})
+router.get('/users/friends', passport.authenticate('jwt', { session: false }), (req,res) => {
+    res.json({friends: req.user.friends})
+})
+
 module.exports = router

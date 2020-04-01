@@ -7,6 +7,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
 import User from './../../utils/User'
 import TextField from '@material-ui/core/TextField'
+import SendFriendReqModel from './../SendFriendReqModel'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -38,6 +39,7 @@ const SearchBar = () => {
     error: false,
     errorMessage: ''
   })
+  const [inviteModel, setModel] = React.useState(<></>)
 
 
   const handleChange = (prop) => (event) => {
@@ -51,17 +53,23 @@ const SearchBar = () => {
     else {
       User.findUser(value.searchVal)
       .then(({data}) => {
+        console.log(data)
         if(data.message) {
           setValues({ ...value, error: true, errorMessage: data.message })
         } else {
-          console.log(data)
+          const model = <SendFriendReqModel  inviteWasClosed={inviteWasClosed} user={data} />
+          setModel(model)
         }
       })
     }
   }
+  const inviteWasClosed = () => {
+    setModel(<></>)
+  }
   return (
     <FormControl fullWidth className={classes.margin} variant="outlined" >
       <Grid container spacing={3}>
+        {inviteModel}
         <Grid item sm={10} xs={12}>
             <TextField
               error={value.error}
@@ -83,7 +91,6 @@ const SearchBar = () => {
         </Grid>
       </Grid>
     </FormControl >
-
   )
 }
 
