@@ -4,7 +4,7 @@ const { User } = require('../models')
 const passport = require('passport')
 
 
-router.get('/send/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/send/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findById(req.params.uid)
         .then(user => {
             if (req.user._id.toString() === user._id.toString()) {

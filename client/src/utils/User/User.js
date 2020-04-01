@@ -3,6 +3,6 @@ const AuthHeader = { headers: { Authorization: `Bearer ${localStorage.getItem('j
 const User = {
     login: creds => axios.post('/api/users/login', creds),
     findUser: username => axios.get(`/api/users/username/${username}`, AuthHeader),
-    sendFriendRequest: id => axios.get(`/api/friends/send/${id.toString()}`, AuthHeader)
+    sendFriendRequest: id => axios.post(`/api/friends/send/${id.toString()}`,{}, AuthHeader)
 }
 export default User

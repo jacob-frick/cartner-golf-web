@@ -40,25 +40,34 @@ router.post('/login', (req, res, next) => {
 router.get('/username/:uname', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findOne({ username: req.params.uname })
         .then((user) => {
+            let alreadySent = false
             req.user.sent_friend_requests.forEach(element => {
                 if (user._id.toString() === element.toString()) {
-                    res.json({ message: 'Already sent a request' })
+                    alreadySent = true
                 }
             })
+            let alreadyFriend = false
             req.user.friends.forEach(element => {
                 if (user._id.toString() === element.toString()) {
-                    res.json({ message: 'This person is already your friend' })
+                    alreadyFriend = true
                 }
             })
+            let alreadyRec = false
             req.user.rec_friend_requests.forEach(element => {
                 if (user._id.toString() === element.toString()) {
-                    res.json({ message: 'This person already sent you a friend request' })
+                    alreadyRec = true
                 }
             })
             if (!user) {
-                res.json({ message: 'No User Found'})
+                res.json({ message: 'No User Found' })
             } else if (req.user._id.toString() === user._id.toString()) {
                 res.json({ message: 'Trying to find yourself? Then go golf!' })
+            } else if (alreadySent) {
+                res.json({ message: 'Already sent a request' })
+            } else if (alreadyRec) {
+                res.json({ message: 'This person already sent you a friend request' })
+            } else if (alredyFriend) {
+                res.json({ message: 'This person is already your friend' })
             } else {
                 res.json({
                     fname: user.fname,
