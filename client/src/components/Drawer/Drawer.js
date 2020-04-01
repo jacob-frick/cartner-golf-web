@@ -17,13 +17,12 @@ import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 import drawerStyles from './styles.js'
-import {Link} from 'react-router-dom'
-import HomeContext from './../../utils/HomeContext'
+//import HomeContext from './../../utils/HomeContext'
 
 
 
 const DrawerComponent = () => {
-  const { setPageLogin } = useContext(HomeContext)
+  //const { setPageLogin } = useContext(HomeContext)
 
 
   const classes = drawerStyles();

@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 // import Container from '@material-ui/core/Container'
 // import Grid from '@material-ui/core/Grid'
 import OuterNavbar from './../../components/OuterNavbar'
-import WelcomeModel from './../../components/WelcomeModel'
+import WelcomeDialog from './../../components/WelcomeDialog'
 import HomeContext from './../../utils/HomeContext'
 
 export default function Dashboard(props) {
