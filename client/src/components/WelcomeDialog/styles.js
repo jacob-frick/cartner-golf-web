@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-const WelcomeModalStyles = makeStyles((theme) => ({
+const WelcomeDialogStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: 'auto',
@@ -28,4 +28,4 @@ const WelcomeModalStyles = makeStyles((theme) => ({
   }
 }
 ))
-export default WelcomeModalStyles
+export default WelcomeDialogStyles

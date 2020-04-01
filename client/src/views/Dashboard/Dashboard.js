@@ -9,11 +9,12 @@ import HomeContext from './../../utils/HomeContext'
 export default function Dashboard(props) {
   const { isNewAcc } = useContext(HomeContext)
   const isNewAccModel = () => {
-    if(isNewAcc) {
-      return(<WelcomeModel />)
+    if (isNewAcc) {
+      return (<WelcomeDialog />)
     }
     return <></>
   }
+
   const model = isNewAccModel()
   return (
     <OuterNavbar>
