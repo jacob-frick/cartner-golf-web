@@ -5,12 +5,27 @@ import Grid from '@material-ui/core/Grid'
 import FriendsDisplay from '../../components/FriendsDisplay'
 import RecReqDisplay from '../../components/RecReqDisplay'
 import SentReqDisplay from '../../components/SentReqDisplay'
-
+import { Redirect } from 'react-router-dom'
+import Authorization from './../../utils/Authorization'
 const Friends = () => {
+    const [authStatus, setAuth] = React.useState('NONE')
 
-    return (
-        <OuterNavbar>
-            <SearchBar />
+
+    if (authStatus === 'NONE') {
+        Authorization.auth()
+            .then(res => {
+                if (res.status === 200) {
+                    setAuth('AUTH')
+                } else {
+                    setAuth('NO_AUTH')
+                }
+            })
+    }
+
+    if (authStatus === 'AUTH') {
+        return (
+            <OuterNavbar>
+                <SearchBar />
                 <Grid container spacing={1}>
                     <Grid item md={6} xs={12}>
                         <h1>Friends List</h1>
@@ -27,7 +42,13 @@ const Friends = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-        </OuterNavbar>
-      )
+            </OuterNavbar>
+        )
+    } else if (authStatus === 'NO_AUTH') {
+        return (<Redirect to='/' />)
+    } else {
+        return (<p></p>)
+    }
+
 }
 export default Friends
