@@ -47,7 +47,7 @@ const FriendCard = props => {
                 <Button onClick = {() => props.acceptRequest(id)} variant="outlined" className={classes.accept}>Accept</Button>
               </Grid>
               <Grid item md = {2} xs={6} className={classes.buttons}>
-                <Button variant="outlined" color="secondary">Decline</Button>
+                <Button onClick = {() => props.declineRequest(id)}variant="outlined" color="secondary">Decline</Button>
               </Grid>
             </Grid>
           </div>

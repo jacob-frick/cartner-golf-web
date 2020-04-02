@@ -38,6 +38,13 @@ const RecReqDisplay = () => {
       .catch(error => console.error(error))
   }
 
+  const declineRequest = id => {
+    User.declineRequest(id)
+    .then( () => {
+      getFriendRequest()
+    })
+    .catch(e => console.error(e))
+  }
   useEffect( () => {
     getFriendRequest()
   }, [])
@@ -64,6 +71,7 @@ const RecReqDisplay = () => {
                   type='pending'
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   acceptRequest = {acceptRequest}
+                  declineRequest = {declineRequest}
                 />
               )}
             </List>
