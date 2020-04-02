@@ -3,10 +3,12 @@ import Profile from './views/Profile'
 import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'
+import RoundHistory from './views/RoundHistory'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom"
 
 const App = props => {
@@ -31,9 +33,13 @@ const App = props => {
         <Route path="/courses">
           <Courses />
         </Route>
-        <Route path="/">
+        <Route path="/roundHistory">
+          <RoundHistory />
+        </Route>
+        <Route path="/" exact>
           <Home />
         </Route>
+        <Redirect to="/" />
       </Switch>
     </Router>
   )

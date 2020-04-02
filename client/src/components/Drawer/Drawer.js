@@ -21,13 +21,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 import drawerStyles from './styles.js'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import HomeIcon from '@material-ui/icons/Home'
 //import HomeContext from './../../utils/HomeContext'
 
 
 
 const DrawerComponent = () => {
   //const { setPageLogin } = useContext(HomeContext)
-
 
   const classes = drawerStyles();
   let { open, handleDrawerClose } = useContext(DrawerContext)
@@ -46,28 +46,31 @@ const DrawerComponent = () => {
       </div>
       <Divider />
       <List>
-        <Tooltip title='Matches'>
-          <ListItem button>
+        <Tooltip title='Home'>
+          <ListItem 
+          button
+          component={Link} to="/">
             <ListItemIcon>
-              <DashboardIcon />
+              <HomeIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Matches"
-              aria-label='Matches' />
+              primary="Home"
+              aria-label='Home' />
           </ListItem>
         </Tooltip>
-        <Tooltip title='Course Invites'>
+        <Tooltip title='Courses'>
           <ListItem button>
             <ListItemIcon>
               <EventNoteIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Course Invites"
-              aria-label='Course Invites' />
+              primary="Courses"
+              aria-label='Courses' />
           </ListItem>
         </Tooltip>
         <Tooltip title='Friends'>
-          <ListItem button>
+          <ListItem button
+          component={Link} to="/">
             <ListItemIcon>
               <GroupAddIcon />
             </ListItemIcon>
@@ -82,13 +85,15 @@ const DrawerComponent = () => {
             </Badge>
           </ListItem>
         </Tooltip>
-        <Tooltip title='Match History'>
-          <ListItem button>
+        <Tooltip title='Round History'>
+          <ListItem 
+          button
+          component={Link} to="/roundHistory">
             <ListItemIcon>
               <MenuBookIcon />
             </ListItemIcon>
-            <ListItemText primary="Match History"
-              aria-label='Match History' />
+            <ListItemText primary="Round History"
+              aria-label='Round History' />
           </ListItem>
         </Tooltip>
         <Tooltip title='Profile'>
@@ -104,7 +109,11 @@ const DrawerComponent = () => {
         </Tooltip>
         <Tooltip title='Log Out'>
           <ListItem
-            button>
+            button
+            onClick={() => {
+              localStorage.removeItem('jwt')
+              window.location.reload(false)
+            }}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
