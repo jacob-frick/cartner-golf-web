@@ -8,4 +8,16 @@ router.get('/all', passport.authenticate('jwt', {session: false}), (req, res) =>
         res.json(courses)
     })
 })
+router.get('/id/:uid', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Course.findById(req.params.uid)
+    .then(course => {
+        res.json(course)
+    })
+    .catch(e => res.json(e))
+})
+router.get('/name/:name', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Course.find({name: req.params.name}, (err, course) => {
+        res.json(course)
+    })
+})
 module.exports = router
