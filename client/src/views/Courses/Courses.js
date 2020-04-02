@@ -1,9 +1,10 @@
 import React from 'react'
 import CourseInvite from '../../components/CourseInvite'
-import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography'
 import Authorization from './../../utils/Authorization'
 import OuterNavBar from '../../components/OuterNavbar'
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import Course from './../../utils/Course'
 const Courses = () => {
   const [authStatus, setAuth] = React.useState('NONE')
 
@@ -18,7 +19,10 @@ const Courses = () => {
         }
       })
   }
-
+  Course.findAll()
+  .then(({data}) => {
+    console.log(data)
+  })
   if (authStatus === 'AUTH') {
     return (
       <OuterNavBar>

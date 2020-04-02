@@ -44,31 +44,9 @@ const RecReqDisplay = () => {
                   name={`${person.fname} ${person.lname}`}
                   course='course 1'
                   type='pending'
-                  initials={`${person.fname.charAt(0).toUpperCase()}` + `${person.lname.charAt(0).toUpperCase()}`}
+                  initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                 />
               )}
-              {/* <FriendCard 
-                name = 'richard'
-                course = 'course 1'
-                type = 'pending'
-              />
-              <FriendCard 
-                name='jacob'
-                course='course 2'
-                type='pending'
-                />
-              <FriendCard 
-                name='jullian'
-                course='course 3'
-                type='pending'
-              />
-              <FriendCard 
-                name='sulakshana'
-                course='course 3'
-                type='pending'
-              /> */}
-              {/* End mapping users friends here */}
-              {/* No Divider at the end */}
             </List>
           </Grid>
         </div>

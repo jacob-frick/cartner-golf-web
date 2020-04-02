@@ -43,30 +43,9 @@ const SentReqDisplay = () => {
                   name= {`${person.fname} ${person.lname}`}
                   course='course 1'
                   type='sent'
-                  initials={`${person.fname.charAt(0).toUpperCase()}` + `${person.lname.charAt(0).toUpperCase()}`}
+                  initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                 />
                 )}
-              {/* <FriendCard
-                name='richard'
-                course='course 1'
-                type='sent'
-              />
-              <FriendCard
-                name='jacob'
-                course='course 2'
-                type='sent'
-              />
-              <FriendCard
-                name='jullian'
-                course='course 3'
-                type='sent'
-              />
-              <FriendCard
-                name='sulakshana'
-                course='course 3'
-                type='sent'
-              /> */}
-              {/* End mapping users friends here */}
             </List>
           </Grid>
           {/* </Container> */}

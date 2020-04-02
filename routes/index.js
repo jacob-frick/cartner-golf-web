@@ -1,6 +1,7 @@
 const router = require('express').Router()
 
-router.use('/api', require('./authorize.js'))
-router.use('/api/users', require('./user.js'))
-router.use('/api/friends', require('./friends.js'))
+router.use('/', require('./authorize.js'))
+router.use('/users', require('./user.js'))
+router.use('/friends', require('./friends.js'))
+router.use('/courses', require('./courses.js'))
 module.exports = router

@@ -7,7 +7,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+//import DashboardIcon from '@material-ui/icons/Dashboard';
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 // import PeopleIcon from '@material-ui/icons/People';
