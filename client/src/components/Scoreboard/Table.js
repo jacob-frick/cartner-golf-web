@@ -13,7 +13,7 @@ import "./Table.css";
 
 const useStyles = makeStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #81c784 30%, #4caf50 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -21,44 +21,51 @@ const useStyles = makeStyles({
     height: 48,
     padding: '0 30px',
   },
+  hole:{
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+ 
+  },
+
 });
 
-
+  
 
 function createData(name, hole, one, two, three, four, five ) {
   return { name, hole, one, two, three, four, five };
 }
 
 const rows = [
-  createData('Black'),
-  createData('Blackhandicap'),
-  createData('Blue'),
-  createData('Bluehandicap'),
-  createData('White'),
-  createData('Whitehandicap'),
-  createData('Combo'),
-  createData('Combohandicap'),
-  createData('Menshandicap'),
-  createData('Menspar'),
-  createData('Womenspar'),
-  createData('Womenshandicap'),
+  createData('Distance'),
+  createData('Par'),
+  createData('Handicap'),
+  createData('Player1'),
+  createData('Player2'),
+  createData('Player3'),
+  createData('Player4'),
+  createData('Player5'),
+  createData('Player6'),
+  createData('Player7'),
+  createData('Player8'),
 ];
-
-const blackcolor =rows.black
-
 
 export default function SimpleTable() {
   const classes = useStyles();
 
   return (
-    <TableContainer  class = "table" component={Paper}>
+    <TableContainer  class = "table" size="medium" component={Paper}>
               <Typography  class = "typo" variant="h1" id="tableTitle">
           Scoreboard
         </Typography>
 
       <Table className={classes.table} aria-label="simple table">
         <TableHead className = {classes.root}>
-          <TableRow class = "hole">
+          <TableRow className = "hole, {row.name}" >
             <TableCell  >Hole</TableCell>
             <TableCell align="center">1</TableCell>
             <TableCell align="center">2</TableCell>
@@ -87,9 +94,10 @@ export default function SimpleTable() {
 
         <TableBody class = "blue">
         {rows.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row.name} className = {row.name}>
               <TableCell component="th" scope="row">
-                {row.name}
+              <TextField id="standard-size-normal" placeholder ={row.name}/>
+
               </TableCell>
               <TableCell align="center" >
               <TextField id="standard-size-normal"  />
