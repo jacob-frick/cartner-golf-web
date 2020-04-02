@@ -33,6 +33,7 @@ const RecReqDisplay = () => {
       .then( ({data}) => {
         getFriendRequest()
         updateStatus('ACCEPTED'+id.toString())
+        updateStatus('')
       })
       .catch(error => console.error(error))
   }

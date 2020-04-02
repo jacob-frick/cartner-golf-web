@@ -27,6 +27,7 @@ const SendFriendReqModel = props => {
       console.log(data.message)
       setOpen(false)
       udpateStatusSent('SENT'+props.user.id)
+      udpateStatusSent('')
       props.inviteWasClosed()
     })
   }
