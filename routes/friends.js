@@ -35,7 +35,6 @@ router.get('/users/sent-requests', passport.authenticate('jwt', { session: false
         console.error(e)
         res.sendStatus(400)
     })
-    // res.json({sent_requests: req.user.sent_friend_requests})
 })
 router.get('/users/rec-requests', passport.authenticate('jwt', { session: false }), (req,res) => {
     User.findById(req.user._id).populate({ path: 'rec_friend_requests', select: ['fname', 'lname', 'username'] })
@@ -46,7 +45,6 @@ router.get('/users/rec-requests', passport.authenticate('jwt', { session: false 
             console.error(e)
             res.sendStatus(400)
         })
-    // res.json({rec_requests: req.user.rec_friend_requests})
 })
 router.get('/users/friends', passport.authenticate('jwt', { session: false }), (req,res) => {
     User.findById(req.user._id).populate({ path: 'friends', select: ['fname', 'lname', 'username'] })
@@ -57,6 +55,14 @@ router.get('/users/friends', passport.authenticate('jwt', { session: false }), (
             console.error(e)
             res.sendStatus(400)
         })
-    // res.json({friends: req.user.friends})
+})
+
+//accepting a friend request
+router.put('/users/accept/:uid', passport.authenticate('jwt', { session: false }), (req,res) => {
+    //pushing to user's friends list
+    req.user.friends.push(req.params.uid)
+    // removing from rec_friends_request from user
+    req.user.rec_friend_requests.splice(req.user.rec_friend_requests.indexOf(req.params.uid), 1)
+    res.json(req.user.rec_friend_requests)
 })
 module.exports = router

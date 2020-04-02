@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom';
@@ -22,6 +22,7 @@ import DrawerContext from '../../utils/DrawerContext'
 import drawerStyles from './styles.js'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import HomeIcon from '@material-ui/icons/Home'
+import User from '../../utils/User'
 //import HomeContext from './../../utils/HomeContext'
 
 
@@ -29,8 +30,26 @@ import HomeIcon from '@material-ui/icons/Home'
 const DrawerComponent = () => {
   //const { setPageLogin } = useContext(HomeContext)
 
+  const [requests, setRequests] = useState({
+    num_request: 0,
+    status: ''
+  })
+
+
+  if(requests.status === '') {
+    console.log(localStorage.getItem('jwt'))
+    User.getRecFriendRequests()
+      .then( ({data: num_request}) => {
+        console.log(num_request.length)
+        setRequests({ ...setRequests, num_request: num_request.length, status:'CHECKED' })
+      })
+      .catch(e => console.error(e))
+  }
+
+
   const classes = drawerStyles();
   let { open, handleDrawerClose } = useContext(DrawerContext)
+
   return (
     <Drawer
       variant="permanent"
@@ -70,7 +89,7 @@ const DrawerComponent = () => {
         </Tooltip>
         <Tooltip title='Friends'>
           <ListItem button
-          component={Link} to="/">
+          component={Link} to="/friends">
             <ListItemIcon>
               <GroupAddIcon />
             </ListItemIcon>
@@ -79,7 +98,7 @@ const DrawerComponent = () => {
               aria-label='Friends' />
             {/* BadgeContent value will dispaly pending notifications */}
             <Badge
-              badgeContent={1}
+              badgeContent={requests.num_request}
               color="secondary"
               className={open ? classes.menuButton : classes.menuButtonHidden}>
             </Badge>

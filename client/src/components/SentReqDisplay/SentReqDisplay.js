@@ -34,7 +34,7 @@ const SentReqDisplay = () => {
     return (
       <Paper elevation={3}>
         <div className={classes.root}>
-          <Grid container spacing={40}>
+          <Grid container spacing={1}>
             <List className={classes.listStyle}>
               {/* Begin mapping users friends here */}
               {sentRequest.requests.map(person => 

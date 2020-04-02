@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Login from './../Login'
 import Dashboard from './../Dashboard'
 import CreateAccount from './../CreateAccount'
@@ -17,17 +17,22 @@ const Home = () => {
     setPage({ current: 'DASHBOARD', isNewAcc: newAcc })
   }
   page.setPageCreateAccount = () => setPage({ current: 'CREATE_ACCOUNT' })
-  if (page.current === 'NONE' && !isAuth) {
-    Authorization.auth()
-      .then(res => {
-        if (res.status === 200) {
-          setAuth(true)
-          page.setPageDashboard()
-        } else {
-          page.setPageLogin()
-        }
-      })
-  }
+
+  useEffect( () => {
+    console.log(localStorage.getItem('jwt'))
+    if (page.current === 'NONE' && !isAuth) {
+      Authorization.auth()
+        .then(res => {
+          if (res.status === 200) {
+            setAuth(true)
+            page.setPageDashboard()
+          } else {
+            page.setPageLogin()
+          }
+        })
+    }
+  }, [])
+
   if (page.current === 'LOGIN') {
     return (<HomeContext.Provider value={page}><Login /></HomeContext.Provider>)
   } else if (page.current === 'DASHBOARD') {

@@ -13,18 +13,32 @@ const RecReqDisplay = () => {
     requests: []
   })
 
-  if(recRequest.hasRequests === ''){
+  const getFriendRequest = () => {
     User.getRecFriendRequests()
-    .then( ({data: requests}) => {
-      // console.log(requests)
-      if(requests.length < 1){
-        setRecRequest({...recRequest, hasRequests: 'NONE'})
-      }else{
-        setRecRequest({...recRequest, hasRequests: 'REQUESTS', requests})
-      }
-    })
-    .catch(error => console.error(error))
+      .then(({ data: requests }) => {
+        // console.log(requests)
+        if (requests.length < 1) {
+          setRecRequest({ ...recRequest, hasRequests: 'NONE' })
+        } else {
+          setRecRequest({ ...recRequest, hasRequests: 'REQUESTS', requests })
+        }
+      })
+      .catch(error => console.error(error))
   }
+
+  const acceptRequest = id => {
+    User.acceptRequest(id)
+      .then( ({data}) => {
+        console.log(data)
+        // getFriendRequest()
+      })
+      .catch(error => console.error(error))
+  }
+
+  if(recRequest.hasRequests === ''){
+    getFriendRequest()
+  }
+
 
   if(recRequest.hasRequests ==='NONE'){
     return (
@@ -35,16 +49,18 @@ const RecReqDisplay = () => {
     return (
       <Paper elevation={3}>
         <div className = {classes.root}>
-          <Grid container spacing={40}>
+          <Grid container spacing={1}>
             <List className = {classes.listStyle}>
               {/* Begin mapping users friends here */}
               {recRequest.requests.map(person =>
                 <FriendCard
                   key={person._id}
+                  id = {person._id}
                   name={`${person.fname} ${person.lname}`}
                   course='course 1'
                   type='pending'
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
+                  acceptRequest = {acceptRequest}
                 />
               )}
             </List>
