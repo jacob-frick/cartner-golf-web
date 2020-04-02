@@ -15,17 +15,28 @@ const SentReqDisplay = () => {
 
   let {sentRequests, statusSent, updateSentRequests, hasRequests} = useContext(FriendsContext)
 
-  useEffect(() => {
+  const getRequests = () => {
     User.getSentFriendRequests()
-    .then( ({data: requests}) => {
-      // console.log(requests)
-      if(requests.length < 1){
-        updateSentRequests('NONE', [])
-      }else{
-        updateSentRequests('REQUESTS', requests)
-      }
+      .then(({ data: requests }) => {
+        // console.log(requests)
+        if (requests.length < 1) {
+          updateSentRequests('NONE', [])
+        } else {
+          updateSentRequests('REQUESTS', requests)
+        }
+      })
+      .catch(error => console.error(error))
+  }
+  const cancelSentRequest = id => {
+    User.cancelRequest(id)
+    .then( () => {
+      getRequests()
     })
-    .catch(error => console.error(error))
+    .catch(e => console.error(e))
+  }
+
+  useEffect(() => {
+    getRequests()
   },[statusSent])
 
 
@@ -44,10 +55,12 @@ const SentReqDisplay = () => {
               {sentRequests.map(person => 
                 <FriendCard
                   key = {person._id}
+                  id = {person._id}
                   name= {`${person.fname} ${person.lname}`}
                   course='course 1'
                   type='sent'
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
+                  cancelSentRequest={cancelSentRequest}
                 />
                 )}
             </List>

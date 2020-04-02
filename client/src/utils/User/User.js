@@ -6,6 +6,7 @@ const User = {
     getSentFriendRequests: () => axios.get('/api/friends/users/sent-requests', { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` }}),
     getRecFriendRequests: () => axios.get('/api/friends/users/rec-requests', { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
     getFriends: () => axios.get('/api/friends/users/friends', { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` }}),
-    acceptRequest: id => axios.put(`/api/friends/users/accept/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` }})
+    acceptRequest: id => axios.put(`/api/friends/users/accept/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` }}),
+    cancelRequest: id => axios.put(`/api/friends/users/cancel/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } })
 }
 export default User

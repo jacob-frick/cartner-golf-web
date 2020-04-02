@@ -78,4 +78,22 @@ router.put('/users/accept/:uid', passport.authenticate('jwt', { session: false }
         res.sendStatus(400)
     })
 })
+
+//cancel a sent request
+router.put('/users/cancel/:uid', passport.authenticate('jwt', { session: false }), (req,res) => {
+    User.findById(req.params.uid)
+    .then( user => {
+        // removing user's sent_friends_requests array
+        req.user.sent_friend_requests.splice(req.user.sent_friend_requests.indexOf(req.params.uid), 1)
+        req.user.save()
+        //removing from other person's rec_friend_requests array
+        user.rec_friend_requests.splice(user.rec_friend_requests.indexOf(req.user._id), 1)
+        user.save()
+        res.sendStatus(200)
+    })
+    .catch( e => {
+        console.error(e)
+        res.sendStatus(400)
+    })
+})
 module.exports = router

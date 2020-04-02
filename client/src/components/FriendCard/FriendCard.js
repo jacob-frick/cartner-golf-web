@@ -69,7 +69,7 @@ const FriendCard = props => {
                 <Typography variant="subtitle2">Currently playing a round at {course}</Typography>
               </Grid>
               <Grid item md={4} xs={12} className={classes.buttons}>
-                <Button variant="outlined" color="secondary">Cancel</Button>
+                <Button onClick = {() => props.cancelSentRequest(id)}variant="outlined" color="secondary">Cancel</Button>
               </Grid>
             </Grid>
           </div>
