@@ -11,19 +11,37 @@ const FriendDisplay = () => {
 
   const {friends, hasFriends, updateFriends, status} = useContext(FriendsContext)
 
-  // Do api call here to get friends
-  useEffect( () => {
+  const displayFriends = () => {
     User.getFriends()
       .then(({ data: friends }) => {
         // console.log(friends)
         if (friends.length < 1) {
           updateFriends('NONE', [])
         } else {
-          updateFriends('FRIENDS', friends )
+          updateFriends('FRIENDS', friends)
         }
       })
       .catch(error => console.error(error))
+  }
+
+  //display friends whenver status is changed
+  useEffect( () => {
+    displayFriends()
   }, [status])
+
+  //display friends when component mounts
+  useEffect( () => {
+    displayFriends()
+  }, [])
+  
+  const removeFriend = id => {
+    User.removeFriend(id)
+    .then( () => {
+      displayFriends()
+    })
+    .catch(e => console.error(e))
+  }
+
   //no friends
   if (hasFriends === 'NONE'){
     return (
@@ -40,10 +58,12 @@ const FriendDisplay = () => {
               {friends.map(person =>
                 <FriendCard
                   key={person._id}
+                  id={person._id}
                   name={`${person.fname} ${person.lname}`}
                   course='course 1'
                   type='friend'
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
+                  removeFriend = {removeFriend}
                 />
               )}
             </List>

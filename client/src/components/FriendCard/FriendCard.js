@@ -22,7 +22,7 @@ const FriendCard = props => {
                 <Typography variant="subtitle2">Currently playing a round at {course}</Typography>
               </Grid>
               <Grid item md={4} xs={12} className={classes.buttons}>
-                <Button variant="outlined" color="secondary">Remove</Button>
+                <Button onClick = {() => props.removeFriend(id)}variant="outlined" color="secondary">Remove</Button>
               </Grid>
             </Grid>
           </div>

@@ -83,7 +83,7 @@ router.put('/users/accept/:uid', passport.authenticate('jwt', { session: false }
 router.put('/users/cancel/:uid', passport.authenticate('jwt', { session: false }), (req,res) => {
     User.findById(req.params.uid)
     .then( user => {
-        // removing user's sent_friends_requests array
+        // removing from user's sent_friends_requests array
         req.user.sent_friend_requests.splice(req.user.sent_friend_requests.indexOf(req.params.uid), 1)
         req.user.save()
         //removing from other person's rec_friend_requests array
@@ -101,11 +101,28 @@ router.put('/users/cancel/:uid', passport.authenticate('jwt', { session: false }
 router.put('/users/decline/:uid', passport.authenticate('jwt', { session: false }), (req,res) => {
     User.findById(req.params.uid)
     .then( user => {
-        // removing user's rec_friends_requests array
+        // removing from user's rec_friends_requests array
         req.user.rec_friend_requests.splice(req.user.rec_friend_requests.indexOf(req.params.uid), 1)
         req.user.save()
         //removing from other person's sent_friend_requests array
         user.sent_friend_requests.splice(user.sent_friend_requests.indexOf(req.user._id), 1)
+        user.save()
+        res.sendStatus(200)
+    })
+    .catch( e => {
+        console.error(e)
+        res.sendStatus(400)
+    })
+})
+//remove a friend
+router.put('/users/remove/:uid', passport.authenticate('jwt', { session: false }), (req,res) => {
+    User.findById(req.params.uid)
+    .then( user => {
+        // removing from user's friends array
+        req.user.friends.splice(req.user.friends.indexOf(req.params.uid), 1)
+        req.user.save()
+        //removing from other person's friend array
+        user.friends.splice(user.friends.indexOf(req.user._id), 1)
         user.save()
         res.sendStatus(200)
     })
