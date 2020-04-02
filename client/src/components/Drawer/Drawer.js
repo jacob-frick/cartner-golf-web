@@ -37,10 +37,8 @@ const DrawerComponent = () => {
 
 
   if(requests.status === '') {
-    console.log(localStorage.getItem('jwt'))
     User.getRecFriendRequests()
       .then( ({data: num_request}) => {
-        console.log(num_request.length)
         setRequests({ ...setRequests, num_request: num_request.length, status:'CHECKED' })
       })
       .catch(e => console.error(e))

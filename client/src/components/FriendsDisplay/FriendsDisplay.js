@@ -1,44 +1,43 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import User from '../../utils/User'
 import friendDisplayStyles from './style.js'
+import FriendsContext from '../../utils/FriendsContext'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
-  const [friendState, setFriends] = useState({
-    hasRequested: '',
-    friends: []
-  })
+
+  const {friends, hasRequested, updateFriends, status} = useContext(FriendsContext)
 
   // Do api call here to get friends
-  if (friendState.hasRequested === ''){
+  useEffect( () => {
     User.getFriends()
       .then(({ data: friends }) => {
         // console.log(friends)
         if (friends.length < 1) {
-          setFriends({ ...setFriends, hasRequested: 'NONE' })
+          updateFriends('NONE', [])
         } else {
-          setFriends({ ...setFriends, hasRequested: 'FRIENDS', friends })
+          updateFriends('FRIENDS', friends )
         }
       })
       .catch(error => console.error(error))
-  }
+  }, [status])
   //no friends
-  if (friendState.hasRequested === 'NONE'){
+  if (hasRequested === 'NONE'){
     return (
       <p>No Friends to Display</p>
     )
   }
-  else if (friendState.hasRequested === 'FRIENDS'){
+  else if (hasRequested === 'FRIENDS'){
     return (
       <Paper elevation={3}>
         <div className={classes.root}>
           <Grid container spacing={1}>
             <List className = {classes.listStyle}>
               {/* Begin mapping users friends here */}
-              {friendState.friend.map(person =>
+              {friends.map(person =>
                 <FriendCard
                   key={person._id}
                   name={`${person.fname} ${person.lname}`}

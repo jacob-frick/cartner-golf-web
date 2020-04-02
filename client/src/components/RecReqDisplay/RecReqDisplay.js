@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import User from '../../utils/User'
 import recReqDisplayStyles from './style.js'
+import FriendsContext from '../../utils/FriendsContext'
 const RecReqDisplay = () => {
   const classes = recReqDisplayStyles()
 
+  const {updateStatus} = useContext(FriendsContext)
   const [recRequest, setRecRequest] = useState({
     hasRequests: '',
     requests: []
@@ -29,15 +31,15 @@ const RecReqDisplay = () => {
   const acceptRequest = id => {
     User.acceptRequest(id)
       .then( ({data}) => {
-        console.log(data)
-        // getFriendRequest()
+        getFriendRequest()
+        updateStatus('ACCEPTED'+id.toString())
       })
       .catch(error => console.error(error))
   }
 
-  if(recRequest.hasRequests === ''){
+  useEffect( () => {
     getFriendRequest()
-  }
+  }, [])
 
 
   if(recRequest.hasRequests ==='NONE'){

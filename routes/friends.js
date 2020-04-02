@@ -59,10 +59,23 @@ router.get('/users/friends', passport.authenticate('jwt', { session: false }), (
 
 //accepting a friend request
 router.put('/users/accept/:uid', passport.authenticate('jwt', { session: false }), (req,res) => {
-    //pushing to user's friends list
-    req.user.friends.push(req.params.uid)
-    // removing from rec_friends_request from user
-    req.user.rec_friend_requests.splice(req.user.rec_friend_requests.indexOf(req.params.uid), 1)
-    res.json(req.user.rec_friend_requests)
+    User.findById(req.params.uid)
+    .then( user => {
+        //pushing to user's friends list
+        req.user.friends.push(req.params.uid)
+        // removing from rec_friends_request from user
+        req.user.rec_friend_requests.splice(req.user.rec_friend_requests.indexOf(req.params.uid), 1)
+        req.user.save()
+        // pushing to other person's friends list
+        user.friends.push(req.user._id)
+        //removing from other person's sent request
+        user.sent_friend_requests.splice(user.sent_friend_requests.indexOf(req.user._id), 1)
+        user.save()
+        res.sendStatus(200)
+    })
+    .catch( e => {
+        console.error(e)
+        res.sendStatus(400)
+    })
 })
 module.exports = router
