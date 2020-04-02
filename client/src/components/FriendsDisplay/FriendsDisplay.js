@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useEffect, useContext} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
@@ -9,7 +9,7 @@ import FriendsContext from '../../utils/FriendsContext'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
-  const {friends, hasRequested, updateFriends, status} = useContext(FriendsContext)
+  const {friends, hasFriends, updateFriends, status} = useContext(FriendsContext)
 
   // Do api call here to get friends
   useEffect( () => {
@@ -25,12 +25,12 @@ const FriendDisplay = () => {
       .catch(error => console.error(error))
   }, [status])
   //no friends
-  if (hasRequested === 'NONE'){
+  if (hasFriends === 'NONE'){
     return (
       <p>No Friends to Display</p>
     )
   }
-  else if (hasRequested === 'FRIENDS'){
+  else if (hasFriends === 'FRIENDS'){
     return (
       <Paper elevation={3}>
         <div className={classes.root}>

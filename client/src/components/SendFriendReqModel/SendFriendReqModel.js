@@ -16,7 +16,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const SendFriendReqModel = props => {
 
-  const {rerender} = useContext(FriendsContext)
+  const {udpateStatusSent} = useContext(FriendsContext)
   const handleClose = () => {
     props.inviteWasClosed()
     setOpen(false)
@@ -26,6 +26,7 @@ const SendFriendReqModel = props => {
     .then(({data}) => {
       console.log(data.message)
       setOpen(false)
+      udpateStatusSent('SENT'+props.user.id)
       props.inviteWasClosed()
     })
   }

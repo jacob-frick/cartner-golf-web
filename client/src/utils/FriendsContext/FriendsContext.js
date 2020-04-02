@@ -2,10 +2,15 @@ import { createContext } from 'react'
 
 const FriendsContext = createContext({
   friends: [],
-  hasRequested: '',
+  hasFriends: '',
   status: '',
+  sentRequests: [],
+  hasRequests: '',
+  statusSent: '',
   updateFriends: () => {},
-  updateStatus: () => {}
+  updateStatus: () => {},
+  updateSentRequests: () => {},
+  udpateStatusSent: () => {}
 })
 
 export default FriendsContext

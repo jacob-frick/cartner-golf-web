@@ -13,12 +13,19 @@ const Friends = () => {
 
     const [friendState, setFriendState] = useState({
         friends: [],
-        hasRequested: '',
-        status: ''
+        hasFriends: '',
+        status: '',
+        sentRequests: [],
+        hasRequests: '',
+        statusSent: ''
     })
-    friendState.updateFriends = (hasRequested, friends) => setFriendState({...friendState, hasRequested: hasRequested, friends: friends})
+    friendState.updateFriends = (hasFriends, friends) => setFriendState({...friendState, hasFriends: hasFriends, friends: friends})
+
     friendState.updateStatus = value => setFriendState({...friendState, status: value})
-    
+
+    friendState.updateSentRequests = (hasRequests, requests) => setFriendState({ ...friendState, hasRequests: hasRequests, sentRequests: requests})
+
+    friendState.udpateStatusSent = value => setFriendState({...friendState, statusSent: value})
     if (authStatus === 'NONE') {
         Authorization.auth()
             .then(res => {
