@@ -19,7 +19,6 @@ const Home = () => {
   page.setPageCreateAccount = () => setPage({ current: 'CREATE_ACCOUNT' })
 
   useEffect( () => {
-    console.log(localStorage.getItem('jwt'))
     if (page.current === 'NONE' && !isAuth) {
       Authorization.auth()
         .then(res => {
