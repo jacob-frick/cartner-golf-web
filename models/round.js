@@ -1,6 +1,6 @@
 const { model, Schema } = require('mongoose')
 
-const ActiveRoundSchema = new Schema({
+const RoundSchema = new Schema({
     course_id: {
         type: Schema.Types.ObjectId,
         ref: 'course'
@@ -19,7 +19,13 @@ const ActiveRoundSchema = new Schema({
                 }
             ]
         }
+    ],
+    pending_members: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'user'
+        }
     ]
 })
 
-module.exports = model('ActiveRound', ActiveRoundSchema)
+module.exports = model('round', ActiveRoundSchema)

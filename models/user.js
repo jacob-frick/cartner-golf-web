@@ -35,7 +35,13 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'user'
         }
-    ]
+    ],
+    active_round: {
+        // type: Schema.Types.ObjectId,
+        // ref: ''
+        type: String,
+        defualt: null
+    }
 })
 
 UserSchema.plugin(require('passport-local-mongoose'))
