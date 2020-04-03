@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
+import Button from '@material-ui/core/Button';
 import User from '../../utils/User'
 import sentReqDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
@@ -37,7 +38,7 @@ const SentReqDisplay = () => {
 
   useEffect(() => {
     getRequests()
-  },[statusSent])
+  },[statusSent, hasRequests])
 
 
   if(hasRequests === 'NONE'){
@@ -55,13 +56,15 @@ const SentReqDisplay = () => {
               {sentRequests.map(person => 
                 <FriendCard
                   key = {person._id}
-                  id = {person._id}
                   name= {`${person.fname} ${person.lname}`}
-                  course='course 1'
-                  type='sent'
+                  text = {`Pending acceptance.`}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   cancelSentRequest={cancelSentRequest}
-                />
+                > 
+                  <Grid item md={4} xs={12} className={classes.buttons}>
+                    <Button onClick={() => cancelSentRequest(person._id)} variant="outlined" color="secondary">Cancel</Button>
+                  </Grid>
+                </FriendCard>
                 )}
             </List>
           </Grid>

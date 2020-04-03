@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
+import Button from '@material-ui/core/Button';
 import User from '../../utils/User'
 import friendDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
@@ -13,7 +14,7 @@ const FriendDisplay = () => {
 
   const displayFriends = () => {
     User.getFriends()
-      .then(({ data: friends }) => {
+    .then(({ data: friends }) => {
         // console.log(friends)
         if (friends.length < 1) {
           updateFriends('NONE', [])
@@ -27,12 +28,13 @@ const FriendDisplay = () => {
   //display friends whenver status is changed
   useEffect( () => {
     displayFriends()
-  }, [status])
+  }, [status, hasFriends])
 
   //display friends when component mounts
-  useEffect( () => {
-    displayFriends()
-  }, [])
+  // useEffect( () => {
+  //   console.log('ping')
+  //   displayFriends()
+  // }, [])
   
   const removeFriend = id => {
     User.removeFriend(id)
@@ -58,13 +60,15 @@ const FriendDisplay = () => {
               {friends.map(person =>
                 <FriendCard
                   key={person._id}
-                  id={person._id}
                   name={`${person.fname} ${person.lname}`}
-                  course='course 1'
-                  type='friend'
+                  text ={`Currently playing at course 1!`}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   removeFriend = {removeFriend}
-                />
+                > 
+                  <Grid item md={4} xs={12} className={classes.buttons}>
+                    <Button onClick={() => removeFriend(person._id)} variant="outlined" color="secondary">Remove</Button>
+                  </Grid>
+                </FriendCard>
               )}
             </List>
           </Grid>
