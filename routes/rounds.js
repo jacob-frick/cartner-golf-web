@@ -87,7 +87,6 @@ router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (re
 
 //accept a round invite. takes in a round id
 router.put('/accept/:rid', passport.authenticate('jwt', { session: false }), (req, res) =>{
-  console.log(req.user.active_round)
   if(req.user.active_round){
     res.json({message: 'Please complete your current round before joining another'})
   }
@@ -111,6 +110,24 @@ router.put('/accept/:rid', passport.authenticate('jwt', { session: false }), (re
       res.sendStatus(400)
     })
   }
+})
+
+//decline a round invite. takes in a round id
+router.put('/decline/:rid', passport.authenticate('jwt', { session: false }), (req, res) =>{
+  Round.findById(req.params.rid)
+    .then( round => {
+      //remove from round's pending_members array
+      round.pending_members.splice(round.pending_members.indexOf(req.user._id), 1)
+      round.save()
+      //remove from user's pending_round_invites array
+      req.user.pending_round_invites.splice(req.user.pending_round_invites.indexOf(round._id), 1)
+      req.user.save()
+      res.sendStatus(200)
+    })
+    .catch( e => {
+      console.error(e)
+      res.sendStatus(400)
+    })
 })
 
 module.exports = router

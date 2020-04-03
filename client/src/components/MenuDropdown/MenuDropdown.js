@@ -49,6 +49,14 @@ const MenuDropdown = props => {
     })
     .catch( e => console.error(e))
   }
+
+  const declineInvite = id => {
+    User.declineRoundInvite(id)
+    .then( () => {
+      getInvites()
+    })
+    .catch(e => console.error(e))
+  }
   if(roundInvites.status === 'NONE'){
     return(
       <div>
@@ -101,7 +109,7 @@ const MenuDropdown = props => {
                   <Button onClick = {() => acceptInvite(invite._id)}variant="outlined" disabled = {roundInvites.currentRound ? true : false} className={classes.accept}>Accept</Button>
                 </Grid>
                 <Grid item xs={6} className={classes.buttons}>
-                  <Button variant="outlined" color="secondary">Decline</Button>
+                  <Button onClick = {() => declineInvite(invite._id)} variant="outlined" color="secondary">Decline</Button>
                 </Grid>
               </FriendCard>
             </MenuItem>
