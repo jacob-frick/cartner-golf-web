@@ -6,6 +6,10 @@ const RoundSchema = new Schema({
         ref: 'course'
     },
     teebox: String,
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
     members: [
         {
             user_id: {

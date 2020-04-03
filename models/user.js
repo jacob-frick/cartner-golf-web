@@ -37,16 +37,22 @@ const UserSchema = new Schema({
         }
     ],
     active_round: {
-        // type: Schema.Types.ObjectId,
-        // ref: 'round'
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'round',
         default: null
     },
-    past_rounds: {
-        // type: Schema.Types.ObjectId,
-        // ref: 'round'
-        type: String
+    pending_round_invites: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'round'
+        }
+    ],
+    past_rounds: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'round'
     }
+    ]
 })
 
 UserSchema.plugin(require('passport-local-mongoose'))
