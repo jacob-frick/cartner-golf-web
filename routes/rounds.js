@@ -1,16 +1,26 @@
 const router = require('express').Router()
 const {Round, User} = require('../models')
+const passport = require('passport')
+
 //create a round
 router.post('/create', passport.authenticate('jwt', { session: false }), (req, res) => {
   //req.body will include course_id, teebox
-  //add an owner to the req.body manually
+
+  //check if the user has an active round already
   if(req.user.active_round) {
     res.json({message: 'Already in a round'})
   }
   else{ 
+    //add an owner to the req.body manually
     req.body.owner = req.user._id
     Round.create(req.body)
-    .then( () => {
+    .then( createdRound => {
+      //set the created round as the user's active round
+      req.user.active_round = createdRound._id
+      //saving owner into members array. NOTE, will need to change how we push to members array later as each member needs a user_id and score
+      createdRound.members.push(req.user._id)
+      createdRound.save()
+      req.user.save()
       res.sendStatus(200)
     })
     .catch(e => {
@@ -20,10 +30,24 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
   }
 })
 
+//get a user's pending round invites
+router.get('/users/pending', passport.authenticate('jwt', { session: false }), (req, res) => {
+  //NOTE, will have to populate with course_id as well to get course name later on
+  User.findById(req.user._id).populate({path: 'pending_round_invites', select: ['course_id','owner'], populate: { path: 'owner', select: ['fname', 'lname']}})
+  .then( user => {
+    res.json(user.pending_round_invites)
+  })
+  .catch(e => {
+    console.error(e)
+    res.sendStatus(400)
+  })
+})
+
 //invite a player to a round
-router.post('/invite/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
-  if(req.params.uid === req.user._id){
-    res.json({message: 'Cannot send invite to yourself'})
+router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  if(req.params.uid === req.user._id.toString()){
+    res.json({message: 'Cannot send an invite to yourself'})
   }
   else{
     Round.findById(req.user.active_round)
@@ -45,6 +69,7 @@ router.post('/invite/:uid', passport.authenticate('jwt', { session: false }), (r
           //save to invitee's pending_round_invites
           user.pending_round_invites.push(round._id)
           user.save()
+          res.sendStatus(200)
         })
         .catch( e => {
           console.error(e)

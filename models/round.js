@@ -2,8 +2,10 @@ const { model, Schema } = require('mongoose')
 
 const RoundSchema = new Schema({
     course_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'course'
+        // type: Schema.Types.ObjectId,
+        // ref: 'course'
+        type: String,
+        required: true
     },
     teebox: String,
     owner: {
@@ -32,4 +34,4 @@ const RoundSchema = new Schema({
     ]
 })
 
-module.exports = model('round', ActiveRoundSchema)
+module.exports = model('round', RoundSchema)
