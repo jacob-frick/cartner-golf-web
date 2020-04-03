@@ -24,21 +24,31 @@ const MenuDropdown = props => {
 
   const [roundInvites, setRoundInvites] = useState({
     status: '',
-    invites: []
+    invites: [],
+    currentRound: ''
   })
-  useEffect( () => {
-    console.log('ping')
+  const getInvites = () => {
     User.getPendingRounds()
-    .then( ({data: invites}) => {
-      if(invites.length < 1){
-        setRoundInvites({ ...roundInvites, status: 'NONE' })
-      }else{
-        setRoundInvites({...roundInvites, invites, status: 'INVITES'})
-      }
-    })
-    .catch(e => console.error(e))
+      .then(({ data: invites }) => {
+        if (invites.pending_round_invites.length < 1) {
+          setRoundInvites({ ...roundInvites, currentRound: invites.active_round, status: 'NONE' })
+        } else {
+          setRoundInvites({ ...roundInvites, invites: invites.pending_round_invites, currentRound: invites.active_round, status: 'INVITES' })
+        }
+      })
+      .catch(e => console.error(e))
+  }
+  useEffect( () => {
+    getInvites()
   }, [])
 
+  const acceptInvite = id => {
+    User.acceptRoundInvite(id)
+    .then( () => {
+      getInvites()
+    })
+    .catch( e => console.error(e))
+  }
   if(roundInvites.status === 'NONE'){
     return(
       <div>
@@ -80,14 +90,15 @@ const MenuDropdown = props => {
           {roundInvites.invites.map(invite => 
             <MenuItem>
               <FriendCard
-                key={invite.course_id}
+                key={invite._id}
+                round_id = {invite._id}
                 course_id = {invite.course_id}
                 name={`${invite.owner.fname} ${invite.owner.lname}`}
-                text={`Has invitied you to play a round at ${invite.course_id}`}
+                text={roundInvites.currentRound ? `Has invitied you to play a round at ${invite.course_id}. To accept, please finish your current round` : `Has invitied you to play a round at ${invite.course_id}` }
                 initials={`${invite.owner.fname.charAt(0).toUpperCase()}${invite.owner.lname.charAt(0).toUpperCase()}`}
               >
                 <Grid item xs={6} className={classes.buttons}>
-                  <Button variant="outlined" className={classes.accept}>Accept</Button>
+                  <Button onClick = {() => acceptInvite(invite._id)}variant="outlined" disabled = {roundInvites.currentRound ? true : false} className={classes.accept}>Accept</Button>
                 </Grid>
                 <Grid item xs={6} className={classes.buttons}>
                   <Button variant="outlined" color="secondary">Decline</Button>
@@ -101,22 +112,7 @@ const MenuDropdown = props => {
   }
   else{
     return (
-      <div>
-        <IconButton color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-          <Badge badgeContent={0} color="secondary">
-            {/* BadgeContent value will dispaly pending notifications */}
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-          </Menu>
-      </div >
+      <p></p>
     )
   }
 }

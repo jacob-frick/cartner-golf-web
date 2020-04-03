@@ -33,9 +33,9 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
 //get a user's pending round invites
 router.get('/users/pending', passport.authenticate('jwt', { session: false }), (req, res) => {
   //NOTE, will have to populate with course_id as well to get course name later on
-  User.findById(req.user._id).populate({path: 'pending_round_invites', select: ['course_id','owner'], populate: { path: 'owner', select: ['fname', 'lname']}})
+  User.findById(req.user._id, 'active_round pending_round_invites').populate({path: 'pending_round_invites', select: ['course_id','owner'], populate: { path: 'owner', select: ['fname', 'lname']}})
   .then( user => {
-    res.json(user.pending_round_invites)
+    res.json(user)
   })
   .catch(e => {
     console.error(e)
@@ -85,5 +85,32 @@ router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (re
 
 })
 
+//accept a round invite. takes in a round id
+router.put('/accept/:rid', passport.authenticate('jwt', { session: false }), (req, res) =>{
+  console.log(req.user.active_round)
+  if(req.user.active_round){
+    res.json({message: 'Please complete your current round before joining another'})
+  }
+  else{
+    Round.findById(req.params.rid)
+    .then( round => {
+      //push to members array in round
+      round.members.push(req.user._id)
+      //remove from pending_members array
+      round.pending_members.splice(round.pending_members.indexOf(req.user._id), 1)
+      round.save()
+      //set user's active round to round's id
+      req.user.active_round = round._id
+      //remove from user's pending_round_invites array
+      req.user.pending_round_invites.splice(req.user.pending_round_invites.indexOf(round._id), 1)
+      req.user.save()
+      res.sendStatus(200)
+    })
+    .catch( e => {
+      console.error(e)
+      res.sendStatus(400)
+    })
+  }
+})
 
 module.exports = router
