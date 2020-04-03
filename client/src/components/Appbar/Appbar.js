@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,12 +6,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Drawer from '../Drawer'
 import DrawerContext from '../../utils/DrawerContext'
+import MenuDropdown from '../MenuDropdown';
 
 const drawerWidth = 240;
 
@@ -66,12 +65,7 @@ const AppbarComponent = () => {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={1} color="secondary">
-              {/* BadgeContent value will dispaly pending notifications */}
-              <NotificationsIcon />
-            </Badge>  
-          </IconButton>
+          <MenuDropdown />
         </Toolbar>
       </AppBar>
       <Drawer />
