@@ -7,6 +7,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import Drawer from '../Drawer'
 import DrawerContext from '../../utils/DrawerContext'
 
@@ -64,10 +67,10 @@ const AppbarComponent = () => {
             Dashboard
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={0} color="secondary">
+            <Badge badgeContent={1} color="secondary">
               {/* BadgeContent value will dispaly pending notifications */}
-              {/* <NotificationsIcon /> -- Hidden unless we decide to use the bell icon for notifications*/}
-            </Badge>
+              <NotificationsIcon />
+            </Badge>  
           </IconButton>
         </Toolbar>
       </AppBar>
