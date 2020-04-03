@@ -2,10 +2,8 @@ const { model, Schema } = require('mongoose')
 
 const RoundSchema = new Schema({
     course_id: {
-        // type: Schema.Types.ObjectId,
-        // ref: 'course'
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'course'
     },
     teebox: String,
     owner: {
