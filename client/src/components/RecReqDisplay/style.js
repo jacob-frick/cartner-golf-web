@@ -5,7 +5,11 @@ const recReqDisplayStyles = makeStyles((theme) => ({
   },
   listStyle: {
     display: 'contents'
-  }
+  },
+  accept: {
+    borderColor: 'green',
+    color: 'green'
+  },
 }));
 
 export default recReqDisplayStyles
