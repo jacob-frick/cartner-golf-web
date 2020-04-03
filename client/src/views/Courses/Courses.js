@@ -1,42 +1,37 @@
-import React from 'react'
-import CourseInvite from '../../components/CourseInvite'
-import Typography from '@material-ui/core/Typography'
-import Authorization from './../../utils/Authorization'
+import React, { useEffect } from 'react'
+import CourseCard from '../../components/CourseCard'
 import OuterNavBar from '../../components/OuterNavbar'
-import { Redirect } from 'react-router-dom'
 import Course from './../../utils/Course'
+import { Grid } from '@material-ui/core'
+import Protected from './../../components/Protected'
 const Courses = () => {
-  const [authStatus, setAuth] = React.useState('NONE')
+  const [courseData, setCourses] = React.useState({ wasReqed: 'NONE', courses: [] })
 
-
-  if (authStatus === 'NONE') {
-    Authorization.auth()
-      .then(res => {
-        if (res.status === 200) {
-          setAuth('AUTH')
-        } else {
-          setAuth('NO_AUTH')
-        }
-      })
-  }
-  Course.findAll()
-  .then(({data}) => {
-    console.log(data)
+  useEffect(() => {
+    if (courseData.wasReqed === 'NONE') {
+      Course.findAll()
+        .then(({ data }) => {
+          setCourses({ wasReqed: 'DONE', courses: data })
+        })
+    }
   })
-  if (authStatus === 'AUTH') {
-    return (
+
+
+  return (
+    <Protected>
       <OuterNavBar>
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Course Invites
-        </Typography>
-        <CourseInvite />
+        <Grid container spacing={3}>
+          {courseData.courses.map((elem, index) => {
+            return (
+              <Grid item xl={3} lg={4} sm={6} xs={12} key={elem._id.toString()}>
+                <CourseCard course={elem} />
+              </Grid>
+            )
+          })}
+        </Grid>
       </OuterNavBar>
-    )
-  } else if (authStatus === 'NO_AUTH') {
-    return (<Redirect to='/' />)
-  } else {
-    return (<p></p>)
-  }
+    </Protected>
+  )
 }
 
 export default Courses

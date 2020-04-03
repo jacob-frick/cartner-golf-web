@@ -13,7 +13,10 @@ router.get('/id/:uid', passport.authenticate('jwt', {session: false}), (req, res
     .then(course => {
         res.json(course)
     })
-    .catch(e => res.json(e))
+    .catch(e => {
+        console.log('here')
+        res.json({message: "This course does not exist"})
+    })
 })
 router.get('/name/:name', passport.authenticate('jwt', {session: false}), (req, res) => {
     Course.find({name: req.params.name}, (err, course) => {

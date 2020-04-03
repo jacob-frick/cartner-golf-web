@@ -59,7 +59,8 @@ const DrawerComponent = () => {
           </ListItem>
         </Tooltip>
         <Tooltip title='Courses'>
-          <ListItem button>
+          <ListItem button
+          component={Link} to="/courses">
             <ListItemIcon>
               <EventNoteIcon />
             </ListItemIcon>
@@ -70,7 +71,7 @@ const DrawerComponent = () => {
         </Tooltip>
         <Tooltip title='Friends'>
           <ListItem button
-          component={Link} to="/">
+          component={Link} to="/friends">
             <ListItemIcon>
               <GroupAddIcon />
             </ListItemIcon>
