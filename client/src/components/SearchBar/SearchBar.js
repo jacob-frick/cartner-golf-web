@@ -41,7 +41,6 @@ const SearchBar = () => {
   })
   const [inviteModel, setModel] = React.useState(<></>)
 
-
   const handleChange = (prop) => (event) => {
     setValues({ ...value, [prop]: event.target.value, error: false, errorMessage: '' })
   }

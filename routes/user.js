@@ -66,7 +66,7 @@ router.get('/username/:uname', passport.authenticate('jwt', { session: false }),
                 res.json({ message: 'Already sent a request' })
             } else if (alreadyRec) {
                 res.json({ message: 'This person already sent you a friend request' })
-            } else if (alredyFriend) {
+            } else if (alreadyFriend) {
                 res.json({ message: 'This person is already your friend' })
             } else {
                 res.json({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import OuterNavbar from './../../components/OuterNavbar'
 import SearchBar from './../../components/SearchBar'
 import Grid from '@material-ui/core/Grid'
@@ -7,10 +7,25 @@ import RecReqDisplay from '../../components/RecReqDisplay'
 import SentReqDisplay from '../../components/SentReqDisplay'
 import { Redirect } from 'react-router-dom'
 import Authorization from './../../utils/Authorization'
+import FriendsContext from '../../utils/FriendsContext'
 const Friends = () => {
-    const [authStatus, setAuth] = React.useState('NONE')
+    const [authStatus, setAuth] = useState('NONE')
 
+    const [friendState, setFriendState] = useState({
+        friends: [],
+        hasFriends: '',
+        status: '',
+        sentRequests: [],
+        hasRequests: '',
+        statusSent: ''
+    })
+    friendState.updateFriends = (hasFriends, friends) => setFriendState({...friendState, hasFriends: hasFriends, friends: friends})
 
+    friendState.updateStatus = value => setFriendState({...friendState, status: value})
+
+    friendState.updateSentRequests = (hasRequests, requests) => setFriendState({ ...friendState, hasRequests: hasRequests, sentRequests: requests})
+
+    friendState.udpateStatusSent = value => setFriendState({...friendState, statusSent: value})
     if (authStatus === 'NONE') {
         Authorization.auth()
             .then(res => {
@@ -25,6 +40,7 @@ const Friends = () => {
     if (authStatus === 'AUTH') {
         return (
             <OuterNavbar>
+                <FriendsContext.Provider value = {friendState}>
                 <SearchBar />
                 <Grid container spacing={1}>
                     <Grid item md={6} xs={12}>
@@ -42,6 +58,7 @@ const Friends = () => {
                         </Grid>
                     </Grid>
                 </Grid>
+                </FriendsContext.Provider>
             </OuterNavbar>
         )
     } else if (authStatus === 'NO_AUTH') {
