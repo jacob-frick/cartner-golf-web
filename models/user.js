@@ -38,9 +38,14 @@ const UserSchema = new Schema({
     ],
     active_round: {
         // type: Schema.Types.ObjectId,
-        // ref: ''
+        // ref: 'round'
         type: String,
-        defualt: null
+        default: null
+    },
+    past_rounds: {
+        // type: Schema.Types.ObjectId,
+        // ref: 'round'
+        type: String
     }
 })
 
