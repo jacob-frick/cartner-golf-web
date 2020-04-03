@@ -10,5 +10,6 @@ const User = {
     cancelRequest: id => axios.put(`/api/friends/users/cancel/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
     declineRequest: id => axios.put(`/api/friends/users/decline/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
     removeFriend: id => axios.put(`/api/friends/users/remove/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
+    getPendingRounds: id => axios.get('/api/rounds/users/pending', { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } })
 }
 export default User
