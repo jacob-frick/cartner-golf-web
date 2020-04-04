@@ -12,7 +12,7 @@ const FriendCard = props => {
       <ListItem>
         <Grid item xs={12}>
           <div className = {classes.root}>
-            <Grid container spacing={1}>
+            <Grid container spacing={0}>
               <Grid className={classes.icon} item xs={2}>
                 <Avatar className={classes.orange}>{initials}</Avatar>
               </Grid>

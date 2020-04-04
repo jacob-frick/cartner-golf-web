@@ -35,6 +35,23 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'user'
         }
+    ],
+    active_round: {
+        type: Schema.Types.ObjectId,
+        ref: 'round',
+        default: null
+    },
+    pending_round_invites: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'round'
+        }
+    ],
+    past_rounds: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'round'
+    }
     ]
 })
 
