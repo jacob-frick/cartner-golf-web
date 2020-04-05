@@ -14,6 +14,9 @@ const roundCardStyles = makeStyles((theme) => ({
   },
   holeStylePhone : {
     flexBasis: '10%'
+  },
+  input: {
+    width: '40%'
   }
 }))
 

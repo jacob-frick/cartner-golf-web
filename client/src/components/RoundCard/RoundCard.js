@@ -6,8 +6,8 @@ import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Paper from '@material-ui/core/Paper'
+import TextField from '@material-ui/core/TextField';
 import roundCardStyles from './style.js'
-
 const getWidth = () => window.innerWidth
   || document.documentElement.clientWidth
   || document.body.clientWidth;
@@ -122,31 +122,31 @@ const RoundCard = () => {
                   RD
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
               </ListItem>
             </Grid>
@@ -234,31 +234,31 @@ const RoundCard = () => {
                   RD
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
                 <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
               </ListItem>
             </Grid>
@@ -463,58 +463,58 @@ const RoundCard = () => {
                 RD
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
               <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
+                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
               </Grid>
             </ListItem>
           </Grid>
