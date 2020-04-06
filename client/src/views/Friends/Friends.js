@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import OuterNavbar from './../../components/OuterNavbar'
 import SearchBar from './../../components/SearchBar'
 import Grid from '@material-ui/core/Grid'
