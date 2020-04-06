@@ -143,63 +143,6 @@ const CreateAccount = props => {
                   onChange={(event) => { formChange(event) }}
                 />
               </Grid>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lname"
-                label="Last Name"
-                name="lname"
-                autoComplete="lname"
-                onChange={(event) => { formChange(event) }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                error = {user.emailCheck}
-                helperText = {user.emailErrorMessage}
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={(event) => { formChange(event) }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                error={user.confirmPasswordCheck}
-                helperText={user.confirmPasswordErrorMessage}
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={(event) => { formChange(event) }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                error = {user.confirmPasswordCheck}
-                helperText = {user.confirmPasswordErrorMessage}
-                variant="outlined"
-                required
-                fullWidth
-                name="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                id="confirmPassword"
-                autoComplete="current-password"
-                onChange={(event) => { formChange(event) }}
-              />
-            </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
