@@ -7,6 +7,7 @@ import RecReqDisplay from '../../components/RecReqDisplay'
 import SentReqDisplay from '../../components/SentReqDisplay'
 import Protected from './../../components/Protected'
 import FriendsContext from '../../utils/FriendsContext'
+import friendStyles from './styles'
 const Friends = () => {
 
     const [friendState, setFriendState] = useState({
@@ -31,7 +32,9 @@ const Friends = () => {
                 <FriendsContext.Provider value={friendState}>
                     <SearchBar />
                     <Grid container spacing={1}>
-                        <Grid item md={6} xs={12}>
+                        <Grid
+                            item md={6} xs={12}
+                            className='nameFix'>
                             <h1>Friends List</h1>
                             <FriendsDisplay />
                         </Grid>
