@@ -35,9 +35,23 @@ export default function Login() {
           }
         } else {
           localStorage.setItem('jwt', data.token)
+          if(remember) {
+            localStorage.setItem('rememberMe', true)
+          }
+          else {
+            localStorage.removeItem('rememberMe')
+          }
           setPageDashboard()
         }
       })
+  }
+
+  //state for remember me
+
+  const [remember, setRemember] = useState(false)
+
+  const updateRemember = () => {
+    setRemember(!remember)
   }
   return (
     <div className={classes.backgroundImage}>
@@ -85,6 +99,8 @@ export default function Login() {
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
+              onClick={updateRemember}
+              checked={remember}
             />
             <Button
               type="submit"
