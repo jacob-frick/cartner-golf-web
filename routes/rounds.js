@@ -43,6 +43,18 @@ router.get('/users/pending', passport.authenticate('jwt', { session: false }), (
   })
 })
 
+//get user's current round
+router.get('/users/currentround', passport.authenticate('jwt', { session: false }), (req, res) => {
+  //will need to populate with course_id to get course name later
+  User.findById(req.user._id).populate({path: 'active_round'})
+  .then( user => {
+    res.json(user.active_round)
+  })
+  .catch(e => {
+    console.error(e)
+    res.sendStatus(400)
+  })
+})
 //invite a player to a round
 router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
 
@@ -129,5 +141,6 @@ router.put('/decline/:rid', passport.authenticate('jwt', { session: false }), (r
       res.sendStatus(400)
     })
 })
+
 
 module.exports = router
