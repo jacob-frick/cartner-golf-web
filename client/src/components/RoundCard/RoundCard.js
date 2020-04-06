@@ -14,27 +14,50 @@ const getWidth = () => window.innerWidth
 
 const RoundCard = () => {
   const classes = roundCardStyles()
-  let [width, setWidth] = useState(getWidth());
+  // let [width, setWidth] = useState(getWidth());
 
-  // in this case useEffect will execute only once because
-  // it does not have any dependencies.
-  useEffect(() => {
-    const resizeListener = () => {
-      // change width from the state object
-      setWidth(getWidth())
-    };
-    // set resize listener
-    window.addEventListener('resize', resizeListener);
+  // // in this case useEffect will execute only once because
+  // // it does not have any dependencies.
+  // useEffect(() => {
+  //   const resizeListener = () => {
+  //     // change width from the state object
+  //     setWidth(getWidth())
+  //   };
+  //   // set resize listener
+  //   window.addEventListener('resize', resizeListener);
 
-    // clean up function
-    return () => {
-      // remove resize listener
-      window.removeEventListener('resize', resizeListener);
+  //   // clean up function
+  //   return () => {
+  //     // remove resize listener
+  //     window.removeEventListener('resize', resizeListener);
+  //   }
+  // }, [])
+
+  let array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16','17', '18']
+  const getSIFront = array => {
+    //loop through first half
+    let SIArr = []
+    for(let i = 0; i< 9; i++){
+      SIArr[i] = <Grid item xs={1} className={` ${classes.center} ${classes.underline}`}>{array[i]}</Grid>
     }
-  }, [])
+    return SIArr
+  }
+  const getSIBack = array => {
+    let SIArr = []
+    for (let i = 0; i < 9; i++) {
+      SIArr[i] = <Grid item xs={1} className={` ${classes.center} ${classes.underline}`}>{array[i]}</Grid>
+    }
+    return SIArr
+  }
   
-  if(width < 812){
-    //return front and back
+  const displayHoles = (x, y) => {
+    let holeArr = []
+    for(let i = x-1; i<y; i++){
+    holeArr[i] = <Grid item xs={1} className={` ${classes.center} ${classes.underline}`}>{i+1}</Grid>
+    }
+    return holeArr
+  }
+
     return (
       <>
         <Typography className={`${classes.center} ${classes.underline}`} variant="h6" gutterBottom>
@@ -45,483 +68,132 @@ const RoundCard = () => {
         <Paper>
           <List>
             <Grid container spacing = {3}>
-              <ListItem>
-                <Grid item xs={12}>
-                  <Typography className={`${classes.center} ${classes.underline}`} variant="subtitle2" gutterBottom>
-                    Front
-                  </Typography>
-                </Grid>
-              </ListItem>
-              <ListItem>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
+              <Grid item xs={12}>
+                <Grid container spacing = {3}>
+                  <Grid item xs ={12} lg ={6}>
+                    <Grid item xs={12}>
+                      <Typography className={`${classes.center} ${classes.underline}`} variant="subtitle2" gutterBottom>
+                        Front
+                      </Typography>
+                    </Grid>
+                    <ListItem>
+                <Grid item xs={2} className={` ${classes.center} ${classes.underline}`}>
                     Hole
                 </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    1
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    2
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    3
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    4
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    5
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    6
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    7
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    8
-                </Grid>
-                  <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                    9
+                {displayHoles(1, 9)}
+                <Grid item xs={1} className={`${classes.center} ${classes.underline}`}>
+                    OUT
                 </Grid>
               </ListItem>
               <ListItem>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={2} className={`${classes.center} ${classes.underline}`}>
                   S.I.
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
+                {getSIFront(array)}
               </ListItem>
+              {/* Begin mapping user */}
               <ListItem>
-                {/* Begin mapping player scores here from hole 1-9 */}
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={2} className={`${classes.center}`}>
                   RD
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
+                <Grid item xs={1} className={`${classes.center}`}>
+                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
+                </Grid>
+                <Grid item xs={1} className={`${classes.center}`}>
                   <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
                 </Grid>
               </ListItem>
             </Grid>
-          </List>
-        </Paper>
-        <br />
-        <br />
-        <Paper>
-          <List>
-            <Grid container spacing={3}>
-              <ListItem>
-                <Grid item xs={12}>
-                  <Typography className={`${classes.center} ${classes.underline}`} variant="subtitle2" gutterBottom>
-                    Back
-                  </Typography>
-                </Grid>
-              </ListItem>
-              <ListItem>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  Hole
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  10
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  11
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  12
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  13
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  14
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  15
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  16
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  17
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center} ${classes.underline}`}>
-                  18
-                </Grid>
-              </ListItem>
-              <ListItem>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  S.I.
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  __
-                </Grid>
-              </ListItem>
-              <ListItem>
-                {/* Begin mapping player scores here from hole 10-18 */}
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  RD
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-                <Grid item className={`${classes.holeStylePhone} ${classes.center}`}>
-                  <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-                </Grid>
-              </ListItem>
-            </Grid>
-          </List>
-        </Paper>
-      </>
-    )
-  }
-  else{
-    //return one long card
-    return (
-      <Paper>
-        <List>
-          <Grid container spacing ={3}>
-            <ListItem>
+          {/* Put back here */}
+            <Grid item xs={12} lg={6}>
               <Grid item xs={12}>
-                <Typography className={`${classes.center} ${classes.underline}`} variant="h6" gutterBottom>
-                  Scorecard
+                <Typography className={`${classes.center} ${classes.underline}`} variant="subtitle2" gutterBottom>
+                  Back
                 </Typography>
               </Grid>
-            </ListItem>
-            <ListItem>
-              <Grid item xs ={1} className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                Hole
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                1
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                2
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                3
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                4
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                5
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                6
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                7
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                8
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                9
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                10
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                11
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                12
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                13
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                14
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                15
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                16
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                17
-              </Grid>
-              <Grid item xs ={1}  className = {`${classes.holeStyle} ${classes.center} ${classes.underline}`}>
-                18
-              </Grid>
-            </ListItem>
-            <ListItem>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                Par
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-            </ListItem>
-            <ListItem>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                S.I.
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                __
-              </Grid>
-            </ListItem>
-            <ListItem>
-              {/* start mapping player info here */}
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                RD
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-              <Grid item xs={1} className={`${classes.holeStyle} ${classes.center}`}>
-                <TextField className = {classes.input} id="standard-basic" size = "small" inputProps={{ style: {textAlign: 'center'} }}/>
-              </Grid>
-            </ListItem>
+              <ListItem>
+                <Grid item xs={2} className={` ${classes.center} ${classes.underline}`}>
+                  Hole
+                </Grid>
+                {displayHoles(10, 18)}
+                <Grid item xs={1} className={`${classes.center} ${classes.underline}`}>
+                  IN
+                </Grid>
+                </ListItem>
+                <ListItem>
+                  <Grid item xs={2} className={`${classes.center} ${classes.underline}`}>
+                    S.I.
+                  </Grid>
+                  {getSIBack(array)}
+                </ListItem>
+                <ListItem>
+                  {/* Begin mapping user here */}
+                  <Grid item xs={2} className={`${classes.center}`}>
+                    RD
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                  <Grid item xs={1} className={`${classes.center}`}>
+                    <TextField className={classes.input} id="standard-basic" size="small" inputProps={{ style: { textAlign: 'center' } }} />
+                  </Grid>
+                </ListItem>
+              </Grid>
+            </Grid>
           </Grid>
-        </List>
-      </Paper>
+        </Grid>
+      </List>
+    </Paper>
+  </>
     )
-  }
 }
 
 export default RoundCard
