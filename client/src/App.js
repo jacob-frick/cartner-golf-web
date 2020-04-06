@@ -4,13 +4,16 @@ import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'
 import RoundHistory from './views/RoundHistory'
-import SimplePopover from './components/News'
+// import SimplePopover from './components/News'
+import SimpleModal from './components/News/NewsModal'
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom"
+import SimplePopover from './components/News/Popover'
 
 const App = props => {
 
