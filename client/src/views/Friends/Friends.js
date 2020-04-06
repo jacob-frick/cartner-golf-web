@@ -17,7 +17,7 @@ const Friends = () => {
         hasRequests: '',
         statusSent: ''
     })
-    friendState.updateFriends = (hasFriends, friends) => setFriendState({ ...friendState, hasFriends: hasFriends, friends: friends })
+    friendState.updateFriends = (hasFriends, friends, status) => setFriendState({ ...friendState, hasFriends: hasFriends, friends: friends, status: status })
 
     friendState.updateStatus = value => setFriendState({ ...friendState, status: value })
 
