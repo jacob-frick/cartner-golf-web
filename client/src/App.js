@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Profile from './views/Profile'
 import Home from './views/Home'
 import Friends from './views/Friends'
@@ -14,6 +15,7 @@ import RoundCreation from './views/RoundCreation'
 
 
 const App = props => {
+
   //potential for rememberme
   // useEffect(() => {
   //   window.addEventListener("beforeunload", (ev) => {
@@ -46,6 +48,7 @@ const App = props => {
         <Redirect to="/" />
       </Switch>
     </Router>
+
   )
 }
 

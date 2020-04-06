@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles} from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import FormControl from '@material-ui/core/FormControl'
 import Grid from '@material-ui/core/Grid'
@@ -27,8 +27,19 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '8px'
   },
   buttonHeight: {
-    height: '56px',
-    marginTop: '14px'
+    color: 'white',
+    border: '1px solid rgba(63, 151, 181, 0.5)',
+    height: '50px',
+    width: 'calc(100% - 10vh)',
+    // padding: 0 30px',
+    background: 'linear-gradient(45deg, #e92a1ccc 16%, rgba(5, 176, 176, 0.8) 99%)',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    //margin-top: 14px',
+    borderRadius: '3px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
+
   }
 }))
 
@@ -51,15 +62,15 @@ const SearchBar = () => {
     }
     else {
       User.findUser(value.searchVal)
-      .then(({data}) => {
-        console.log(data)
-        if(data.message) {
-          setValues({ ...value, error: true, errorMessage: data.message })
-        } else {
-          const model = <SendFriendReqModel  inviteWasClosed={inviteWasClosed} user={data} />
-          setModel(model)
-        }
-      })
+        .then(({ data }) => {
+          console.log(data)
+          if (data.message) {
+            setValues({ ...value, error: true, errorMessage: data.message })
+          } else {
+            const model = <SendFriendReqModel inviteWasClosed={inviteWasClosed} user={data} />
+            setModel(model)
+          }
+        })
     }
   }
   const inviteWasClosed = () => {
@@ -70,18 +81,18 @@ const SearchBar = () => {
       <Grid container spacing={3}>
         {inviteModel}
         <Grid item sm={10} xs={12}>
-            <TextField
-              error={value.error}
-              helperText={value.errorMessage}
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              name="searchVal"
-              label={<InputAdornment  className={classes.searchIcon} position="start"><SearchIcon />Search</InputAdornment>}
-              type="text"
-              id="searchVal"
-              onChange={handleChange('searchVal')}
-            />
+          <TextField
+            error={value.error}
+            helperText={value.errorMessage}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="searchVal"
+            label={<InputAdornment className={classes.searchIcon} position="start"><SearchIcon />Search</InputAdornment>}
+            type="text"
+            id="searchVal"
+            onChange={handleChange('searchVal')}
+          />
         </Grid>
         <Grid item sm={2} xs={12}>
           <Button className={classes.buttonHeight} variant="contained" fullWidth color="primary" onClick={onSubmit}>

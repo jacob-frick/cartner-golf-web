@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 const RecReqDisplay = () => {
   const classes = recReqDisplayStyles()
 
-  const {updateStatus} = useContext(FriendsContext)
+  const { updateStatus } = useContext(FriendsContext)
   const [recRequest, setRecRequest] = useState({
     hasRequests: '',
     requests: []
@@ -31,9 +31,9 @@ const RecReqDisplay = () => {
 
   const acceptRequest = id => {
     User.acceptRequest(id)
-      .then( ({data}) => {
+      .then(({ data }) => {
         getFriendRequest()
-        updateStatus('ACCEPTED'+id.toString())
+        updateStatus('ACCEPTED' + id.toString())
         updateStatus('')
       })
       .catch(error => console.error(error))
@@ -41,36 +41,36 @@ const RecReqDisplay = () => {
 
   const declineRequest = id => {
     User.declineRequest(id)
-    .then( () => {
-      getFriendRequest()
-    })
-    .catch(e => console.error(e))
+      .then(() => {
+        getFriendRequest()
+      })
+      .catch(e => console.error(e))
   }
-  useEffect( () => {
+  useEffect(() => {
     getFriendRequest()
   }, [])
 
 
-  if(recRequest.hasRequests ==='NONE'){
+  if (recRequest.hasRequests === 'NONE') {
     return (
       <p>You have no pending friend requests</p>
     )
   }
-  else if(recRequest.hasRequests ==='REQUESTS'){
+  else if (recRequest.hasRequests === 'REQUESTS') {
     return (
       <Paper elevation={3}>
-        <div className = {classes.root}>
+        <div className={classes.root}>
           <Grid container spacing={1}>
-            <List className = {classes.listStyle}>
+            <List className={classes.listStyle}>
               {/* Begin mapping users friends here */}
               {recRequest.requests.map(person =>
                 <FriendCard
                   key={person._id}
                   name={`${person.fname} ${person.lname}`}
-                  text ={`Woudld like to be your friend!`}
+                  text={`Woudld like to be your friend!`}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
-                  acceptRequest = {acceptRequest}
-                  declineRequest = {declineRequest}
+                  acceptRequest={acceptRequest}
+                  declineRequest={declineRequest}
                 >
                   <Grid item md={2} xs={6} className={classes.buttons}>
                     <Button onClick={() => acceptRequest(person._id)} variant="outlined" className={classes.accept}>Accept</Button>
@@ -86,7 +86,7 @@ const RecReqDisplay = () => {
       </Paper>
     )
   }
-  else{
+  else {
     return (
       <p></p>
     )

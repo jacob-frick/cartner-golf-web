@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core/styles'
 const profileStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+        palette: {
+            primary: '#81c784'
+        },
     },
     toolbar: {
         paddingRight: 24, // keep right padding when drawer closed
@@ -22,6 +25,7 @@ const profileStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
     },
+
     container: {
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
