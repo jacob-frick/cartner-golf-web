@@ -4,6 +4,7 @@ import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'
 import RoundHistory from './views/RoundHistory'
+import SimplePopover from './components/News'
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,26 +23,7 @@ const App = props => {
   // })
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/friends">
-          <Friends />
-        </Route>
-        <Route path="/courses">
-          <Courses />
-        </Route>
-        <Route path="/roundHistory">
-          <RoundHistory />
-        </Route>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
-    </Router>
+    <SimplePopover/>
   )
 }
 
