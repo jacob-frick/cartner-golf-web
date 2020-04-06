@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Round, User} = require('../models')
+const {Round, User, Course} = require('../models')
 const passport = require('passport')
 
 //create a round
@@ -18,7 +18,7 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
       //set the created round as the user's active round
       req.user.active_round = createdRound._id
       //saving owner into members array. NOTE, will need to change how we push to members array later as each member needs a user_id and score
-      createdRound.members.push(req.user._id)
+      createdRound.members.push({user_id: req.user._id, scores: []})
       createdRound.save()
       req.user.save()
       res.json({roundId: createdRound._id})
@@ -29,7 +29,18 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
     })
   }
 })
-
+router.get('/full/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Round.findById(req.params.rid)
+  .populate({path: 'members.user_id', select: ['fname', 'lname']})
+  .populate('course_id')
+  .then( round => {
+    if(!round) res.sendStatus(404)
+    else {
+      res.json(round)
+    }
+  })
+  .catch(() => res.sendStatus(401))
+})
 //get a user's pending round invites
 router.get('/users/pending', passport.authenticate('jwt', { session: false }), (req, res) => {
   //NOTE, will have to populate with course_id as well to get course name later on

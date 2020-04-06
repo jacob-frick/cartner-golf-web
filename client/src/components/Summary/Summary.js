@@ -14,7 +14,7 @@ const Summary = () => {
   const classes = summaryStyles()
 
   return (
-      <Container maxwidth='lg'>
+      <Container maxwidth='lg' className={classes.min}>
         <Paper elevation={3}>
           <List>
             <div className={classes.root}>

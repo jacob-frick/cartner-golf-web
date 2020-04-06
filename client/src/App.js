@@ -43,7 +43,7 @@ const App = props => {
         <Route exact path="/roundCreation/:id">
           <RoundCreation />
         </Route>
-        <Route exact path="/scorecard/:id">
+        <Route exact path="/scorecard/:rid">
           <Scorecard />
         </Route>
         <Route path="/" exact>
@@ -52,7 +52,6 @@ const App = props => {
         <Redirect to="/" />
       </Switch>
     </Router>
-
   )
 }
 

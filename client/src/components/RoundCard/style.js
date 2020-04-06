@@ -20,6 +20,9 @@ const roundCardStyles = makeStyles((theme) => ({
   },
   input: {
     width: '40%'
+  },
+  min : {
+    minWidth: 650
   }
 }))
 
