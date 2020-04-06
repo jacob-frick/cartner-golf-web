@@ -8,6 +8,8 @@ import Grid from '@material-ui/core/Grid'
 import GolfCourseIcon from '@material-ui/icons/GolfCourse';
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import createAccountStyles from './styles.js'
 import axios from 'axios'
 import HomeContext from './../../utils/HomeContext'
@@ -33,6 +35,12 @@ const CreateAccount = props => {
         .then(({ data }) => {
           console.log(data)
           localStorage.setItem('jwt', data.token)
+          if(remember){
+            localStorage.setItem('rememberMe', true)
+          }
+          else {
+            localStorage.removeItem('rememberMe')
+          }
           setPageDashboard(true)
         })
         .catch(error => {
@@ -47,6 +55,12 @@ const CreateAccount = props => {
     setUser({ ...user, [event.target.name]: event.target.value })
   }
 
+  //state for remember me box
+  const [remember, setRemember] = useState(false)
+
+  const updateRemember = () => {
+    setRemember(!remember)
+  }
 
   return (
     <div className={classes.backgroundImage}>
@@ -129,17 +143,24 @@ const CreateAccount = props => {
                   onChange={(event) => { formChange(event) }}
                 />
               </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+                onClick = {updateRemember}
+                checked = {remember}
+              />
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="success"
-              component='button'
-              className={classes.submit}
-              disabled={user.fname && user.lname && user.email && user.password ? false : true}
-            >
-              Sign Up
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            disabled={user.fname && user.lname && user.email && user.password ? false : true}
+          >
+            Sign Up
               </Button>
             <Grid
               container
