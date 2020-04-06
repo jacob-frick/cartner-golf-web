@@ -19,7 +19,7 @@ const FriendDisplay = () => {
         if (friends.length < 1) {
           updateFriends('NONE', [])
         } else {
-          updateFriends('FRIENDS', friends)
+          updateFriends('FRIENDS', friends, Math.random())
         }
       })
       .catch(error => console.error(error))
@@ -28,7 +28,7 @@ const FriendDisplay = () => {
   //display friends whenver status is changed
   useEffect(() => {
     displayFriends()
-  })
+  }, [status])
 
   //display friends when component mounts
   // useEffect( () => {

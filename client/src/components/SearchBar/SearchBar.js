@@ -27,17 +27,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '8px'
   },
   buttonHeight: {
+    height: '56px',
+    marginTop: '15px',
     color: 'white',
     border: '1px solid rgba(63, 151, 181, 0.5)',
-    height: '50px',
-    width: 'calc(100% - 10vh)',
-    padding: '0 30px',
     background: 'green',
     boxShadow: '0 3px 5px 2px rgba(0, 0, 135, .3)',
-    marginTop: '14px',
     borderRadius: '3px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
     display: 'block',
 
   }
