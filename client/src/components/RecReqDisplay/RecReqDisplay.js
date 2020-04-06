@@ -48,7 +48,7 @@ const RecReqDisplay = () => {
   }
   useEffect(() => {
     getFriendRequest()
-  }, [])
+  })
 
 
   if (recRequest.hasRequests === 'NONE') {

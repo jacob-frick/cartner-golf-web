@@ -2,18 +2,18 @@ import { makeStyles } from '@material-ui/core/styles'
 const CustomStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 'auto',
     top: '50% !important',
     left: '55% !important',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: "0px !important"
+    padding: "0px !important",
+    maxWidth: 600,
+    width: "100%",
   },
   paperCustom: {
     top: '50% !important',
     left: '55% !important',
-    minWidth: '200rem',
     border: '1px solid #000',
     borderRadius: '.8rem',
     position: 'absolute',
@@ -25,10 +25,10 @@ const CustomStyles = makeStyles((theme) => ({
   dialogStyle: {
     position: "inherit",
     display: 'inherit',
-    padding: "0px !important"
+    padding: "0px",
   },
   root: {
-    padding: "0px !important"
+    padding: "-16px !important"
   }
 }
 ))

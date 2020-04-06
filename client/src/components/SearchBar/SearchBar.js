@@ -27,19 +27,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '8px'
   },
   buttonHeight: {
-    color: 'white',
-    border: '1px solid rgba(63, 151, 181, 0.5)',
-    height: '50px',
-    width: 'calc(100% - 10vh)',
-    // padding: 0 30px',
-    background: 'linear-gradient(45deg, #e92a1ccc 16%, rgba(5, 176, 176, 0.8) 99%)',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    //margin-top: 14px',
-    borderRadius: '3px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    display: 'block',
-
+    height: '56px',
+    marginTop: '15px'
   }
 }))
 

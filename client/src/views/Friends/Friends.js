@@ -7,7 +7,6 @@ import RecReqDisplay from '../../components/RecReqDisplay'
 import SentReqDisplay from '../../components/SentReqDisplay'
 import Protected from './../../components/Protected'
 import FriendsContext from '../../utils/FriendsContext'
-import friendStyles from './styles'
 const Friends = () => {
 
     const [friendState, setFriendState] = useState({

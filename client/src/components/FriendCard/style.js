@@ -26,7 +26,6 @@ const friendCardStyles = makeStyles((theme) => ({
   },
   buttons: {
     textAlign: 'center'
-
   },
   accept: {
     borderColor: 'green',

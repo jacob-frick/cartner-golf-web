@@ -14,7 +14,7 @@ const SentReqDisplay = () => {
   //   requests: []
   // })
 
-  let {sentRequests, statusSent, updateSentRequests, hasRequests} = useContext(FriendsContext)
+  let {sentRequests, updateSentRequests, hasRequests} = useContext(FriendsContext)
 
   const getRequests = () => {
     User.getSentFriendRequests()
@@ -38,7 +38,7 @@ const SentReqDisplay = () => {
 
   useEffect(() => {
     getRequests()
-  },[statusSent, hasRequests])
+  })
 
 
   if(hasRequests === 'NONE'){

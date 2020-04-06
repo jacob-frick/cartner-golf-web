@@ -10,7 +10,7 @@ import FriendsContext from '../../utils/FriendsContext'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
-  const { friends, hasFriends, updateFriends, status } = useContext(FriendsContext)
+  const { friends, hasFriends, updateFriends } = useContext(FriendsContext)
 
   const displayFriends = () => {
     User.getFriends()
@@ -28,7 +28,7 @@ const FriendDisplay = () => {
   //display friends whenver status is changed
   useEffect(() => {
     displayFriends()
-  }, [status, hasFriends])
+  })
 
   //display friends when component mounts
   // useEffect( () => {
@@ -53,8 +53,8 @@ const FriendDisplay = () => {
   else if (hasFriends === 'FRIENDS') {
     return (
       <Paper elevation={3}>
-        <div className={classes.root}>
-          <Grid container className="muiGridContainer" spacing={1}>
+        <div className={classes.root} >
+          <Grid container className="muiGridContainer" spacing={1} >
             <List className={classes.listStyle}>
               {/* Begin mapping users friends here */}
               {friends.map(person =>
@@ -67,7 +67,7 @@ const FriendDisplay = () => {
                   removeFriend={removeFriend}
                 >
                   <Grid
-                    item md={4} xs={12}
+                    item md={4} xs={12}           
                   >
                     <Button
                       onClick={() => removeFriend(person._id)}

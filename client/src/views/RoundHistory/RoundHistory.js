@@ -2,7 +2,7 @@ import React from 'react'
 import OuterNavbar from './../../components/OuterNavbar'
 import { Redirect } from 'react-router-dom'
 import Authorization from './../../utils/Authorization'
-import Scorecard from '../../components/Scorecard'
+import Scorecard from '../Scorecard'
 const Friends = () => {
     const [authStatus, setAuth] = React.useState('NONE')
 

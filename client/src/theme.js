@@ -20,7 +20,7 @@ const theme = createMuiTheme({
     disabledColor: "rgba(0,0,0,0.3)",
     pickerHeaderColor: "#00bcd4",
     clockCircleColor: "#f44336",
-    shadowColor: "rgba(0,0,0,1)"
+    shadowColor: "rgba(0,0,0,1)",
   },
   themeName: "lightTheme",
   themeFile: "theme.json",
