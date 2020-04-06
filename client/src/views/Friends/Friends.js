@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import OuterNavbar from './../../components/OuterNavbar'
 import SearchBar from './../../components/SearchBar'
 import Grid from '@material-ui/core/Grid'
@@ -7,7 +7,6 @@ import RecReqDisplay from '../../components/RecReqDisplay'
 import SentReqDisplay from '../../components/SentReqDisplay'
 import Protected from './../../components/Protected'
 import FriendsContext from '../../utils/FriendsContext'
-import friendStyles from './styles'
 const Friends = () => {
 
     const [friendState, setFriendState] = useState({

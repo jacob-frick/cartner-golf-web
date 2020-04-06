@@ -5,6 +5,7 @@ import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'
 import RoundHistory from './views/RoundHistory'
+import Scorecard from './views/Scorecard'
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,6 +42,9 @@ const App = props => {
         </Route>
         <Route exact path="/roundCreation/:id">
           <RoundCreation />
+        </Route>
+        <Route exact path="/scorecard/:id">
+          <Scorecard />
         </Route>
         <Route path="/" exact>
           <Home />

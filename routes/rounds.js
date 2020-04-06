@@ -21,7 +21,7 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
       createdRound.members.push(req.user._id)
       createdRound.save()
       req.user.save()
-      res.sendStatus(200)
+      res.json({roundId: createdRound._id})
     })
     .catch(e => {
       console.error(e)

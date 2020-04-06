@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
@@ -14,7 +14,7 @@ const SentReqDisplay = () => {
   //   requests: []
   // })
 
-  let {sentRequests, statusSent, updateSentRequests, hasRequests} = useContext(FriendsContext)
+  let {sentRequests, updateSentRequests, hasRequests} = useContext(FriendsContext)
 
   const getRequests = () => {
     User.getSentFriendRequests()
@@ -38,7 +38,7 @@ const SentReqDisplay = () => {
 
   useEffect(() => {
     getRequests()
-  },[statusSent, hasRequests])
+  })
 
 
   if(hasRequests === 'NONE'){

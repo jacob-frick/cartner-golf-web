@@ -6,6 +6,7 @@ import OuterNavbar from './../../components/OuterNavbar'
 import WelcomeDialog from './../../components/WelcomeDialog'
 import HomeContext from './../../utils/HomeContext'
 
+
 export default function Dashboard(props) {
   const { isNewAcc } = useContext(HomeContext)
   const isNewAccModel = () => {

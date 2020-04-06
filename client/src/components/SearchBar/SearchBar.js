@@ -95,7 +95,13 @@ const SearchBar = () => {
           />
         </Grid>
         <Grid item sm={2} xs={12}>
-          <Button className={classes.buttonHeight} variant="contained" fullWidth color="primary" onClick={onSubmit}>
+          <Button
+            className={classes.buttonHeight}
+            variant="contained"
+            fullWidth
+            color="primary"
+            onClick={onSubmit}
+          >
             Search
           </Button>
         </Grid>
