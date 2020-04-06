@@ -20,7 +20,7 @@ const logInStyles = makeStyles((theme) => ({
     },
     avatar: {
         // margin: theme.spacing(1),
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: '#05b0b0cc',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: '2rem'
@@ -31,6 +31,18 @@ const logInStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        color: 'white',
+        border: '1px solid rgba(63, 151, 181, 0.5)',
+        height: '50px',
+        width: 'calc(100% - 10vh)',
+        // padding: 0 30px',
+        background: 'linear-gradient(45deg, #6900bcba 16%, rgba(5, 176, 176, 0.8) 99%)',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        //margin-top: 14px',
+        borderRadius: '3px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'block',
     },
     backgroundImage: {
         display: 'flex',
@@ -38,6 +50,7 @@ const logInStyles = makeStyles((theme) => ({
         width: '100%',
         height: '100%',
         backgroundImage: `url(${"../assets/images/backgroundImage.jpg"})`,
+        backgroundRepeat: 'round'
     },
     textCenter: {
         textAlign: 'center',

@@ -30,7 +30,7 @@ const Home = () => {
           }
         })
     }
-  }, [])
+  }, [isAuth, page])
 
   if (page.current === 'LOGIN') {
     return (<HomeContext.Provider value={page}><Login /></HomeContext.Provider>)

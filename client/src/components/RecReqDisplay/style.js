@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 const recReqDisplayStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   listStyle: {
     display: 'contents'
@@ -10,6 +10,12 @@ const recReqDisplayStyles = makeStyles((theme) => ({
     borderColor: 'green',
     color: 'green'
   },
+
+  buttons: {
+    maxwidth: '40%',
+    flexBasis: '40%',
+    minWidth: '40%',
+  }
 }));
 
 export default recReqDisplayStyles

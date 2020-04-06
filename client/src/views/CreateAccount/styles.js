@@ -20,7 +20,8 @@ const createAccountStyles = makeStyles((theme) => ({
   },
   avatar: {
     // margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    // backgroundColor: theme.palette.primary.main,
+    backgroundColor: '#05b0b0cc',
     marginLeft: 'auto',
     marginRight: 'auto'
   },
@@ -45,5 +46,5 @@ const createAccountStyles = makeStyles((theme) => ({
   link: {
     textDecoration: 'none'
   }
-  }))
+}))
 export default createAccountStyles

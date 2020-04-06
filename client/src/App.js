@@ -4,6 +4,7 @@ import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'
 import RoundHistory from './views/RoundHistory'
+import Scorecard from './views/Scorecard'
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,6 +15,7 @@ import RoundCreation from './views/RoundCreation'
 
 
 const App = props => {
+
   //potential for rememberme
   useEffect(() => {
     window.addEventListener("beforeunload", (ev) => {
@@ -43,12 +45,16 @@ const App = props => {
         <Route exact path="/roundCreation/:id">
           <RoundCreation />
         </Route>
+        <Route exact path="/scorecard/:id">
+          <Scorecard />
+        </Route>
         <Route path="/" exact>
           <Home />
         </Route>
         <Redirect to="/" />
       </Switch>
     </Router>
+
   )
 }
 

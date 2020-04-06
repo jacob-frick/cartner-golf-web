@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles} from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import FormControl from '@material-ui/core/FormControl'
 import Grid from '@material-ui/core/Grid'
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonHeight: {
     height: '56px',
-    marginTop: '14px'
+    marginTop: '15px'
   }
 }))
 
@@ -51,15 +51,15 @@ const SearchBar = () => {
     }
     else {
       User.findUser(value.searchVal)
-      .then(({data}) => {
-        console.log(data)
-        if(data.message) {
-          setValues({ ...value, error: true, errorMessage: data.message })
-        } else {
-          const model = <SendFriendReqModel  inviteWasClosed={inviteWasClosed} user={data} />
-          setModel(model)
-        }
-      })
+        .then(({ data }) => {
+          console.log(data)
+          if (data.message) {
+            setValues({ ...value, error: true, errorMessage: data.message })
+          } else {
+            const model = <SendFriendReqModel inviteWasClosed={inviteWasClosed} user={data} />
+            setModel(model)
+          }
+        })
     }
   }
   const inviteWasClosed = () => {
@@ -70,18 +70,18 @@ const SearchBar = () => {
       <Grid container spacing={3}>
         {inviteModel}
         <Grid item sm={10} xs={12}>
-            <TextField
-              error={value.error}
-              helperText={value.errorMessage}
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              name="searchVal"
-              label={<InputAdornment  className={classes.searchIcon} position="start"><SearchIcon />Search</InputAdornment>}
-              type="text"
-              id="searchVal"
-              onChange={handleChange('searchVal')}
-            />
+          <TextField
+            error={value.error}
+            helperText={value.errorMessage}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="searchVal"
+            label={<InputAdornment className={classes.searchIcon} position="start"><SearchIcon />Search</InputAdornment>}
+            type="text"
+            id="searchVal"
+            onChange={handleChange('searchVal')}
+          />
         </Grid>
         <Grid item sm={2} xs={12}>
           <Button className={classes.buttonHeight} variant="contained" fullWidth color="primary" onClick={onSubmit}>

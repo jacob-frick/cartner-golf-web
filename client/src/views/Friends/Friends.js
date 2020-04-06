@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import OuterNavbar from './../../components/OuterNavbar'
 import SearchBar from './../../components/SearchBar'
 import Grid from '@material-ui/core/Grid'
@@ -31,7 +31,9 @@ const Friends = () => {
                 <FriendsContext.Provider value={friendState}>
                     <SearchBar />
                     <Grid container spacing={1}>
-                        <Grid item md={6} xs={12}>
+                        <Grid
+                            item md={6} xs={12}
+                            className='nameFix'>
                             <h1>Friends List</h1>
                             <FriendsDisplay />
                         </Grid>
