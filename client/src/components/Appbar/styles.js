@@ -39,8 +39,8 @@ const appbarStyles = makeStyles((theme) => ({
 
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    // backgroundColor: '#4caf50',
-    background: 'linear-gradient(45deg, #37c0c0 16%, rgba(110, 5, 176, 0.8) 99%);'
+    backgroundColor: '#4caf50',
+    // background: 'linear-gradient(45deg, #37c0c0 16%, rgba(110, 5, 176, 0.8) 99%);'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,

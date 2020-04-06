@@ -28,8 +28,8 @@ const friendCardStyles = makeStyles((theme) => ({
     textAlign: 'center'
   },
   accept: {
-    borderColor: 'green',
-    color: 'green'
+    borderColor: '#4caf50',
+    color: '#ffffff'
   },
   MuiTypography: {
     boxSizing: 'border-box',
