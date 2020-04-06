@@ -34,6 +34,9 @@ const dashboardStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
+      },
+      button: {
+        textTransform: 'none'
       }
 }))
 export default dashboardStyles
