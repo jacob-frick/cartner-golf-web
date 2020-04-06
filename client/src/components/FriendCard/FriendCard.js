@@ -10,24 +10,49 @@ const FriendCard = props => {
   const { name, course, type, initials, text } = props
   return (
     <ListItem>
-      <Grid item xs={12}>
-        <div className={classes.root}>
-          <Grid container spacing={0}>
-            <Grid className={classes.icon} item xs={2}>
-              <Avatar className={classes.orange}>{initials}</Avatar>
-            </Grid>
-            <Grid
-              className={classes.root}
-              item xs={6}
+      <Grid
+        item
+        xs={12}
+      >
+        {/* <div className={classes.root}> */}
+        <Grid
+          container
+          spacing={0}
+        >
+          <Grid
+            className={classes.icon}
+            item xs={2}
+          >
+            <Avatar
+              className={classes.orange}
             >
-              <Typography variant="h6" component='h6'>{name}</Typography>
-              <Typography variant="subtitle2">{text}</Typography>
-            </Grid>
+              {initials}
+            </Avatar>
+          </Grid>
+          <Grid
+            className={classes.cardStyles}
+          // item xs={6}
+          >
+            <Typography
+              variant="h6"
+              component='h6'
+            >{name}
+            </Typography>
+            <Typography
+              variant="subtitle2"
+            >{text}
+            </Typography>
+          </Grid>
+          {/* <container className={classes.container}> */}
+
+          <Button className={classes.buttons}>
             {/* Buttons here */}
             {props.children}
-            {/* Buttons end */}
-          </Grid>
-        </div>
+          </Button>
+          {/* </container> */}
+          {/* Buttons end */}
+        </Grid>
+        {/* </div> */}
       </Grid>
     </ListItem>
   )

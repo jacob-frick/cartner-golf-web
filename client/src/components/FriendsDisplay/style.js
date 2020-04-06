@@ -33,16 +33,24 @@ import { makeStyles } from '@material-ui/core/styles';
 const friendDisplayStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    maxWidth: '100%',
-    flexBasis: '100%',
-    minInlineSize: 'max-content',
+    width: '50%',
+    padding: '5px 0px',
+    // minInlineSize: 'max-content',
 
   },
   listStyle: {
     display: 'contents',
     marginLeft: '-.5rem'
   },
-
+  buttons: {
+    maxWidth: '40%',
+    minWidth: ' 30%',
+    flexBasis: ' 30%',
+    marginTop: '1vh',
+  },
+  removeButton: {
+    float: 'left',
+  }
 }));
 
 export default friendDisplayStyles

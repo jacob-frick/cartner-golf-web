@@ -3,10 +3,10 @@ import { green, deepOrange, deepPurple } from '@material-ui/core/colors';
 const friendCardStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    maxWidth: '80%',
+    maxWidth: '100%',
     flexBasis: '100%',
-    minInlineSize: 'max-content',
-    marginBottom: '.5rem',
+    // minInlineSize: 'max-content',
+    // marginBottom: '.5rem',
   },
   icon: {
     marginTop: 'auto',
@@ -25,8 +25,10 @@ const friendCardStyles = makeStyles((theme) => ({
     backgroundColor: green[500],
   },
   buttons: {
-    textAlign: 'center'
-
+    maxWidth: '24vh',
+    minWidth: '24vh',
+    flexBasis: '24vh',
+    marginRight: 'auto',
   },
   accept: {
     borderColor: '#4caf50',
@@ -36,6 +38,13 @@ const friendCardStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
     marginRight: '-.5rem',
     marginBottom: '-.5rem',
+  },
+  MuiButtonRoot: {
+    display: 'contents',
+    float: 'left',
+  },
+  cardStyles: {
+    // display: 'inline-flex'
   },
 }));
 

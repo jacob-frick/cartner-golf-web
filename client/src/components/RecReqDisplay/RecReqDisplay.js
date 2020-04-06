@@ -59,9 +59,14 @@ const RecReqDisplay = () => {
   else if (recRequest.hasRequests === 'REQUESTS') {
     return (
       <Paper elevation={3}>
-        <div className={classes.root}>
-          <Grid container spacing={1}>
-            <List className={classes.listStyle}>
+        <div>
+          <Grid
+          // className={classes.container} 
+          // spacing={1}
+          >
+            <List
+              className={classes.listStyle}
+            >
               {/* Begin mapping users friends here */}
               {recRequest.requests.map(person =>
                 <FriendCard
@@ -72,12 +77,34 @@ const RecReqDisplay = () => {
                   acceptRequest={acceptRequest}
                   declineRequest={declineRequest}
                 >
-                  <Grid item md={2} xs={6} className={classes.buttons}>
-                    <Button onClick={() => acceptRequest(person._id)} variant="outlined" className={classes.accept}>Accept</Button>
-                  </Grid>
-                  <Grid item md={2} xs={6} className={classes.buttons}>
-                    <Button onClick={() => declineRequest(person._id)} variant="outlined" color="secondary">Decline</Button>
-                  </Grid>
+                  <span className={classes.root}>
+                    <Grid
+                      item md={2}
+                      // xs={6}
+                      className={classes.buttons}
+                    >
+                      <Button
+                        onClick={() => acceptRequest(person._id)}
+                        variant="outlined"
+                        className={classes.accept}
+                      >Accept</Button>
+                    </Grid>
+                  </span>
+
+                  <span
+                    className={classes.root}>
+                    <Grid
+                      item md={2}
+                      // xs={6}
+                      className={classes.buttons}
+                    >
+                      <Button
+                        onClick={() => declineRequest(person._id)}
+                        variant="outlined"
+                        color="secondary"
+                      >Decline</Button>
+                    </Grid>
+                  </span>
                 </FriendCard>
               )}
             </List>

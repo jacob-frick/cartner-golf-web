@@ -53,7 +53,7 @@ const FriendDisplay = () => {
   else if (hasFriends === 'FRIENDS') {
     return (
       <Paper elevation={3}>
-        <div className={classes.root}>
+        <div>
           <Grid container className="muiGridContainer" spacing={1}>
             <List className={classes.listStyle}>
               {/* Begin mapping users friends here */}
@@ -62,17 +62,18 @@ const FriendDisplay = () => {
                   key={person._id}
                   name={`${person.fname} ${person.lname}`}
                   text={`Currently playing at course 1!`}
-                  className={classes.root}
+                  // className={classes.root}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
-                  removeFriend={removeFriend}
-                >
+                  removeFriend={removeFriend}>
                   <Grid
                     item md={4} xs={12}
+                  // className={classes.root}
                   >
                     <Button
                       onClick={() => removeFriend(person._id)}
                       variant="outlined"
                       color="secondary"
+                      className={classes.removeButton}
                     >Remove</Button>
                   </Grid>
                 </FriendCard>
