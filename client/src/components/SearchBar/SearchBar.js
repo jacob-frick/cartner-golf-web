@@ -32,15 +32,15 @@ const useStyles = makeStyles((theme) => ({
     height: '50px',
     width: 'calc(100% - 10vh)',
     padding: '0 30px',
-    background: 'linear-gradient(45deg, rgba(100, 23, 215, 3) 16%, rgba(5, 176, 176, 0.8) 99%)',
+    background: 'green',
     boxShadow: '0 3px 5px 2px rgba(0, 0, 135, .3)',
-    margin- top: '14px',
-  borderRadius: '3px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  display: 'block',
+    marginTop: '14px',
+    borderRadius: '3px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
 
-}
+  }
 }))
 
 const SearchBar = () => {
