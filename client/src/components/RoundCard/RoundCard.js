@@ -54,9 +54,11 @@ const RoundCard = props => {
                         value={memberContext[i].score[indx].score} 
                         onChange = {event => inputChange(event.target.value, i, indx)}
                         />
-                      </Grid>)
+                      </Grid>
+                      )
                   }
                 })}
+                <Grid item xs={1} className={`${classes.center} ${classes.underline}`}>{isBack ? `${memberContext[i].total_back}` : `${memberContext[i].total_front}`}</Grid>
               </ListItem >
             )
           })}

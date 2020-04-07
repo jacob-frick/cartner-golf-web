@@ -14,18 +14,28 @@ const Scorecard = () => {
   const { rid } = useParams()
   const [members, setMemberContext] = useState({
     memberContext: [],
-    roundId: ''
+    roundId: '',
   })
   const [roundData, setRound] = useState({ round: null, requested: 'NO' })
 
   members.inputChange = (value, index, hole_num) => {
-    // console.log(value)
-    // console.log('index ' + index)
-    // console.log('hole number '+ (hole_num-1))
-    // console.log(members.memberContext)
-    let tempArr = JSON.parse(JSON.stringify(members.memberContext))
-    tempArr[index].score[hole_num].score = value
-    setMemberContext({...members, memberContext: tempArr})
+
+      let tempArr = JSON.parse(JSON.stringify(members.memberContext))
+      let tempScore = tempArr[index].score[hole_num].score
+      tempArr[index].score[hole_num].score = value
+      if (isNaN(parseInt(value))) {}
+      else {
+        if(hole_num < 9)
+        {
+          console.log(tempArr[index].total_front)
+          tempArr[index].total_front = tempArr[index].total_front - tempScore + parseInt(value)
+          console.log(tempArr[index].total_front)
+        }else{
+          tempArr[index].total_back = tempArr[index].total_back - tempScore + parseInt(value)
+        }
+      }
+      setMemberContext({...members, memberContext: tempArr})
+
   }
 
   //run every 10 secs
@@ -41,10 +51,11 @@ const Scorecard = () => {
       members[i].total_front = totalFront
       members[i].total_back = totalBack
       totalFront = 0
-      totalBack = 0
+      totalBack = 0 
     }
     User.saveRound(id, members)
-      .then()
+      .then( () => {
+      })
       .catch(e => console.error(e))
   }
 
@@ -78,7 +89,7 @@ const Scorecard = () => {
           setRound({ ...roundData, requested: 'YES', round: data })
         })
     }
-  })
+  }, [])
   if (roundData.requested === 'NO') return (<></>)
   else if( roundData.requested ==='REDIRECT') return <Redirect to = '/'/>
   else {
