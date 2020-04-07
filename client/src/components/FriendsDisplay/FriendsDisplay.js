@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
@@ -8,6 +8,9 @@ import Button from '@material-ui/core/Button';
 import User from '../../utils/User'
 import friendDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
@@ -20,22 +23,11 @@ const FriendDisplay = () => {
         if (friends.length < 1) {
           updateFriends('NONE', [])
         } else {
-          updateFriends('FRIENDS', friends, Math.random())
+          updateFriends('FRIENDS', friends)
         }
       })
       .catch(error => console.error(error))
   }
-
-  //display friends whenver status is changed
-  useEffect(() => {
-    displayFriends()
-  }, [status])
-
-  //display friends when component mounts
-  // useEffect( () => {
-  //   console.log('ping')
-  //   displayFriends()
-  // }, [])
 
   const removeFriend = id => {
     User.removeFriend(id)
@@ -45,6 +37,12 @@ const FriendDisplay = () => {
       .catch(e => console.error(e))
   }
 
+  useEffect(() => {
+    displayFriends()
+  }, [status, hasFriends])
+
+
+
   //I haz no friends ~ jvo
   if (hasFriends === 'NONE') {
     return (
@@ -53,44 +51,28 @@ const FriendDisplay = () => {
   }
   else if (hasFriends === 'FRIENDS') {
     return (
-      <Paper
-        elevation={3}
-      >
-        <div>
-          <Grid container
-            className="muiGridContainer"
-            spacing={1}
-          >
-            <List
-              className={classes.listStyle}
-            >
-              {/* Begin mapping users friends here */}
-              {friends.map(person =>
+      <Paper elevation={3}>
+        <div className={classes.root} >
+          <Card className={classes.cardWidth}>
+            <CardContent className={classes.inviteCard} >
+            {friends.map(person =>
                 <FriendCard
                   key={person._id}
                   name={`${person.fname} ${person.lname}`}
                   text={`Currently playing at course 1!`}
                   // className={classes.root}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
-                  removeFriend={removeFriend}>
-                  {/* <Grid
-                    item md={4}
-                    xs={12}
-                  // className={classes.root}
-                  > */}
-                  <Grid className={classes.root}>
-                    <Button
-                      onClick={() => removeFriend(person._id)}
-                      variant="outlined"
-                      color="secondary"
-                      className={classes.removeButton}
-                    >Remove</Button>
-                  </Grid>
-                  {/* </Grid> */}
+                  removeFriend={removeFriend}
+                >
+                  <Button
+                    onClick={() => removeFriend(person._id)}
+                    variant="outlined"
+                    color="secondary"
+                  >Remove</Button>
                 </FriendCard>
               )}
-            </List>
-          </Grid>
+            </CardContent>
+          </Card>
         </div>
       </Paper>
     )

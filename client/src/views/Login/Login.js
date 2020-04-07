@@ -59,8 +59,9 @@ export default function Login() {
     //reset error messages
     User.login({ username: user.email, password: user.password })
       .then(({ data }) => {
+        console.log(data)
         if (data.message) {
-          // console.log(data.message)
+          //console.log(data.message)
           if (data.message === 'Password Incorrect') {
             setUser({ ...user, passwordCheck: true, passwordErrorMessage: 'Incorrect Password', emailCheck: false, emailErrorMessage: '' })
           }

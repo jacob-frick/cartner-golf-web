@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -7,12 +7,12 @@ import ListItem from '@material-ui/core/ListItem'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField';
 import roundCardStyles from './style.js'
-
+import RoundContext from '../../utils/RoundContext'
 
 const RoundCard = props => {
   const classes = roundCardStyles()
   const holes = props.round.course_id.holes
-
+  const {inputChange, memberContext} = useContext(RoundContext)
   const getHalfScorecard = (isBack) => {
     let start, finish
     isBack ? start = 9 : start = 0
@@ -39,12 +39,24 @@ const RoundCard = props => {
             })}
           </ListItem>
           {/* Begin mapping user */}
-          {props.round.members.map((elem, index) => {
-            const offset = finish - elem.score.length + 1
+          {props.round.members.map((elem, i) => {
             return (
               <ListItem>
                 <Grid item xs={2} className={`${classes.center}`}>{elem.user_id.fname}</Grid>
-                {getMemeberScores(isBack, elem.score)}
+                {elem.score.map((sc, indx) => {
+                  if (indx >= start && indx <= finish) {
+                    return (
+                      <Grid item xs={1} className={`${classes.center}`}>
+                        <TextField 
+                        id={`${i}-${sc.hole_num}`} 
+                        className={classes.input} size="small" 
+                        inputProps={{ style: { textAlign: 'center' } }} 
+                        value={memberContext[i].score[indx].score} 
+                        onChange = {event => inputChange(event.target.value, i, indx)}
+                        />
+                      </Grid>)
+                  }
+                })}
               </ListItem >
             )
           })}
@@ -59,26 +71,6 @@ const RoundCard = props => {
       holeArr[i] = <Grid item xs={1} className={` ${classes.center} ${classes.underline}`}>{i + 1}</Grid>
     }
     return holeArr
-  }
-  const getMemeberScores = (isBack, scores) => {
-    let start, finish
-    isBack ? start = 9 : start = 0
-    isBack ? finish = 17 : finish = 8
-    let membersScore = []
-    for (let i = start; i < scores.length; i++) {
-      membersScore.push(
-        <Grid item xs={1} className={`${classes.center}`}>
-          <TextField className={classes.input} size="small" inputProps={{ style: { textAlign: 'center' } }} value={scores[i].score} />
-        </Grid>)
-    }
-    for (let i = scores.length + start; i < finish + 1; i++) {
-      membersScore.push(
-        <Grid item xs={1} className={`${classes.center}`}>
-          <TextField className={classes.input} size="small" inputProps={{ style: { textAlign: 'center' } }} placeholder={'-'} />
-        </Grid>
-      )
-    }
-    return membersScore
   }
 
   return (

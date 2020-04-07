@@ -85,7 +85,7 @@ const RoundCreation = () => {
                 color="primary"
                 onClick={(event) => {
                   event.currentTarget.className += " Mui-disabled"
-                  setInvited([...invited, person._id])
+                  setInvited(prev => [...prev, person._id])
                 }}
                 id={index}
                 disabled={isInvited}
@@ -125,7 +125,6 @@ const RoundCreation = () => {
       course_id: id,
       teebox: radioValue.toLocaleLowerCase()
     }).then(({data}) => {
-      console.log(data)
       setCreated({created: true, id: data.roundId})
     })
   }

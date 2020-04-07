@@ -18,10 +18,25 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
       //set the created round as the user's active round
       req.user.active_round = createdRound._id
       //saving owner into members array. NOTE, will need to change how we push to members array later as each member needs a user_id and score
-      createdRound.members.push({user_id: req.user._id, scores: []})
-      createdRound.save()
-      req.user.save()
-      res.json({roundId: createdRound._id})
+      let score = []
+      for(let i = 1; i < 19; i++) {
+        score.push({
+          hole_num: i,
+          score: 0
+        })
+      }
+      User.find({_id: {$in: createdRound.pending_members}})
+      .then(users => {
+        users.forEach(element => {
+          element.pending_round_invites.push(createdRound._id)
+          element.save()
+        })
+        createdRound.members.push({user_id: req.user._id, score})
+        createdRound.save()
+        req.user.save()
+        res.json({roundId: createdRound._id})
+      })
+
     })
     .catch(e => {
       console.error(e)
@@ -68,7 +83,6 @@ router.get('/users/currentround', passport.authenticate('jwt', { session: false 
 })
 //invite a player to a round
 router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
-
   if(req.params.uid === req.user._id.toString()){
     res.json({message: 'Cannot send an invite to yourself'})
   }
@@ -116,8 +130,18 @@ router.put('/accept/:rid', passport.authenticate('jwt', { session: false }), (re
   else{
     Round.findById(req.params.rid)
     .then( round => {
+      let score = []
+      for(let i = 1; i < 19; i++) {
+        score.push({
+          hole_num: i,
+          score: 0
+        })
+      }
       //push to members array in round
-      round.members.push(req.user._id)
+      round.members.push({
+        user_id: req.user._id,
+        score
+      })
       //remove from pending_members array
       round.pending_members.splice(round.pending_members.indexOf(req.user._id), 1)
       round.save()
@@ -153,5 +177,21 @@ router.put('/decline/:rid', passport.authenticate('jwt', { session: false }), (r
     })
 })
 
+//save a round
+router.put('/save/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  Round.findById(req.params.rid)
+  .then( round => {
+    for(let i = 0; i<req.body.length; i++){
+      round.members[i].score = req.body[i].score
+    }
+    round.save()
+    res.sendStatus(200)
+  })
+  .catch( e => {
+    console.error(e)
+    res.sendStatus(400)
+  })
+})
 
 module.exports = router

@@ -7,8 +7,8 @@ import User from '../../utils/User'
 import recReqDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
 import Button from '@material-ui/core/Button';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
-
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 const RecReqDisplay = () => {
   const classes = recReqDisplayStyles()
 
@@ -21,7 +21,6 @@ const RecReqDisplay = () => {
   const getFriendRequest = () => {
     User.getRecFriendRequests()
       .then(({ data: requests }) => {
-        // console.log(requests)
         if (requests.length < 1) {
           setRecRequest({ ...recRequest, hasRequests: 'NONE' })
         } else {
@@ -36,7 +35,6 @@ const RecReqDisplay = () => {
       .then(({ data }) => {
         getFriendRequest()
         updateStatus('ACCEPTED' + id.toString())
-        updateStatus('')
       })
       .catch(error => console.error(error))
   }
@@ -49,7 +47,7 @@ const RecReqDisplay = () => {
   }
   useEffect(() => {
     getFriendRequest()
-  })
+  }, [])
 
 
   if (recRequest.hasRequests === 'NONE') {
@@ -59,18 +57,10 @@ const RecReqDisplay = () => {
   }
   else if (recRequest.hasRequests === 'REQUESTS') {
     return (
-      <Paper
-        elevation={3}
-      >
-        <div>
-          <Grid
-          // className={classes.container} 
-          // spacing={1}
-          >
-            <List
-              className={classes.listStyle}
-            >
-              {/* Begin mapping users friends here */}
+      <Paper elevation={3}>
+        <div className={classes.root}>
+          <Card className={classes.cardWidth}>
+            <CardContent className={classes.inviteCard} >
               {recRequest.requests.map(person =>
                 <FriendCard
                   key={person._id}
@@ -96,10 +86,11 @@ const RecReqDisplay = () => {
                   </Grid>
                 </FriendCard>
               )}
-            </List>
-          </Grid>
-        </div >
-      </Paper >
+            </CardContent>
+          </Card>
+        </div>
+      </Paper>
+
     )
   }
   else {

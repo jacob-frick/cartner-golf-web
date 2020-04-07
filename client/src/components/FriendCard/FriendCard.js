@@ -4,55 +4,26 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItem from '@material-ui/core/ListItem'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+<<<<<<< HEAD
 import Button from '@material-ui/core/Button';
+=======
+import { spacing } from '@material-ui/system'
+>>>>>>> fc8f3b1fb2d86f9a0a917a1c17a0a4430e5ed44b
 const FriendCard = props => {
   const classes = friendCardStyles();
   const { name, course, type, initials, text } = props
   return (
-    <ListItem>
-      <Grid
-        item
-        xs={12}
-      >
-        {/* <div className={classes.root}> */}
-        <Grid
-          container
-          spacing={0}
-        >
-          <Grid
-            className={classes.icon}
-            item xs={2}
-          >
-            <Avatar
-              className={classes.orange}
-            >
-              {initials}
-            </Avatar>
-          </Grid>
-          <Grid
-            className={classes.cardStyles}
-          // item xs={6}
-          >
-            <Typography
-              variant="h6"
-              component='h6'
-            >{name}
-            </Typography>
-            <Typography
-              variant="subtitle2"
-            >{text}
-            </Typography>
-          </Grid>
-          {/* <container className={classes.container}> */}
-
-          <Button className={classes.buttons}>
-            {/* Buttons here */}
-            {props.children}
-          </Button>
-          {/* </container> */}
-          {/* Buttons end */}
-        </Grid>
-        {/* </div> */}
+    <Grid container className={classes.cardMarg}>
+      <Grid className={classes.icon} item xs={1}>
+        <Avatar className={classes.orange}>{initials}</Avatar>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography variant="h6" component='h6'>{name}</Typography>
+      </Grid>
+      <Grid item xs={5} style={{display:'flex',alignItems:'flex-end' ,justifyContent:'flex-end'}}>
+        {/* Buttons here */}
+        {props.children}
+        {/* Buttons end */}
       </Grid>
     </ListItem>
   )
