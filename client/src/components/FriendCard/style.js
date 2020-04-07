@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { green, deepOrange, deepPurple } from '@material-ui/core/colors';
+import { spacing } from '@material-ui/system'
 const friendCardStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -36,6 +37,10 @@ const friendCardStyles = makeStyles((theme) => ({
     marginRight: '-.5rem',
     marginBottom: '-.5rem',
   },
+  cardMarg: {
+    marginBottom: 4,
+    marginRight: 2
+  }
 }));
 
 export default friendCardStyles

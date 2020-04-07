@@ -7,10 +7,13 @@ import Button from '@material-ui/core/Button';
 import User from '../../utils/User'
 import friendDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
-  const { friends, hasFriends, updateFriends, status} = useContext(FriendsContext)
+  const { friends, hasFriends, updateFriends, status } = useContext(FriendsContext)
 
   const displayFriends = () => {
     User.getFriends()
@@ -49,10 +52,9 @@ const FriendDisplay = () => {
     return (
       <Paper elevation={3}>
         <div className={classes.root} >
-          <Grid container className="muiGridContainer" spacing={1} >
-            <List className={classes.listStyle}>
-              {/* Begin mapping users friends here */}
-              {friends.map(person =>
+          <Card className={classes.cardWidth}>
+            <CardContent className={classes.inviteCard} >
+            {friends.map(person =>
                 <FriendCard
                   key={person._id}
                   name={`${person.fname} ${person.lname}`}
@@ -61,19 +63,15 @@ const FriendDisplay = () => {
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   removeFriend={removeFriend}
                 >
-                  <Grid
-                    item md={4} xs={12}           
-                  >
-                    <Button
-                      onClick={() => removeFriend(person._id)}
-                      variant="outlined"
-                      color="secondary"
-                    >Remove</Button>
-                  </Grid>
+                  <Button
+                    onClick={() => removeFriend(person._id)}
+                    variant="outlined"
+                    color="secondary"
+                  >Remove</Button>
                 </FriendCard>
               )}
-            </List>
-          </Grid>
+            </CardContent>
+          </Card>
         </div>
       </Paper>
     )

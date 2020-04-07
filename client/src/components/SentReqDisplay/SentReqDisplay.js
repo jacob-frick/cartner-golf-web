@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, { useContext, useEffect } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import User from '../../utils/User'
 import sentReqDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 const SentReqDisplay = () => {
   const classes = sentReqDisplayStyles()
   // const [sentRequest, setSentRequests] = useState({
@@ -14,7 +16,7 @@ const SentReqDisplay = () => {
   //   requests: []
   // })
 
-  let {sentRequests, updateSentRequests, hasRequests, statusSent} = useContext(FriendsContext)
+  let { sentRequests, updateSentRequests, hasRequests, statusSent } = useContext(FriendsContext)
 
   const getRequests = () => {
     User.getSentFriendRequests()
@@ -30,10 +32,10 @@ const SentReqDisplay = () => {
   }
   const cancelSentRequest = id => {
     User.cancelRequest(id)
-    .then( () => {
-      getRequests()
-    })
-    .catch(e => console.error(e))
+      .then(() => {
+        getRequests()
+      })
+      .catch(e => console.error(e))
   }
 
   useEffect(() => {
@@ -41,40 +43,36 @@ const SentReqDisplay = () => {
   }, [hasRequests, statusSent])
 
 
-  if(hasRequests === 'NONE'){
-    return(
+  if (hasRequests === 'NONE') {
+    return (
       <p>No sent friend requests to display.</p>
     )
   }
-  else if (hasRequests === 'REQUESTS'){
+  else if (hasRequests === 'REQUESTS') {
     return (
       <Paper elevation={3}>
-        <div className={classes.root}>
-          <Grid container spacing={1}>
-            <List className={classes.listStyle}>
-              {/* Begin mapping users friends here */}
-              {sentRequests.map(person => 
+        <div className={classes.root} >
+          <Card className={classes.cardWidth}>
+            <CardContent className={classes.inviteCard} >
+              {sentRequests.map(person =>
                 <FriendCard
-                  key = {person._id}
-                  name= {`${person.fname} ${person.lname}`}
-                  text = {`Pending acceptance.`}
+                  key={person._id}
+                  name={`${person.fname} ${person.lname}`}
+                  text={`Pending acceptance.`}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   cancelSentRequest={cancelSentRequest}
-                > 
-                  <Grid item md={4} xs={12} className={classes.buttons}>
-                    <Button onClick={() => cancelSentRequest(person._id)} variant="outlined" color="secondary">Cancel</Button>
-                  </Grid>
+                >
+                  <Button onClick={() => cancelSentRequest(person._id)} variant="outlined" color="secondary">Cancel</Button>
                 </FriendCard>
-                )}
-            </List>
-          </Grid>
-          {/* </Container> */}
+              )}
+            </CardContent>
+          </Card>
         </div>
       </Paper>
     )
   }
-  else{
-    return(
+  else {
+    return (
       <p></p>
     )
   }

@@ -7,6 +7,8 @@ import User from '../../utils/User'
 import recReqDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 const RecReqDisplay = () => {
   const classes = recReqDisplayStyles()
 
@@ -58,9 +60,8 @@ const RecReqDisplay = () => {
     return (
       <Paper elevation={3}>
         <div className={classes.root}>
-          <Grid container spacing={1}>
-            <List className={classes.listStyle}>
-              {/* Begin mapping users friends here */}
+          <Card className={classes.cardWidth}>
+            <CardContent className={classes.inviteCard} >
               {recRequest.requests.map(person =>
                 <FriendCard
                   key={person._id}
@@ -78,10 +79,11 @@ const RecReqDisplay = () => {
                   </Grid>
                 </FriendCard>
               )}
-            </List>
-          </Grid>
+            </CardContent>
+          </Card>
         </div>
       </Paper>
+
     )
   }
   else {
