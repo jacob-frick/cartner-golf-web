@@ -19,7 +19,6 @@ const RecReqDisplay = () => {
   const getFriendRequest = () => {
     User.getRecFriendRequests()
       .then(({ data: requests }) => {
-        // console.log(requests)
         if (requests.length < 1) {
           setRecRequest({ ...recRequest, hasRequests: 'NONE' })
         } else {
@@ -34,7 +33,6 @@ const RecReqDisplay = () => {
       .then(({ data }) => {
         getFriendRequest()
         updateStatus('ACCEPTED' + id.toString())
-        updateStatus('')
       })
       .catch(error => console.error(error))
   }
@@ -48,7 +46,7 @@ const RecReqDisplay = () => {
   }
   useEffect(() => {
     getFriendRequest()
-  })
+  }, [])
 
 
   if (recRequest.hasRequests === 'NONE') {
