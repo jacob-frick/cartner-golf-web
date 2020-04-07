@@ -66,7 +66,7 @@ export default function Login() {
   return (
 
     <div className={classes.backgroundImage}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className={classes.centerIt}>
         <CssBaseline />
         <div className={`${classes.paper} ${classes.loginStyle}`}>
           <Typography className={classes.header} component="h1" variant="h3">
