@@ -201,5 +201,38 @@ router.put('/save/:rid', passport.authenticate('jwt', { session: false }), (req,
   })
 })
 
+//complete a round
+router.get('/complete/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
+  let members
+  Round.findById(req.params.rid).populate({path: 'members.user_id', select: ['fname', 'lname','active_round', 'past_rounds']})
+  .then( round => {
+    round.members.forEach(member => {
+      //push into each member's past_rounds
+      member.user_id.past_rounds.push(req.params.rid)
+      //set each member's active_round to null
+      member.user_id.active_round = null
+      member.user_id.save()
+    })
+    res.json(round.members)
+
+  })
+  .catch(e => {
+    console.error(e)
+    res.json(400)
+  })
+  // Round.findById(req.params.rid)
+  //   .then(round => {
+  //     for (let i = 0; i < req.body.length; i++) {
+  //       round.members[i].score = req.body[i].score
+  //     }
+  //     round.save()
+  //     //save all the info in the round
+
+  //   })
+  //   .catch(e => {
+  //     console.error(e)
+  //     res.sendStatus(400)
+  //   })
+})
 
 module.exports = router

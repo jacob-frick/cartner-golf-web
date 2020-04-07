@@ -57,7 +57,10 @@ const Scorecard = () => {
           </RoundContext.Provider>
           <br />
           <br />
-          <Button onClick = {() => completeRound(members.roundId, members.memberContext)} variant="contained" color="primary">Complete Round</Button>
+          <Button onClick = {() => completeRound(members.roundId, members.memberContext)} variant="contained" color="primary">Save Round</Button>
+          <br />
+          <br />
+          <Button variant="contained" color="secondary">Complete Round</Button>
         </OuterNavbar>
       </RoundProtected>
     )
