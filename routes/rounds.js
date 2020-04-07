@@ -72,7 +72,7 @@ router.get('/users/pending', passport.authenticate('jwt', { session: false }), (
 //get user's current round
 router.get('/users/currentround', passport.authenticate('jwt', { session: false }), (req, res) => {
   //will need to populate with course_id to get course name later
-  User.findById(req.user._id).populate({path: 'active_round'})
+  User.findById(req.user._id).populate({path: 'active_round', select: ['course_id'], populate: { path: 'course_id', select: ['name']}})
   .then( user => {
     res.json(user.active_round)
   })

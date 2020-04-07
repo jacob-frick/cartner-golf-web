@@ -26,9 +26,8 @@ const OuterNavbar = props => {
     useEffect( () => {
       User.getCurrentRound()
       .then( ({data: round}) => {
-        //console.log(round)
         if(round){
-          setCurrentRound({...currentRound, roundId: round._id, inRound: true, course_name: round.course_id})
+          setCurrentRound({...currentRound, roundId: round._id, inRound: true, course_name: round.course_id.name})
         }
       })
       .catch(e => console.error(e))
