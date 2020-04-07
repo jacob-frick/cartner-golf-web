@@ -208,7 +208,7 @@ router.get('/complete/:rid', passport.authenticate('jwt', { session: false }), (
   .then( round => {
     round.members.forEach(member => {
       //push into each member's past_rounds
-      member.user_id.past_rounds.push(req.params.rid)
+      member.user_id.past_rounds.push(round._id)
       //set each member's active_round to null
       member.user_id.active_round = null
       member.user_id.save()
