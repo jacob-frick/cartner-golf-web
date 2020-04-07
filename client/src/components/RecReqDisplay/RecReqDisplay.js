@@ -38,7 +38,6 @@ const RecReqDisplay = () => {
       })
       .catch(error => console.error(error))
   }
-
   const declineRequest = id => {
     User.declineRequest(id)
       .then(() => {
@@ -71,11 +70,19 @@ const RecReqDisplay = () => {
                   acceptRequest={acceptRequest}
                   declineRequest={declineRequest}
                 >
-                  <Grid item md={2} xs={6} className={classes.buttons}>
-                    <Button onClick={() => acceptRequest(person._id)} variant="outlined" className={classes.accept}>Accept</Button>
-                  </Grid>
-                  <Grid item md={2} xs={6} className={classes.buttons}>
-                    <Button onClick={() => declineRequest(person._id)} variant="outlined" color="secondary">Decline</Button>
+                  <Grid>
+                    <Button
+                      onClick={() => acceptRequest(person._id)}
+                      variant="outlined"
+                      className={classes.accept}
+                    >Accept
+                    </Button>
+                    <Button
+                      onClick={() => declineRequest(person._id)}
+                      variant="outlined"
+                      color="secondary"
+                    >Decline
+                    </Button>
                   </Grid>
                 </FriendCard>
               )}

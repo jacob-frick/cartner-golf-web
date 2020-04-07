@@ -7,6 +7,12 @@ const MenuDropdownStyles = makeStyles((theme) => ({
   buttons: {
     textAlign: 'center'
   },
+  buttonGroup: {
+    '&: hover': {
+      backgroundColor: '#fff',
+    },
+    borderRightColor: '#4caf50',
+  },
 }));
 
 export default MenuDropdownStyles

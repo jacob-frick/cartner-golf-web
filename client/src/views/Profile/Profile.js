@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import OuterNavbar from './../../components/OuterNavbar'
 import profileStyles from './styles.js'
 import Authorization from './../../utils/Authorization'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 const Profile = () => {
   const classes = profileStyles()
   const [expanded, setExpanded] = React.useState(false);

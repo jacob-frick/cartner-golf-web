@@ -36,10 +36,10 @@ const DrawerComponent = () => {
   })
 
 
-  if(requests.status === '') {
+  if (requests.status === '') {
     User.getRecFriendRequests()
-      .then( ({data: num_request}) => {
-        setRequests({ ...setRequests, num_request: num_request.length, status:'CHECKED' })
+      .then(({ data: num_request }) => {
+        setRequests({ ...setRequests, num_request: num_request.length, status: 'CHECKED' })
       })
       .catch(e => console.error(e))
   }
@@ -64,9 +64,9 @@ const DrawerComponent = () => {
       <Divider />
       <List>
         <Tooltip title='Home'>
-          <ListItem 
-          button
-          component={Link} to="/">
+          <ListItem
+            button
+            component={Link} to="/">
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -77,7 +77,7 @@ const DrawerComponent = () => {
         </Tooltip>
         <Tooltip title='Courses'>
           <ListItem button
-          component={Link} to="/courses">
+            component={Link} to="/courses">
             <ListItemIcon>
               <EventNoteIcon />
             </ListItemIcon>
@@ -88,7 +88,7 @@ const DrawerComponent = () => {
         </Tooltip>
         <Tooltip title='Friends'>
           <ListItem button
-          component={Link} to="/friends">
+            component={Link} to="/friends">
             <ListItemIcon>
               <GroupAddIcon />
             </ListItemIcon>
@@ -104,9 +104,9 @@ const DrawerComponent = () => {
           </ListItem>
         </Tooltip>
         <Tooltip title='Round History'>
-          <ListItem 
-          button
-          component={Link} to="/roundHistory">
+          <ListItem
+            button
+            component={Link} to="/roundHistory">
             <ListItemIcon>
               <MenuBookIcon />
             </ListItemIcon>

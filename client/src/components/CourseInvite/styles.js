@@ -15,8 +15,14 @@ const courseInviteStyles = makeStyles((theme) => ({
     paddingRight: '.1rem'
   },
   accept: {
-    borderColor: 'green',
-    color: 'green'
+    borderColor: '#4caf50',
+    color: '#4caf50',
+  },
+  buttonGroup: {
+    '&: hover': {
+      backgroundColor: '#fff',
+    },
+    borderRightColor: '#4caf50',
   }
 }));
 

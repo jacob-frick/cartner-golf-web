@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import Button from '@material-ui/core/Button';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
 import User from '../../utils/User'
 import friendDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
@@ -54,12 +55,12 @@ const FriendDisplay = () => {
         <div className={classes.root} >
           <Card className={classes.cardWidth}>
             <CardContent className={classes.inviteCard} >
-            {friends.map(person =>
+              {friends.map(person =>
                 <FriendCard
                   key={person._id}
                   name={`${person.fname} ${person.lname}`}
                   text={`Currently playing at course 1!`}
-                  className={classes.root}
+                  // className={classes.root}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   removeFriend={removeFriend}
                 >
@@ -67,6 +68,7 @@ const FriendDisplay = () => {
                     onClick={() => removeFriend(person._id)}
                     variant="outlined"
                     color="secondary"
+                    className="buttons"
                   >Remove</Button>
                 </FriendCard>
               )}

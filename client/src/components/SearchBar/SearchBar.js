@@ -28,14 +28,13 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonHeight: {
     height: '56px',
-    marginTop: '15px',
+    // marginTop: '15px',
     color: 'white',
     border: '1px solid rgba(63, 151, 181, 0.5)',
     background: 'green',
     boxShadow: '0 3px 5px 2px rgba(0, 0, 135, .3)',
     borderRadius: '3px',
     display: 'block',
-
   }
 }))
 
@@ -90,8 +89,17 @@ const SearchBar = () => {
             onChange={handleChange('searchVal')}
           />
         </Grid>
-        <Grid item sm={2} xs={12}>
-          <Button className={classes.buttonHeight} variant="contained" fullWidth color="primary" onClick={onSubmit}>
+        <Grid
+          item sm={2}
+          xs={12}
+        >
+          <Button
+            className={classes.buttonHeight}
+            variant="contained"
+            fullWidth
+            color="primary"
+            onClick={onSubmit}
+          >
             Search
           </Button>
         </Grid>

@@ -30,6 +30,10 @@ const logInStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
     },
     submit: {
+        '&: hover': {
+            cursor: 'pointer',
+            backgroundColor: '#81c784'
+        },
         margin: theme.spacing(3, 0, 2),
         color: 'white',
         border: '1px solid rgba(63, 151, 181, 0.5)',
@@ -51,7 +55,9 @@ const logInStyles = makeStyles((theme) => ({
         width: '100%',
         height: '100%',
         backgroundImage: `url(${"../assets/images/backgroundImage.jpg"})`,
-        backgroundRepeat: 'round'
+        ['@media (min-width:780px)']: { // eslint-disable-line no-useless-computed-key
+            backgroundRepeat: 'round'
+        },
     },
     textCenter: {
         textAlign: 'center',
