@@ -27,9 +27,7 @@ const Scorecard = () => {
       else {
         if(hole_num < 9)
         {
-          console.log(tempArr[index].total_front)
           tempArr[index].total_front = tempArr[index].total_front - tempScore + parseInt(value)
-          console.log(tempArr[index].total_front)
         }else{
           tempArr[index].total_back = tempArr[index].total_back - tempScore + parseInt(value)
         }
@@ -64,7 +62,6 @@ const Scorecard = () => {
     let totalBack = 0
     for (let i = 0; i < members.length; i++) {
       for (let j = 0; j < 9; j++) {
-        // console.log(i, j, members[i].score[j].score)
         totalFront = totalFront + parseInt(members[i].score[j].score)
         totalBack = totalBack + parseInt(members[i].score[j + 9].score)
       }
@@ -99,6 +96,8 @@ const Scorecard = () => {
           <CssBaseline />
           <RoundContext.Provider value = {members}>
             <Summary round={roundData.round} />
+            <br />
+            <br />
             <RoundCard round={roundData.round} />
           </RoundContext.Provider>
           <br />
