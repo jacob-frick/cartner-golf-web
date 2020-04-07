@@ -28,7 +28,20 @@ const Scorecard = () => {
   }
 
   //run every 10 secs
-  const completeRound = (id, members) => {
+  const saveRound = (id, members) => {
+    let totalFront = 0
+    let totalBack = 0
+    for(let i = 0; i < members.length; i++) {
+      for(let j = 0; j < 9; j++){
+        // console.log(i, j, members[i].score[j].score)
+        totalFront = totalFront + members[i].score[j].score
+        totalBack = totalBack + members[i].score[j+9].score
+      }
+      members[i].total_front = totalFront
+      members[i].total_back = totalBack
+      totalFront = 0
+      totalBack = 0
+    }
     console.log(members)
     User.saveRound(id, members)
       .then()
@@ -57,7 +70,10 @@ const Scorecard = () => {
           </RoundContext.Provider>
           <br />
           <br />
-          <Button onClick = {() => completeRound(members.roundId, members.memberContext)} variant="contained" color="primary">Complete Round</Button>
+          <Button onClick = {() => saveRound(members.roundId, members.memberContext)} variant="contained" color="primary">Save Round</Button>
+          <br />
+          <br />
+          <Button variant="contained" color="secondary">Complete Round</Button>
         </OuterNavbar>
       </RoundProtected>
     )
