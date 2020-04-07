@@ -89,7 +89,7 @@ const Scorecard = () => {
           setRound({ ...roundData, requested: 'YES', round: data })
         })
     }
-  }, [])
+  }, [roundData, members, rid])
   if (roundData.requested === 'NO') return (<></>)
   else if( roundData.requested ==='REDIRECT') return <Redirect to = '/'/>
   else {

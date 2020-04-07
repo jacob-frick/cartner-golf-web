@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 // import { spacing } from '@material-ui/system'
 const FriendCard = props => {
   const classes = friendCardStyles();
-  const { name, course, type, initials, text } = props
+  const { name, initials} = props
   return (
 
     <Grid container className={classes.cardMarg}>

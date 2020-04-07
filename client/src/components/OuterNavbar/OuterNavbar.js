@@ -31,7 +31,7 @@ const OuterNavbar = props => {
         }
       })
       .catch(e => console.error(e))
-    }, [])
+    }, [currentRound])
 
     const redirect = () => {
       setCurrentRound({...currentRound, redirect: true})

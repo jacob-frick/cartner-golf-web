@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, {useContext } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Paper from '@material-ui/core/Paper'
@@ -35,6 +34,8 @@ const RoundCard = props => {
             {holes.map((elem, index) => {
               if (index >= start && index <= finish) {
                 return (<Grid item xs={1} className={` ${classes.center} ${classes.underline}`}  key={`${props.round._id}-handicap-${elem.handicap}`}>{elem.handicap}</Grid>)
+              }else {
+                return(<></>)
               }
             })}
           </ListItem>
@@ -56,7 +57,7 @@ const RoundCard = props => {
                         />
                       </Grid>
                     )
-                  }
+                  } else{return(<></>)}
                 })}
                 <Grid item xs={1} className={`${classes.center} ${classes.underline}`}>
                   {isBack ? `${props.isHistory ? elem.total_back : memberContext[i].total_back}` : `${props.isHistory ? elem.total_front : memberContext[i].total_front}`}
