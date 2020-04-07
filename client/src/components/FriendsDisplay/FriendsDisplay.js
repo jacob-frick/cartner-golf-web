@@ -57,7 +57,7 @@ const FriendDisplay = () => {
             <CardContent className={classes.inviteCard} >
               {friends.map(person =>
                 <FriendCard
-                  key={person._id}
+                  key={'friend-' + person._id}
                   name={`${person.fname} ${person.lname}`}
                   text={`Currently playing at course 1!`}
                   // className={classes.root}

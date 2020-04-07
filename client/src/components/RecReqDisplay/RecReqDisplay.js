@@ -63,7 +63,7 @@ const RecReqDisplay = () => {
             <CardContent className={classes.inviteCard} >
               {recRequest.requests.map(person =>
                 <FriendCard
-                  key={person._id}
+                  key={'rec-' + person._id}
                   name={`${person.fname} ${person.lname}`}
                   text={`Woudld like to be your friend!`}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
