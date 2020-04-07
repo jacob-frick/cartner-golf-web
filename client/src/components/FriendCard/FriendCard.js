@@ -10,22 +10,27 @@ const FriendCard = props => {
   const classes = friendCardStyles();
   const { name, course, type, initials, text } = props
   return (
-    
-        <Grid container className={classes.cardMarg}>
-          <Grid className={classes.icon} item xs={1}>
-            <Avatar className={classes.orange}>{initials}</Avatar>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" component='h6'>{name}</Typography>
-          </Grid>
-          <Grid item xs={5} style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-            {/* Buttons here */}
-            {props.children}
-            {/* Buttons end */}
-          </Grid>
-        </Grid>
 
-      )
-    }
-    
+    <Grid container className={classes.cardMarg}>
+      <Grid item className={classes.icon}>
+        <Avatar className={classes.orange}>{initials}</Avatar>
+      </Grid>
+      <Grid item>
+        <Typography
+          variant="h6"
+          component='h6'
+          className={classes.friendName}
+        >{name}
+        </Typography>
+      </Grid>
+      <Grid className={classes.MuiButtonRoot} style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+        {/* Buttons here */}
+        {props.children}
+        {/* Buttons end */}
+      </Grid>
+    </Grid >
+
+  )
+}
+
 export default FriendCard

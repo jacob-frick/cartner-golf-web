@@ -5,9 +5,9 @@ const recReqDisplayStyles = makeStyles((theme) => ({
       backgroundColor: 'transparent',
     },
     flexGrow: 1,
-    // width: '50%',
-    // padding: '5px 0px',
-    display: 'contents'
+    maxWidth: '100%',
+    flexBasis: '100%',
+    flexWrap: 'wrap',
   },
   listStyle: {
     display: 'contents'
@@ -19,7 +19,22 @@ const recReqDisplayStyles = makeStyles((theme) => ({
     // marginRight: '10rem',
 
   },
+  avatar: {
+    marginTop: 'auto',
+    display: 'flex',
+    alignItems: 'start',
+    justifyContent: 'start',
+    marginBottom: 'auto',
+    maxWidth: 'fit-content',
+    minWidth: 'auto',
+  },
+  friendName: {
+    display: 'inline-flex',
+    minWidth: '100%',
+    marginLeft: '.2rem',
+    flexWrap: 'wrap'
 
+  },
   buttons: {
     left: '6%',
   },
