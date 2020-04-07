@@ -14,6 +14,7 @@ const User = {
     acceptRoundInvite: id => axios.put(`/api/rounds/accept/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
     declineRoundInvite: id => axios.put(`/api/rounds/decline/${id.toString()}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
     getCurrentRound: () => axios.get('/api/rounds/users/currentround', { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
-    saveRound: (id, members) => axios.put(`/api/rounds/save/${id}`, members, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } })
+    saveRound: (id, members) => axios.put(`/api/rounds/save/${id}`, members, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }),
+    completeRound: (id, members) => axios.put(`/api/rounds/complete/${id}`, members, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } })
 }
 export default User

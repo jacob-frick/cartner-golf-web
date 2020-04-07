@@ -72,7 +72,7 @@ router.get('/users/pending', passport.authenticate('jwt', { session: false }), (
 //get user's current round
 router.get('/users/currentround', passport.authenticate('jwt', { session: false }), (req, res) => {
   //will need to populate with course_id to get course name later
-  User.findById(req.user._id).populate({path: 'active_round'})
+  User.findById(req.user._id).populate({path: 'active_round', select: ['course_id'], populate: { path: 'course_id', select: ['name']}})
   .then( user => {
     res.json(user.active_round)
   })
@@ -82,11 +82,6 @@ router.get('/users/currentround', passport.authenticate('jwt', { session: false 
   })
 })
 
-//get a user's past rounds
-router.get('/users/pastrounds', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-
-})
 
 //invite a player to a round
 router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -186,11 +181,12 @@ router.put('/decline/:rid', passport.authenticate('jwt', { session: false }), (r
 
 //save a round
 router.put('/save/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
-
   Round.findById(req.params.rid)
   .then( round => {
     for(let i = 0; i<req.body.length; i++){
       round.members[i].score = req.body[i].score
+      round.members[i].total_front = req.body[i].total_front
+      round.members[i].total_back = req.body[i].total_back
     }
     round.save()
     res.sendStatus(200)
@@ -210,10 +206,17 @@ router.get('/users/roundsFull', passport.authenticate('jwt', { session: false })
 })
 
 //complete a round
-router.get('/complete/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.put('/complete/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
   let members
   Round.findById(req.params.rid).populate({path: 'members.user_id', select: ['fname', 'lname','active_round', 'past_rounds']})
   .then( round => {
+    //save before completeting
+    for (let i = 0; i < req.body.length; i++) {
+      round.members[i].score = req.body[i].score
+      round.members[i].total_front = req.body[i].total_front
+      round.members[i].total_back = req.body[i].total_back
+    }
+    round.save()
     round.members.forEach(member => {
       //push into each member's past_rounds
       member.user_id.past_rounds.push(round._id)
@@ -221,26 +224,12 @@ router.get('/complete/:rid', passport.authenticate('jwt', { session: false }), (
       member.user_id.active_round = null
       member.user_id.save()
     })
-    res.json(round.members)
-
+    res.sendStatus(200)
   })
   .catch(e => {
     console.error(e)
     res.json(400)
   })
-  // Round.findById(req.params.rid)
-  //   .then(round => {
-  //     for (let i = 0; i < req.body.length; i++) {
-  //       round.members[i].score = req.body[i].score
-  //     }
-  //     round.save()
-  //     //save all the info in the round
-
-  //   })
-  //   .catch(e => {
-  //     console.error(e)
-  //     res.sendStatus(400)
-  //   })
 })
 
 module.exports = router
