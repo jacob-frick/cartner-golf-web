@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { green, deepOrange, deepPurple } from '@material-ui/core/colors';
 const friendCardStyles = makeStyles((theme) => ({
   root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
     flexGrow: 1,
     maxWidth: '100%',
     flexBasis: '100%',
@@ -25,16 +28,12 @@ const friendCardStyles = makeStyles((theme) => ({
     backgroundColor: green[500],
   },
   buttons: {
-    // maxWidth: '24vh',
-    // minWidth: '24vh',
-    // flexBasis: '24vh',
-    // marginRight: 'auto',
+    left: '6%',
   },
   buttonGroup: {
     '&: hover': {
-      backgroundColor: '#ffffff',
-    },
-    borderRightColor: '#4caf50',
+      backgroundColor: 'transparent',
+    }
   },
   accept: {
     '&: hover': {

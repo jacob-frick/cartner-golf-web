@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
 import User from '../../utils/User'
 import friendDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
@@ -78,14 +78,14 @@ const FriendDisplay = () => {
                     xs={12}
                   // className={classes.root}
                   > */}
-                  <ButtonGroup size="small" className={classes.buttonGroup}>
+                  <Grid className={classes.root}>
                     <Button
                       onClick={() => removeFriend(person._id)}
                       variant="outlined"
                       color="secondary"
                       className={classes.removeButton}
                     >Remove</Button>
-                  </ButtonGroup>
+                  </Grid>
                   {/* </Grid> */}
                 </FriendCard>
               )}

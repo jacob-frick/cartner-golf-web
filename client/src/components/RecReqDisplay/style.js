@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 const recReqDisplayStyles = makeStyles((theme) => ({
   root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
     flexGrow: 1,
     width: '50%',
     padding: '5px 0px',
@@ -19,15 +22,11 @@ const recReqDisplayStyles = makeStyles((theme) => ({
 
   buttons: {
     left: '6%',
-    '&: hover': {
-      backgroundColor: '#fff',
-    },
   },
   buttonGroup: {
     '&: hover': {
-      backgroundColor: '#fff',
-    },
-    borderRightColor: '#4caf50',
+      backgroundColor: 'transparent',
+    }
   },
   container: {
     width: '100%',

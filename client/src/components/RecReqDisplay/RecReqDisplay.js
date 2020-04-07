@@ -7,7 +7,8 @@ import User from '../../utils/User'
 import recReqDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
+
 const RecReqDisplay = () => {
   const classes = recReqDisplayStyles()
 
@@ -39,7 +40,6 @@ const RecReqDisplay = () => {
       })
       .catch(error => console.error(error))
   }
-
   const declineRequest = id => {
     User.declineRequest(id)
       .then(() => {
@@ -80,21 +80,20 @@ const RecReqDisplay = () => {
                   acceptRequest={acceptRequest}
                   declineRequest={declineRequest}
                 >
-                  <ButtonGroup size="small" className={classes.buttonGroup}>
+                  <Grid>
                     <Button
                       onClick={() => acceptRequest(person._id)}
                       variant="outlined"
                       className={classes.accept}
                     >Accept
-                      </Button>
+                    </Button>
                     <Button
                       onClick={() => declineRequest(person._id)}
                       variant="outlined"
                       color="secondary"
                     >Decline
-                      </Button>
-                  </ButtonGroup>
-
+                    </Button>
+                  </Grid>
                 </FriendCard>
               )}
             </List>
