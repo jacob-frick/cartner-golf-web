@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const friendDisplayStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: '50%',
-    padding: '5px 0px',
+    // width: '50%',
+    // padding: '5px 0px',
     // minInlineSize: 'max-content',
 
   },

@@ -48,6 +48,13 @@ const friendCardStyles = makeStyles((theme) => ({
     marginRight: '-.5rem',
     marginBottom: '-.5rem',
   },
+  MuiButtonRoot: {
+    display: 'contents',
+    float: 'left',
+  },
+  cardStyles: {
+    // display: 'inline-flex'
+  },
   cardMarg: {
     marginBottom: 4,
     marginRight: 2

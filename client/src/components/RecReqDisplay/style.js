@@ -5,8 +5,8 @@ const recReqDisplayStyles = makeStyles((theme) => ({
       backgroundColor: 'transparent',
     },
     flexGrow: 1,
-    width: '50%',
-    padding: '5px 0px',
+    // width: '50%',
+    // padding: '5px 0px',
     display: 'contents'
   },
   listStyle: {

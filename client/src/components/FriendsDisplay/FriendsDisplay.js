@@ -55,7 +55,7 @@ const FriendDisplay = () => {
         <div className={classes.root} >
           <Card className={classes.cardWidth}>
             <CardContent className={classes.inviteCard} >
-            {friends.map(person =>
+              {friends.map(person =>
                 <FriendCard
                   key={person._id}
                   name={`${person.fname} ${person.lname}`}
@@ -68,6 +68,7 @@ const FriendDisplay = () => {
                     onClick={() => removeFriend(person._id)}
                     variant="outlined"
                     color="secondary"
+                    className="buttons"
                   >Remove</Button>
                 </FriendCard>
               )}
