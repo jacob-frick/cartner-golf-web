@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import User from '../../utils/User'
 import friendDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
@@ -52,10 +53,17 @@ const FriendDisplay = () => {
   }
   else if (hasFriends === 'FRIENDS') {
     return (
-      <Paper elevation={3}>
+      <Paper
+        elevation={3}
+      >
         <div>
-          <Grid container className="muiGridContainer" spacing={1}>
-            <List className={classes.listStyle}>
+          <Grid container
+            className="muiGridContainer"
+            spacing={1}
+          >
+            <List
+              className={classes.listStyle}
+            >
               {/* Begin mapping users friends here */}
               {friends.map(person =>
                 <FriendCard
@@ -65,17 +73,21 @@ const FriendDisplay = () => {
                   // className={classes.root}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   removeFriend={removeFriend}>
-                  <Grid
-                    item md={4} xs={12}
+                  {/* <Grid
+                    item md={4}
+                    xs={12}
                   // className={classes.root}
-                  >
+                  > */}
+                  <ButtonGroup size="small">
+
                     <Button
                       onClick={() => removeFriend(person._id)}
                       variant="outlined"
                       color="secondary"
                       className={classes.removeButton}
                     >Remove</Button>
-                  </Grid>
+                  </ButtonGroup>
+                  {/* </Grid> */}
                 </FriendCard>
               )}
             </List>

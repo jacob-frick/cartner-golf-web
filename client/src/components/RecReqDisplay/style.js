@@ -12,16 +12,13 @@ const recReqDisplayStyles = makeStyles((theme) => ({
   accept: {
     borderColor: 'green',
     color: 'green',
-    marginLeft: '3rem',
-    marginRight: '10rem',
+    // marginLeft: '3rem',
+    // marginRight: '10rem',
 
   },
 
   buttons: {
-    maxWidth: '70%',
-    minWidth: ' 70%',
-    flexBasis: ' 70%',
-    marginTop: '1vh',
+    left: '6%',
   },
   container: {
     width: '100%',

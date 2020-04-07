@@ -2,6 +2,9 @@
 
 import { makeStyles } from '@material-ui/core/styles'
 const friendStyles = makeStyles((theme) => ({
+  root: {
+    height: '-webkit-fill-available',
+  },
   avatar: {
     // margin: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,

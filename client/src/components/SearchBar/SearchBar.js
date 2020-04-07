@@ -94,7 +94,10 @@ const SearchBar = () => {
             onChange={handleChange('searchVal')}
           />
         </Grid>
-        <Grid item sm={2} xs={12}>
+        <Grid
+          item sm={2}
+          xs={12}
+        >
           <Button
             className={classes.buttonHeight}
             variant="contained"

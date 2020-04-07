@@ -7,6 +7,7 @@ import User from '../../utils/User'
 import recReqDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 const RecReqDisplay = () => {
   const classes = recReqDisplayStyles()
 
@@ -58,7 +59,9 @@ const RecReqDisplay = () => {
   }
   else if (recRequest.hasRequests === 'REQUESTS') {
     return (
-      <Paper elevation={3}>
+      <Paper
+        elevation={3}
+      >
         <div>
           <Grid
           // className={classes.container} 
@@ -77,40 +80,27 @@ const RecReqDisplay = () => {
                   acceptRequest={acceptRequest}
                   declineRequest={declineRequest}
                 >
-                  <span className={classes.root}>
-                    <Grid
-                      item md={2}
-                      // xs={6}
-                      className={classes.buttons}
-                    >
-                      <Button
-                        onClick={() => acceptRequest(person._id)}
-                        variant="outlined"
-                        className={classes.accept}
-                      >Accept</Button>
-                    </Grid>
-                  </span>
+                  <ButtonGroup size="small">
+                    <Button
+                      onClick={() => acceptRequest(person._id)}
+                      variant="outlined"
+                      className={classes.accept}
+                    >Accept
+                      </Button>
+                    <Button
+                      onClick={() => declineRequest(person._id)}
+                      variant="outlined"
+                      color="secondary"
+                    >Decline
+                      </Button>
+                  </ButtonGroup>
 
-                  <span
-                    className={classes.root}>
-                    <Grid
-                      item md={2}
-                      // xs={6}
-                      className={classes.buttons}
-                    >
-                      <Button
-                        onClick={() => declineRequest(person._id)}
-                        variant="outlined"
-                        color="secondary"
-                      >Decline</Button>
-                    </Grid>
-                  </span>
                 </FriendCard>
               )}
             </List>
           </Grid>
-        </div>
-      </Paper>
+        </div >
+      </Paper >
     )
   }
   else {

@@ -21,7 +21,7 @@ const lightTheme = createMuiTheme({
     palette: {
       primary: "#4caf50",
       primary2: "#81c784",
-      primary3: "#ffca28",
+      primary3: "green",
       accent1: "#ff7043",
       accent2: "#f44336",
       accent3: "#d84315",
@@ -39,7 +39,7 @@ const lightTheme = createMuiTheme({
       shadowColor: "rgba(0,0,0,1)"
     },
   },
-  themeName: "lightTheme",
+  themeName: "theme",
   themeFile: "theme.json",
   badge: {
     primaryColor: "#00b8d4",

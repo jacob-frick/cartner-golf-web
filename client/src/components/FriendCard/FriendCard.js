@@ -1,11 +1,13 @@
 import React from 'react'
 import friendCardStyles from './style.js';
 import Avatar from '@material-ui/core/Avatar';
+import ListItem from '@material-ui/core/ListItem'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button';
 const FriendCard = props => {
   const classes = friendCardStyles();
-  const { name, initials} = props
+  const { name, course, type, initials, text } = props
   return (
     <ListItem>
       <Grid
@@ -52,15 +54,7 @@ const FriendCard = props => {
         </Grid>
         {/* </div> */}
       </Grid>
-      <Grid item xs={5}>
-        <Typography variant="h6" component='h6'>{name}</Typography>
-      </Grid>
-      <Grid item xs={4} style={{display:'flex',alignItems:'flex-end' ,justifyContent:'flex-end'}}>
-        {/* Buttons here */}
-        {props.children}
-        {/* Buttons end */}
-      </Grid>
-    </Grid>
+    </ListItem>
   )
 }
 

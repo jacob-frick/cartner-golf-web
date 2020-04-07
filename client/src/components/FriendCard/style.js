@@ -32,7 +32,7 @@ const friendCardStyles = makeStyles((theme) => ({
   },
   accept: {
     borderColor: '#4caf50',
-    color: '#ffffff'
+    color: '#4caf50'
   },
   MuiTypography: {
     boxSizing: 'border-box',

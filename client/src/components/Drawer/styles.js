@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 const drawerWidth = 240;
 const drawerStyles = makeStyles((theme) => ({
+  toolbarPad: {
+    paddingRight: '0px',
+  },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
@@ -21,6 +24,7 @@ const drawerStyles = makeStyles((theme) => ({
     position: 'relative',
     //top: '0rem !important',
     whiteSpace: 'nowrap',
+    overflowX: 'hidden !important',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -42,7 +46,6 @@ const drawerStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     display: 'flex',
-    overflow: 'auto',
     flexDirection: 'column',
   }
 }))
