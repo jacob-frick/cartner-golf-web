@@ -31,25 +31,17 @@ const logInStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
     },
     submit: {
-
         margin: theme.spacing(3, 0, 2),
         color: 'white',
         border: '1px solid rgba(63, 151, 181, 0.5)',
         height: '50px',
-        width: 'calc(100% - 10vh)',
-        // padding: 0 30px',
-        // background: 'linear-gradient(45deg, #6900bcba 16%, rgba(5, 176, 176, 0.8) 99%)',
+        // width: 'calc(100% - 10vh)',
         backgroundColor: '#4caf50',
         boxShadow: '0 3px 5px 2px #90ee9066',
-        //margin-top: 14px',
         borderRadius: '3px',
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'block',
-        '&: hover': {
-            cursor: 'pointer',
-            backgroundColor: '#81c784 !important'
-        },
     },
     backgroundImage: {
         display: 'flex',

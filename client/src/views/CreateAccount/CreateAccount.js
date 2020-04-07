@@ -13,7 +13,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import createAccountStyles from './styles.js'
 import axios from 'axios'
 import HomeContext from './../../utils/HomeContext'
-
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+const btnClasses = createMuiTheme({
+  palette: {
+    primary: green
+  }
+});
 const CreateAccount = props => {
   const classes = createAccountStyles()
   const { setPageLogin, setPageDashboard } = useContext(HomeContext)
@@ -152,16 +158,26 @@ const CreateAccount = props => {
                 />
               </Grid>
             </Grid>
-            <Button
+            <ThemeProvider theme={btnClasses}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                className={classes.margin, classes.submit}
+                disabled={user.fname && user.lname && user.email && user.password ? false : true}
+              >Create Account
+              </Button>
+            </ThemeProvider>
+            {/* <Button
               type="submit"
               fullWidth
               variant="contained"
               color="success"
               className={classes.submit}
               disabled={user.fname && user.lname && user.email && user.password ? false : true}
-            >
-              Sign Up
-              </Button>
+            >Sign Up
+              </Button> */}
             <Grid
               container
               justify="flex-end"

@@ -29,6 +29,19 @@ const friendStyles = makeStyles((theme) => ({
       backgroundRepeat: 'round'
     },
   },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    color: 'white',
+    border: '1px solid rgba(63, 151, 181, 0.5)',
+    height: '50px',
+    // width: 'calc(100% - 10vh)',
+    backgroundColor: '#4caf50',
+    boxShadow: '0 3px 5px 2px #90ee9066',
+    borderRadius: '3px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
+  },
   textCenter: {
     textAlign: 'center',
     marginTop: '1rem'
@@ -37,12 +50,7 @@ const friendStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Open Sans, sans- serif'
   },
-  buttonGroup: {
-    '&: hover': {
-      backgroundColor: '#ffffff',
-    },
-    borderRightColor: '#4caf50',
-  },
+
   onLinkHover: {
     '&: hover': {
       cursor: 'pointer',
