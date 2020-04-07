@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
@@ -10,7 +10,7 @@ import FriendsContext from '../../utils/FriendsContext'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
-  const { friends, hasFriends, updateFriends, status } = useContext(FriendsContext)
+  const { friends, hasFriends, updateFriends, status} = useContext(FriendsContext)
 
   const displayFriends = () => {
     User.getFriends()
@@ -19,22 +19,11 @@ const FriendDisplay = () => {
         if (friends.length < 1) {
           updateFriends('NONE', [])
         } else {
-          updateFriends('FRIENDS', friends, Math.random())
+          updateFriends('FRIENDS', friends)
         }
       })
       .catch(error => console.error(error))
   }
-
-  //display friends whenver status is changed
-  useEffect(() => {
-    displayFriends()
-  }, [status])
-
-  //display friends when component mounts
-  // useEffect( () => {
-  //   console.log('ping')
-  //   displayFriends()
-  // }, [])
 
   const removeFriend = id => {
     User.removeFriend(id)
@@ -43,6 +32,12 @@ const FriendDisplay = () => {
       })
       .catch(e => console.error(e))
   }
+
+  useEffect(() => {
+    displayFriends()
+  }, [status, hasFriends])
+
+
 
   //I haz no friends ~ jvo
   if (hasFriends === 'NONE') {
