@@ -61,6 +61,9 @@ const createAccountStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     backgroundImage: `url(${"../assets/images/backgroundImage.jpg"})`,
+    ['@media (min-width:780px)']: { // eslint-disable-line no-useless-computed-key
+      backgroundRepeat: 'round'
+    },
   },
   textCenter: {
     textAlign: 'center',
