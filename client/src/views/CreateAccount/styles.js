@@ -49,12 +49,6 @@ const createAccountStyles = makeStyles((theme) => ({
     marginRight: 'auto',
     display: 'block',
   },
-  onLinkHover: {
-    '&: hover': {
-      cursor: 'pointer',
-    }
-  },
-
   backgroundImage: {
     display: 'flex',
     position: 'absolute',
@@ -71,6 +65,13 @@ const createAccountStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none'
-  }
+  },
+  onLinkHover: {
+    '&: hover': {
+      cursor: 'pointer',
+      backgroundColor: 'green',
+      color: '#ffffff',
+    },
+  },
 }))
 export default createAccountStyles

@@ -1,11 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 const logInStyles = makeStyles((theme) => ({
-    contained: {
-        '&: hover': {
-            cursor: 'pointer',
-            backgroundColor: '#81c784'
-        },
-    },
+
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -77,7 +72,9 @@ const logInStyles = makeStyles((theme) => ({
     onLinkHover: {
         '&: hover': {
             cursor: 'pointer',
-        }
+            backgroundColor: 'green',
+            color: '#ffffff',
+        },
     }
 }))
 export default logInStyles
