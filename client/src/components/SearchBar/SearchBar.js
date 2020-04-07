@@ -28,13 +28,20 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonHeight: {
     height: '56px',
-    // marginTop: '15px',
+    marginTop: '15px',
     color: 'white',
     border: '1px solid rgba(63, 151, 181, 0.5)',
     background: 'green',
     boxShadow: '0 3px 5px 2px rgba(0, 0, 135, .3)',
     borderRadius: '3px',
     display: 'block',
+  },
+  onLinkHover: {
+    '&: hover': {
+      cursor: 'pointer',
+      backgroundColor: 'green',
+      color: '#ffffff',
+    },
   }
 }))
 
@@ -95,9 +102,9 @@ const SearchBar = () => {
         >
           <Button
             className={classes.buttonHeight}
-            variant="contained"
+            variant="success"
             fullWidth
-            color="primary"
+            color="success"
             onClick={onSubmit}
           >
             Search

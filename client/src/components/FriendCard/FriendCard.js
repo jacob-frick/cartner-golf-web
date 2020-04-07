@@ -1,11 +1,11 @@
 import React from 'react'
 import friendCardStyles from './style.js';
 import Avatar from '@material-ui/core/Avatar';
-import ListItem from '@material-ui/core/ListItem'
+// import ListItem from '@material-ui/core/ListItem'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button';
-import { spacing } from '@material-ui/system'
+// import Button from '@material-ui/core/Button';
+// import { spacing } from '@material-ui/system'
 const FriendCard = props => {
   const classes = friendCardStyles();
   const { name, course, type, initials, text } = props

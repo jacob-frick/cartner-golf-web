@@ -70,7 +70,7 @@ export default function Login() {
           }
         } else {
           localStorage.setItem('jwt', data.token)
-          if(remember) {
+          if (remember) {
             localStorage.setItem('rememberMe', true)
           }
           else {
@@ -104,49 +104,48 @@ export default function Login() {
             <Typography className={classes.textCenter} component="h1" variant="h5">
               Login
         </Typography>
-          <form className={classes.form} noValidate onSubmit={didSubmit}>
-            <TextField
-              error={user.emailCheck}
-              helperText={user.emailErrorMessage}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              onChange={(event) => { formChange(event) }}
-            />
-            <TextField
-              error={user.passwordCheck}
-              helperText={user.passwordErrorMessage}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              onChange={(event) => { formChange(event) }}
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-              onClick={updateRemember}
-              checked={remember}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
+            <form className={classes.form} noValidate onSubmit={didSubmit}>
+              <TextField
+                error={user.emailCheck}
+                helperText={user.emailErrorMessage}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                onChange={(event) => { formChange(event) }}
+              />
+              <TextField
+                error={user.passwordCheck}
+                helperText={user.passwordErrorMessage}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                onChange={(event) => { formChange(event) }}
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+                onClick={updateRemember}
+                checked={remember}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                color="success"
+                className={classes.submit}
+              >
+                Sign In
           </Button>
               <Grid container>
                 <Grid item xs>

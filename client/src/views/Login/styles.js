@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 const logInStyles = makeStyles((theme) => ({
+
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -30,10 +31,7 @@ const logInStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
     },
     submit: {
-        '&: hover': {
-            cursor: 'pointer',
-            backgroundColor: '#81c784'
-        },
+
         margin: theme.spacing(3, 0, 2),
         color: 'white',
         border: '1px solid rgba(63, 151, 181, 0.5)',
@@ -48,6 +46,10 @@ const logInStyles = makeStyles((theme) => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'block',
+        '&: hover': {
+            cursor: 'pointer',
+            backgroundColor: '#81c784 !important'
+        },
     },
     backgroundImage: {
         display: 'flex',
@@ -70,7 +72,9 @@ const logInStyles = makeStyles((theme) => ({
     onLinkHover: {
         '&: hover': {
             cursor: 'pointer',
-        }
+            backgroundColor: 'green',
+            color: '#ffffff',
+        },
     }
 }))
 export default logInStyles

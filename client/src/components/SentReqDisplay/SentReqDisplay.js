@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid'
-import List from '@material-ui/core/List'
+// import Grid from '@material-ui/core/Grid'
+// import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import Button from '@material-ui/core/Button';
 import User from '../../utils/User'

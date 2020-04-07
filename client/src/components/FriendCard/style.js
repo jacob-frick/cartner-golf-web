@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { green, deepOrange, deepPurple } from '@material-ui/core/colors';
-import { spacing } from '@material-ui/system'
+// import { spacing } from '@material-ui/system'
 const friendCardStyles = makeStyles((theme) => ({
   root: {
     '&:hover': {
