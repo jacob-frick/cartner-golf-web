@@ -35,7 +35,7 @@ const CreateAccount = props => {
         .then(({ data }) => {
           console.log(data)
           localStorage.setItem('jwt', data.token)
-          if(remember){
+          if (remember) {
             localStorage.setItem('rememberMe', true)
           }
           else {
@@ -143,24 +143,24 @@ const CreateAccount = props => {
                   onChange={(event) => { formChange(event) }}
                 />
               </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-                onClick = {updateRemember}
-                checked = {remember}
-              />
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                  onClick={updateRemember}
+                  checked={remember}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            disabled={user.fname && user.lname && user.email && user.password ? false : true}
-          >
-            Sign Up
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="success"
+              className={classes.submit}
+              disabled={user.fname && user.lname && user.email && user.password ? false : true}
+            >
+              Sign Up
               </Button>
             <Grid
               container

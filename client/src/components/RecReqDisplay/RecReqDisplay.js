@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid'
-import List from '@material-ui/core/List'
+// import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import User from '../../utils/User'
 import recReqDisplayStyles from './style.js'

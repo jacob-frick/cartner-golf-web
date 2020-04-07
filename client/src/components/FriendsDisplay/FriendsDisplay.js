@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid'
-import List from '@material-ui/core/List'
+// import Grid from '@material-ui/core/Grid'
+// import List from '@material-ui/core/List'
 import FriendCard from '../FriendCard'
 import Button from '@material-ui/core/Button';
 // import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -10,7 +10,7 @@ import friendDisplayStyles from './style.js'
 import FriendsContext from '../../utils/FriendsContext'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
