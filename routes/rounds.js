@@ -202,7 +202,7 @@ router.put('/save/:rid', passport.authenticate('jwt', { session: false }), (req,
 })
 router.get('/users/roundsFull', passport.authenticate('jwt', { session: false }), (req, res) => {
     User.findById(req.user._id)
-    .populate('past_rounds')
+    .populate({path: 'past_rounds', populate: {path: 'course_id', select: ['name', 'holes']}})
     .then(user => {
       if(user.past_rounds.length === 0) res.json({message: 'No rounds found. Go play some more golf!'})
       else res.json(user.past_rounds)

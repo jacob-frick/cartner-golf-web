@@ -6,10 +6,11 @@ import OuterNavbar from './../../components/OuterNavbar'
 import WelcomeDialog from './../../components/WelcomeDialog'
 import HomeContext from './../../utils/HomeContext'
 import Round from './../../utils/Round'
-
+import Roundcard from './../../components/RoundCard'
+import RoundContext from './../../utils/RoundContext'
 export default function Dashboard(props) {
   const { isNewAcc } = useContext(HomeContext)
-  const [rounds, setRounds] = useState(null)
+  const [rounds, setRounds] = useState([])
   const isNewAccModel = () => {
     if (isNewAcc) {
       return (<WelcomeDialog />)
@@ -20,14 +21,23 @@ export default function Dashboard(props) {
     Round.getAllRounds()
     .then(({data}) => {
       console.log(data)
+      if(data.message) {
+      setRounds(<h1>{data.message}</h1>)
+      } else {
+        let roundsArr = []
+        data.forEach(element => {
+          roundsArr.push()
+        })
+        setRounds(roundsArr)
+      }
     })
-  })
+  }, [])
 
   const model = isNewAccModel()
   return (
     <OuterNavbar>
       {model}
-      
+      {rounds}
       
     </OuterNavbar>
   )
