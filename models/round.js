@@ -21,7 +21,15 @@ const RoundSchema = new Schema({
                     hole_num: Number,
                     score: Number
                 }
-            ]
+            ],
+            total_front: {
+                type: Number,
+                default: 0
+            },
+            total_back: {
+                type: Number,
+                default: 0
+            }
         }
     ],
     pending_members: [

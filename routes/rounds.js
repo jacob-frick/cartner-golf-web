@@ -81,6 +81,13 @@ router.get('/users/currentround', passport.authenticate('jwt', { session: false 
     res.sendStatus(400)
   })
 })
+
+//get a user's past rounds
+router.get('/users/pastrounds', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+
+})
+
 //invite a player to a round
 router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
   if(req.params.uid === req.user._id.toString()){
@@ -192,6 +199,48 @@ router.put('/save/:rid', passport.authenticate('jwt', { session: false }), (req,
     console.error(e)
     res.sendStatus(400)
   })
+})
+router.get('/users/roundsFull', passport.authenticate('jwt', { session: false }), (req, res) => {
+    User.findById(req.user._id)
+    .populate('past_rounds')
+    .then(user => {
+      if(user.past_rounds.length === 0) res.json({message: 'No rounds found. Go play some more golf!'})
+      else res.json(user.past_rounds)
+    })
+})
+
+//complete a round
+router.get('/complete/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
+  let members
+  Round.findById(req.params.rid).populate({path: 'members.user_id', select: ['fname', 'lname','active_round', 'past_rounds']})
+  .then( round => {
+    round.members.forEach(member => {
+      //push into each member's past_rounds
+      member.user_id.past_rounds.push(round._id)
+      //set each member's active_round to null
+      member.user_id.active_round = null
+      member.user_id.save()
+    })
+    res.json(round.members)
+
+  })
+  .catch(e => {
+    console.error(e)
+    res.json(400)
+  })
+  // Round.findById(req.params.rid)
+  //   .then(round => {
+  //     for (let i = 0; i < req.body.length; i++) {
+  //       round.members[i].score = req.body[i].score
+  //     }
+  //     round.save()
+  //     //save all the info in the round
+
+  //   })
+  //   .catch(e => {
+  //     console.error(e)
+  //     res.sendStatus(400)
+  //   })
 })
 
 module.exports = router

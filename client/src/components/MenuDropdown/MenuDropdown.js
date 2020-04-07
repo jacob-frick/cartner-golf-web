@@ -39,7 +39,6 @@ const MenuDropdown = props => {
       .catch(e => console.error(e))
   }
   useEffect( () => {
-    console.log('here')
     getInvites()
   },[])
 
