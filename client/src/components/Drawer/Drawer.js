@@ -1,72 +1,53 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
+//import DashboardIcon from '@material-ui/icons/Dashboard';
+import EventNoteIcon from '@material-ui/icons/EventNote'
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+// import PeopleIcon from '@material-ui/icons/People';
+// import LayersIcon from '@material-ui/icons/Layers';
+import GroupAddIcon from '@material-ui/icons/GroupAdd'
+import MenuBookIcon from '@material-ui/icons/MenuBook'
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
-const drawerWidth = 240;
+import drawerStyles from './styles.js'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import HomeIcon from '@material-ui/icons/Home'
+import User from '../../utils/User'
+//import HomeContext from './../../utils/HomeContext'
 
-const useStyles = makeStyles((theme) => ({
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-  }
-}));
+
 
 const DrawerComponent = () => {
-  const classes = useStyles();
+  //const { setPageLogin } = useContext(HomeContext)
+
+  const [requests, setRequests] = useState({
+    num_request: 0,
+    status: ''
+  })
+
+
+  if(requests.status === '') {
+    User.getRecFriendRequests()
+      .then( ({data: num_request}) => {
+        setRequests({ ...setRequests, num_request: num_request.length, status:'CHECKED' })
+      })
+      .catch(e => console.error(e))
+  }
+
+
+  const classes = drawerStyles();
   let { open, handleDrawerClose } = useContext(DrawerContext)
+
   return (
     <Drawer
       variant="permanent"
@@ -75,56 +56,88 @@ const DrawerComponent = () => {
       }}
       open={open}>
       <div className={classes.toolbarIcon}>
-        <IconButton onClick={handleDrawerClose}>
+        <IconButton
+          onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
       </div>
       <Divider />
       <List>
-        <Tooltip title='Matches'>
-          <ListItem button>
+        <Tooltip title='Home'>
+          <ListItem 
+          button
+          component={Link} to="/">
             <ListItemIcon>
-              <DashboardIcon />
+              <HomeIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Matches"
-              aria-label='Matches' />
+              primary="Home"
+              aria-label='Home' />
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Courses'>
+          <ListItem button
+          component={Link} to="/courses">
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Courses"
+              aria-label='Courses' />
           </ListItem>
         </Tooltip>
         <Tooltip title='Friends'>
-          <ListItem button>
+          <ListItem button
+          component={Link} to="/friends">
             <ListItemIcon>
-              <PeopleIcon />
+              <GroupAddIcon />
             </ListItemIcon>
             <ListItemText
-              primary="Friends"
+              primary='Friends'
               aria-label='Friends' />
             {/* BadgeContent value will dispaly pending notifications */}
             <Badge
-              badgeContent={1}
+              badgeContent={requests.num_request}
               color="secondary"
               className={open ? classes.menuButton : classes.menuButtonHidden}>
             </Badge>
           </ListItem>
         </Tooltip>
-        <Tooltip title='Account'>
-          <ListItem button>
+        <Tooltip title='Round History'>
+          <ListItem 
+          button
+          component={Link} to="/roundHistory">
             <ListItemIcon>
-              <BarChartIcon />
+              <MenuBookIcon />
             </ListItemIcon>
-            <ListItemText
-              primary="Account"
-              aria-label='Account' />
+            <ListItemText primary="Round History"
+              aria-label='Round History' />
           </ListItem>
         </Tooltip>
-        <Tooltip title='Match History'>
-          <ListItem button>
+        <Tooltip title='Profile'>
+          <ListItem
+            button
+            component={Link} to="/profile">
             <ListItemIcon>
-              <LayersIcon />
+              <PersonOutlineIcon />
             </ListItemIcon>
-            <ListItemText
-              primary="Match History"
-              aria-label='Match History' />
+            <ListItemText primary="Profile"
+              aria-label='Profile' />
+          </ListItem>
+        </Tooltip>
+        <Tooltip title='Log Out'>
+          <ListItem
+            button
+            onClick={() => {
+              localStorage.removeItem('jwt')
+              localStorage.removeItem('rememberMe')
+              window.location.reload(false)
+            }}>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log Out"
+              aria-label='Log Out' />
           </ListItem>
         </Tooltip>
       </List>
