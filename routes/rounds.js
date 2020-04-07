@@ -177,5 +177,21 @@ router.put('/decline/:rid', passport.authenticate('jwt', { session: false }), (r
     })
 })
 
+//save a round
+router.put('/save/:rid', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  Round.findById(req.params.rid)
+  .then( round => {
+    for(let i = 0; i<req.body.length; i++){
+      round.members[i].score = req.body[i].score
+    }
+    round.save()
+    res.sendStatus(200)
+  })
+  .catch( e => {
+    console.error(e)
+    res.sendStatus(400)
+  })
+})
 
 module.exports = router

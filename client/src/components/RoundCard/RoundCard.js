@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -7,12 +7,12 @@ import ListItem from '@material-ui/core/ListItem'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField';
 import roundCardStyles from './style.js'
-
+import RoundContext from '../../utils/RoundContext'
 
 const RoundCard = props => {
   const classes = roundCardStyles()
   const holes = props.round.course_id.holes
-
+  const {inputChange, memberContext} = useContext(RoundContext)
   const getHalfScorecard = (isBack) => {
     let start, finish
     isBack ? start = 9 : start = 0
@@ -39,7 +39,7 @@ const RoundCard = props => {
             })}
           </ListItem>
           {/* Begin mapping user */}
-          {props.round.members.map((elem) => {
+          {props.round.members.map((elem, i) => {
             return (
               <ListItem>
                 <Grid item xs={2} className={`${classes.center}`}>{elem.user_id.fname}</Grid>
@@ -48,10 +48,12 @@ const RoundCard = props => {
                     return (
                       <Grid item xs={1} className={`${classes.center}`}>
                         <TextField 
-                        id={`${elem.user_id._id}-${sc.hole_num}`} 
+                        id={`${i}-${sc.hole_num}`} 
                         className={classes.input} size="small" 
                         inputProps={{ style: { textAlign: 'center' } }} 
-                        value={sc.score} />
+                        value={memberContext[i].score[indx].score} 
+                        onChange = {event => inputChange(event.target.value, i, indx)}
+                        />
                       </Grid>)
                   }
                 })}
