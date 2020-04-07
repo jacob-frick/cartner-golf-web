@@ -39,8 +39,9 @@ const MenuDropdown = props => {
       .catch(e => console.error(e))
   }
   useEffect( () => {
+    console.log('here')
     getInvites()
-  })
+  },[])
 
   const acceptInvite = id => {
     User.acceptRoundInvite(id)
