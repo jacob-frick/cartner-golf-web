@@ -10,13 +10,19 @@ const roundCardStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   holeStyle: {
-    flexBasis: `${100/19}`
+    flexBasis: `${100/19}%`
   },
-  holeStylePhone : {
-    flexBasis: '10%'
+  holeStylePhoneFront : {
+    flexBasis: `${100/11}%`
+  },
+  holeStylePhoneBack : {
+    flexBasis: `${100/11}%`
   },
   input: {
     width: '40%'
+  },
+  min : {
+    minWidth: 650
   }
 }))
 

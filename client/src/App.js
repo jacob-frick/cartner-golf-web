@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, {useEffect} from 'react'
 import Profile from './views/Profile'
 import Home from './views/Home'
 import Friends from './views/Friends'
@@ -18,12 +17,15 @@ import RoundCreation from './views/RoundCreation'
 const App = props => {
 
   //potential for rememberme
-  // useEffect(() => {
-  //   window.addEventListener("beforeunload", (ev) => {
-  //     ev.preventDefault()
-  //     if(localStorage.getItem('jwt'))
-  //   })
-  // })
+  useEffect(() => {
+    window.addEventListener("beforeunload", (ev) => {
+      ev.preventDefault()
+      //if there is no rememberMe in localStorage, remove JWT when tab closes
+      if(!localStorage.getItem('rememberMe')){
+        localStorage.removeItem('jwt')
+      }
+    })
+  })
 
   return (
     <Router>
@@ -43,7 +45,7 @@ const App = props => {
         <Route exact path="/roundCreation/:id">
           <RoundCreation />
         </Route>
-        <Route exact path="/scorecard/:id">
+        <Route exact path="/scorecard/:rid">
           <Scorecard />
         </Route>
         <Route path="/" exact>
@@ -52,7 +54,6 @@ const App = props => {
         <Redirect to="/" />
       </Switch>
     </Router>
-
   )
 }
 

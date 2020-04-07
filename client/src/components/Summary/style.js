@@ -23,6 +23,9 @@ const summaryStyle = makeStyles((theme) => ({
   },
   padBot: {
     paddingBottom: '1rem'
+  },
+  min: {
+    minWidth: 650
   }
 }))
 

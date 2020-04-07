@@ -1,11 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const {User} = require('../models')
+const {Round, User} = require('../models')
 const passport = require('passport')
-const jwt = require('jsonwebtoken')
 
 router.get('/authorize', passport.authenticate('jwt', {session: false}), (req, res) => {
     res.sendStatus(200)
+})
+router.get('/authorize/round/:rid', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Round.findById(req.params.rid)
+    .then(round => {
+        if(!round) res.sendStatus(401)
+        else res.sendStatus(200)
+    })
+    .catch(() => res.sendStatus(401))
 })
 
 module.exports = router

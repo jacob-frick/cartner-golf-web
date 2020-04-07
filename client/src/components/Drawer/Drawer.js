@@ -130,6 +130,7 @@ const DrawerComponent = () => {
             button
             onClick={() => {
               localStorage.removeItem('jwt')
+              localStorage.removeItem('rememberMe')
               window.location.reload(false)
             }}>
             <ListItemIcon>
