@@ -19,6 +19,15 @@ const recReqDisplayStyles = makeStyles((theme) => ({
 
   buttons: {
     left: '6%',
+    '&: hover': {
+      backgroundColor: '#fff',
+    },
+  },
+  buttonGroup: {
+    '&: hover': {
+      backgroundColor: '#fff',
+    },
+    borderRightColor: '#4caf50',
   },
   container: {
     width: '100%',

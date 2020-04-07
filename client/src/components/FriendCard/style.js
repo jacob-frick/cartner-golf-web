@@ -25,12 +25,21 @@ const friendCardStyles = makeStyles((theme) => ({
     backgroundColor: green[500],
   },
   buttons: {
-    maxWidth: '24vh',
-    minWidth: '24vh',
-    flexBasis: '24vh',
-    marginRight: 'auto',
+    // maxWidth: '24vh',
+    // minWidth: '24vh',
+    // flexBasis: '24vh',
+    // marginRight: 'auto',
+  },
+  buttonGroup: {
+    '&: hover': {
+      backgroundColor: '#ffffff',
+    },
+    borderRightColor: '#4caf50',
   },
   accept: {
+    '&: hover': {
+      backgroundColor: '#ffffff',
+    },
     borderColor: '#4caf50',
     color: '#4caf50'
   },

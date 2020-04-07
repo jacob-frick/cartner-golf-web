@@ -35,6 +35,12 @@ const friendStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Open Sans, sans- serif'
   },
+  buttonGroup: {
+    '&: hover': {
+      backgroundColor: '#ffffff',
+    },
+    borderRightColor: '#4caf50',
+  },
   onLinkHover: {
     '&: hover': {
       cursor: 'pointer',

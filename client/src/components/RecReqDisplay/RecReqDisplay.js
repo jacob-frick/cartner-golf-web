@@ -80,7 +80,7 @@ const RecReqDisplay = () => {
                   acceptRequest={acceptRequest}
                   declineRequest={declineRequest}
                 >
-                  <ButtonGroup size="small">
+                  <ButtonGroup size="small" className={classes.buttonGroup}>
                     <Button
                       onClick={() => acceptRequest(person._id)}
                       variant="outlined"

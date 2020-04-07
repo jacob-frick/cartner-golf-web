@@ -78,8 +78,7 @@ const FriendDisplay = () => {
                     xs={12}
                   // className={classes.root}
                   > */}
-                  <ButtonGroup size="small">
-
+                  <ButtonGroup size="small" className={classes.buttonGroup}>
                     <Button
                       onClick={() => removeFriend(person._id)}
                       variant="outlined"

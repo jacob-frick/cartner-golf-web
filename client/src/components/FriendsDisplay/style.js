@@ -14,6 +14,12 @@ const friendDisplayStyles = makeStyles((theme) => ({
   buttons: {
     left: '6%',
   },
+  buttonGroup: {
+    '&: hover': {
+      backgroundColor: '#ffffff',
+    },
+    borderRightColor: '#4caf50',
+  },
   removeButton: {
     float: 'left',
   }
