@@ -5,7 +5,7 @@ import React, { useContext } from 'react'
 import OuterNavbar from './../../components/OuterNavbar'
 import WelcomeDialog from './../../components/WelcomeDialog'
 import HomeContext from './../../utils/HomeContext'
-
+import RoundHistoryCard from '../../components/RoundHistoryCard'
 
 export default function Dashboard(props) {
   const { isNewAcc } = useContext(HomeContext)
@@ -21,6 +21,7 @@ export default function Dashboard(props) {
     <OuterNavbar>
       {model}
       <h1>Dashboard</h1>
+      <RoundHistoryCard />
     </OuterNavbar>
   )
 }

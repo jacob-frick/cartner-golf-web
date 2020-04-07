@@ -81,6 +81,13 @@ router.get('/users/currentround', passport.authenticate('jwt', { session: false 
     res.sendStatus(400)
   })
 })
+
+//get a user's past rounds
+router.get('/users/pastrounds', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+
+})
+
 //invite a player to a round
 router.put('/invite/:uid', passport.authenticate('jwt', { session: false }), (req, res) => {
   if(req.params.uid === req.user._id.toString()){
@@ -193,5 +200,6 @@ router.put('/save/:rid', passport.authenticate('jwt', { session: false }), (req,
     res.sendStatus(400)
   })
 })
+
 
 module.exports = router
