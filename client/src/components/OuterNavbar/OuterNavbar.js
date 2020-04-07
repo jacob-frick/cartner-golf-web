@@ -54,7 +54,7 @@ const OuterNavbar = props => {
                     {/* Page Info goes here */}
                     {props.children}
                   {currentRound.inRound ? <Button onClick = {() => redirect()}className={classes.button}>
-                    <Snackbar open={true}>
+                    <Snackbar open={window.location.href.indexOf('scorecard')> -1 ? false : true}>
                       <Alert severity="info">Currently playing a round at {currentRound.course_name}</Alert>
                     </Snackbar>
                   </Button> : null}
