@@ -25,10 +25,18 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
           score: 0
         })
       }
-      createdRound.members.push({user_id: req.user._id, score})
-      createdRound.save()
-      req.user.save()
-      res.json({roundId: createdRound._id})
+      User.find({_id: {$in: createdRound.pending_members}})
+      .then(users => {
+        users.forEach(element => {
+          element.pending_round_invites.push(createdRound._id)
+          element.save()
+        })
+        createdRound.members.push({user_id: req.user._id, score})
+        createdRound.save()
+        req.user.save()
+        res.json({roundId: createdRound._id})
+      })
+
     })
     .catch(e => {
       console.error(e)
@@ -122,10 +130,17 @@ router.put('/accept/:rid', passport.authenticate('jwt', { session: false }), (re
   else{
     Round.findById(req.params.rid)
     .then( round => {
+      let score = []
+      for(let i = 1; i < 19; i++) {
+        score.push({
+          hole_num: i,
+          score: 0
+        })
+      }
       //push to members array in round
       round.members.push({
         user_id: req.user._id,
-        score: []
+        score
       })
       //remove from pending_members array
       round.pending_members.splice(round.pending_members.indexOf(req.user._id), 1)
