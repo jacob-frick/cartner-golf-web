@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import OuterNavbar from './../../components/OuterNavbar'
 import SearchBar from './../../components/SearchBar'
 import Grid from '@material-ui/core/Grid'
@@ -7,8 +7,15 @@ import RecReqDisplay from '../../components/RecReqDisplay'
 import SentReqDisplay from '../../components/SentReqDisplay'
 import Protected from './../../components/Protected'
 import FriendsContext from '../../utils/FriendsContext'
-const Friends = () => {
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+const btnClasses = createMuiTheme({
+    palette: {
+        primary: green
+    }
+});
 
+const Friends = () => {
     const [friendState, setFriendState] = useState({
         friends: [],
         hasFriends: '',
@@ -29,12 +36,15 @@ const Friends = () => {
         <Protected>
             <OuterNavbar>
                 <FriendsContext.Provider value={friendState}>
-                    <SearchBar />
+                    <ThemeProvider theme={btnClasses}>
+                        <SearchBar />
+                    </ThemeProvider>
                     <Grid container spacing={1}>
                         <Grid
                             item md={6} xs={12}
                             className='nameFix'>
                             <h1>Friends List</h1>
+
                             <FriendsDisplay />
                         </Grid>
                         <Grid item md={6} xs={12}>

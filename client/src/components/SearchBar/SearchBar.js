@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button'
 import User from './../../utils/User'
 import TextField from '@material-ui/core/TextField'
 import SendFriendReqModel from './../SendFriendReqModel'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -34,6 +35,19 @@ const useStyles = makeStyles((theme) => ({
     background: 'green',
     boxShadow: '0 3px 5px 2px rgba(0, 0, 135, .3)',
     borderRadius: '3px',
+    display: 'block',
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    height: '56px',
+    marginTop: '15px',
+    color: 'white',
+    border: '1px solid rgba(63, 151, 181, 0.5)',
+    backgroundColor: '#4caf50',
+    boxShadow: '0 3px 5px 2px #90ee9066',
+    borderRadius: '3px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     display: 'block',
   },
   onLinkHover: {
@@ -100,15 +114,18 @@ const SearchBar = () => {
           item sm={2}
           xs={12}
         >
+          {/* <ThemeProvider theme={btnClasses}> */}
           <Button
-            className={classes.buttonHeight}
-            variant="success"
+            type="submit"
+            variant="contained"
+            color="primary"
             fullWidth
-            color="success"
+            className={classes.margin, classes.submit}
             onClick={onSubmit}
-          >
-            Search
-          </Button>
+          >Search Friends
+            </Button>
+          {/* </ThemeProvider> */}
+
         </Grid>
       </Grid>
     </FormControl >

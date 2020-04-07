@@ -13,39 +13,14 @@ import Container from '@material-ui/core/Container';
 import HomeContext from './../../utils/HomeContext'
 import User from './../../utils/User'
 import logInStyles from './styles.js'
-
-
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-const lightTheme = createMuiTheme({
-  overrides: {
-    palette: {
-      primary: "#4caf50",
-      primary2: "#81c784",
-      primary3: "green",
-      accent1: "#ff7043",
-      accent2: "#f44336",
-      accent3: "#d84315",
-      textColor: "#000000",
-      secondaryTextColor: "#ffffff",
-      alternateTextColor: "#ffffff",
-      canvasColor: "#ffffff",
-      alternateСanvasColor: "#212121",
-      alternate1Color: "rgba(255, 255, 255, 0.54)",
-      alternate2Color: "#f5f5f5",
-      borderColor: "#757575",
-      disabledColor: "rgba(0,0,0,0.3)",
-      pickerHeaderColor: "#00bcd4",
-      clockCircleColor: "#f44336",
-      shadowColor: "rgba(0,0,0,1)"
-    },
-  },
-  themeName: "theme",
-  themeFile: "theme.json",
-  badge: {
-    primaryColor: "#00b8d4",
-    secondaryColor: "#e53935"
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+const btnClasses = createMuiTheme({
+  palette: {
+    primary: green
   }
 });
+// import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export default function Login() {
   const classes = logInStyles()
@@ -91,86 +66,92 @@ export default function Login() {
   return (
 
     <div className={classes.backgroundImage}>
-      <ThemeProvider theme={lightTheme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <div className={`${classes.paper} ${classes.loginStyle}`}>
-            <Typography className={classes.header} component="h1" variant="h3">
-              Cartner-Golf
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={`${classes.paper} ${classes.loginStyle}`}>
+          <Typography className={classes.header} component="h1" variant="h3">
+            Cartner-Golf
         </Typography>
-            <Avatar className={classes.avatar}>
-              <GolfCourseIcon />
-            </Avatar>
-            <Typography className={classes.textCenter} component="h1" variant="h5">
-              Login
+          <Avatar className={classes.avatar}>
+            <GolfCourseIcon />
+          </Avatar>
+          <Typography className={classes.textCenter} component="h1" variant="h5">
+            Login
         </Typography>
-            <form className={classes.form} noValidate onSubmit={didSubmit}>
-              <TextField
-                error={user.emailCheck}
-                helperText={user.emailErrorMessage}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={(event) => { formChange(event) }}
-              />
-              <TextField
-                error={user.passwordCheck}
-                helperText={user.passwordErrorMessage}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                onChange={(event) => { formChange(event) }}
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-                onClick={updateRemember}
-                checked={remember}
-              />
+          <form className={classes.form} noValidate onSubmit={didSubmit}>
+            <TextField
+              error={user.emailCheck}
+              helperText={user.emailErrorMessage}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={(event) => { formChange(event) }}
+            />
+            <TextField
+              error={user.passwordCheck}
+              helperText={user.passwordErrorMessage}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={(event) => { formChange(event) }}
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+              onClick={updateRemember}
+              checked={remember}
+            />
+            <ThemeProvider theme={btnClasses}>
               <Button
                 type="submit"
+                variant="contained"
+                color="primary"
                 fullWidth
-                color="success"
-                className={classes.submit}
-              >
-                Sign In
-          </Button>
-              <Grid container>
-                <Grid item xs>
-                  {/* <Link
+                className={classes.margin, classes.submit}
+              >Sign In
+              </Button>
+            </ThemeProvider>
+            {/* <Button
+              fullWidth
+              color="success"
+              className={lightTheme.primary}
+            >
+            </Button> */}
+            <Grid container>
+              <Grid item xs>
+                {/* <Link
                   component='button'
                   variant="body2"
                   >
                   Forgot password?
                 </Link> */}
-                </Grid>
-                <Grid item>
-                  <Link
-                    component='button'
-                    className={classes.onLinkHover}
-                    onClick={setPageCreateAccount}
-                    variant="body2"
-                  >
-                    {"No Account? Sign Up"}
-                  </Link>
-                </Grid>
               </Grid>
-            </form>
-          </div>
-        </Container>
-      </ThemeProvider>
+              <Grid item>
+                <Link
+                  component='button'
+                  className={classes.onLinkHover}
+                  onClick={setPageCreateAccount}
+                  variant="body2"
+                >
+                  {"No Account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
     </div>
   )
 }
