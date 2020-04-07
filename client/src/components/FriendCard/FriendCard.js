@@ -9,13 +9,13 @@ const FriendCard = props => {
   const { name, initials} = props
   return (
     <Grid container className={classes.cardMarg}>
-      <Grid className={classes.icon} item xs={1}>
+      <Grid className={classes.icon} item xs={3} md = {1}>
         <Avatar className={classes.orange}>{initials}</Avatar>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item md={6} xs={9}>
         <Typography variant="h6" component='h6'>{name}</Typography>
       </Grid>
-      <Grid item xs={5} style={{display:'flex',alignItems:'flex-end' ,justifyContent:'flex-end'}}>
+      <Grid item md={5} xs={12} className={window.innerWidth < 800 ? null : classes.buttonsStyle}>
         {/* Buttons here */}
         {props.children}
         {/* Buttons end */}

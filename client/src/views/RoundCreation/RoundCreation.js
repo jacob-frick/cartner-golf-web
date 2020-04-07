@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonPadding: {
     padding: '8px'
+  },
+  buttonStylePhone: {
+    display: 'flex',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 }))
 
@@ -87,6 +92,7 @@ const RoundCreation = () => {
               <Button
                 variant="contained"
                 color="primary"
+                className = {classes.buttonStylePhone}
                 onClick={(event) => {
                   event.currentTarget.className += " Mui-disabled"
                   setInvited(prev => [...prev, person._id])
@@ -94,6 +100,7 @@ const RoundCreation = () => {
                 id={index}
                 disabled={isInvited}
               >Invite</Button>
+              <br />
             </FriendsCard>
           )
         })}
