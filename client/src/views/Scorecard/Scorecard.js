@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button'
 import Round from './../../utils/Round'
 import RoundContext from '../../utils/RoundContext'
 import User from '../../utils/User'
+import {Redirect} from 'react-router-dom'
 const Scorecard = () => {
   const { rid } = useParams()
   const [members, setMemberContext] = useState({
@@ -34,18 +35,38 @@ const Scorecard = () => {
     for(let i = 0; i < members.length; i++) {
       for(let j = 0; j < 9; j++){
         // console.log(i, j, members[i].score[j].score)
-        totalFront = totalFront + members[i].score[j].score
-        totalBack = totalBack + members[i].score[j+9].score
+        totalFront = totalFront + parseInt(members[i].score[j].score)
+        totalBack = totalBack + parseInt(members[i].score[j+9].score)
       }
       members[i].total_front = totalFront
       members[i].total_back = totalBack
       totalFront = 0
       totalBack = 0
     }
-    console.log(members)
     User.saveRound(id, members)
       .then()
       .catch(e => console.error(e))
+  }
+
+  const finishRound = (id, members) => {
+    let totalFront = 0
+    let totalBack = 0
+    for (let i = 0; i < members.length; i++) {
+      for (let j = 0; j < 9; j++) {
+        // console.log(i, j, members[i].score[j].score)
+        totalFront = totalFront + parseInt(members[i].score[j].score)
+        totalBack = totalBack + parseInt(members[i].score[j + 9].score)
+      }
+      members[i].total_front = totalFront
+      members[i].total_back = totalBack
+      totalFront = 0
+      totalBack = 0
+    }
+    User.completeRound(id, members)
+    .then( () => {
+      setRound({...roundData, requested: 'REDIRECT'})
+    })
+    .catch(e => console.error(e))
   }
 
   useEffect(() => {
@@ -59,6 +80,7 @@ const Scorecard = () => {
     }
   })
   if (roundData.requested === 'NO') return (<></>)
+  else if( roundData.requested ==='REDIRECT') return <Redirect to = '/'/>
   else {
     return (
       <RoundProtected rid={rid}>
@@ -73,7 +95,7 @@ const Scorecard = () => {
           <Button onClick = {() => saveRound(members.roundId, members.memberContext)} variant="contained" color="primary">Save Round</Button>
           <br />
           <br />
-          <Button variant="contained" color="secondary">Complete Round</Button>
+          <Button onClick = {() => finishRound(members.roundId, members.memberContext)}variant="contained" color="secondary">Complete Round</Button>
         </OuterNavbar>
       </RoundProtected>
     )
