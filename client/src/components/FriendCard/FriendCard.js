@@ -23,7 +23,7 @@ const FriendCard = props => {
         >{name}
         </Typography>
       </Grid>
-      <Grid className={classes.MuiButtonRoot} style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+      <Grid className={window.innerWidth < 800 ? null : classes.buttonsStyle}>
         {/* Buttons here */}
         {props.children}
         {/* Buttons end */}
