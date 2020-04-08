@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button'
 import FriendCard from '../FriendCard'
 import MenuDropdownStyles from './style.js'
 import User from '../../utils/User'
+import {Redirect} from 'react-router-dom'
 const MenuDropdown = props => {
 
   const classes = MenuDropdownStyles()
@@ -25,7 +26,8 @@ const MenuDropdown = props => {
   const [roundInvites, setRoundInvites] = useState({
     status: '',
     invites: [],
-    currentRound: ''
+    currentRound: '',
+    roundId: null
   })
   const getInvites = () => {
     User.getPendingRounds()
@@ -46,6 +48,7 @@ const MenuDropdown = props => {
     User.acceptRoundInvite(id)
     .then( () => {
       getInvites()
+      setRoundInvites({...roundInvites, roundId: id, status: 'REDIRECT'})
     })
     .catch( e => console.error(e))
   }
@@ -105,10 +108,8 @@ const MenuDropdown = props => {
                 text={roundInvites.currentRound ? `Has invitied you to play a round at ${invite.course_id}. To accept, please finish your current round` : `Has invitied you to play a round at ${invite.course_id}` }
                 initials={`${invite.owner.fname.charAt(0).toUpperCase()}${invite.owner.lname.charAt(0).toUpperCase()}`}
               >
-                <Grid item xs={6} className={classes.buttons}>
+                <Grid item xs={12}>
                   <Button onClick = {() => acceptInvite(invite._id)}variant="outlined" disabled = {roundInvites.currentRound ? true : false} className={classes.accept}>Accept</Button>
-                </Grid>
-                <Grid item xs={6} className={classes.buttons}>
                   <Button onClick = {() => declineInvite(invite._id)} variant="outlined" color="secondary">Decline</Button>
                 </Grid>
               </FriendCard>
@@ -117,6 +118,9 @@ const MenuDropdown = props => {
         </Menu>
       </div>
     )
+  }
+  else if(roundInvites.status ==='REDIRECT'){
+    return <Redirect to = {`/scorecard/${roundInvites.roundId}`}/>
   }
   else{
     return (
