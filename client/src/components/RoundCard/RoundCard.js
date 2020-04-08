@@ -39,6 +39,16 @@ const RoundCard = props => {
               }
             })}
           </ListItem>
+          <ListItem>
+            <Grid item xs={2} className={`${classes.center} ${classes.underline}`}>Par</Grid>
+            {holes.map((elem, index) => {
+              if (index >= start && index <= finish) {
+                return (<Grid item xs={1} className={` ${classes.center} ${classes.underline}`}  key={`${props.round._id}-handicap-${elem.handicap}`}>{elem.par}</Grid>)
+              }else {
+                return(<></>)
+              }
+            })}
+          </ListItem>
           {/* Begin mapping user */}
           {props.round.members.map((elem, i) => {
             return (
