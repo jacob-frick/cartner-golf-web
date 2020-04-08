@@ -105,10 +105,8 @@ const MenuDropdown = props => {
                 text={roundInvites.currentRound ? `Has invitied you to play a round at ${invite.course_id}. To accept, please finish your current round` : `Has invitied you to play a round at ${invite.course_id}` }
                 initials={`${invite.owner.fname.charAt(0).toUpperCase()}${invite.owner.lname.charAt(0).toUpperCase()}`}
               >
-                <Grid item xs={6} className={classes.buttons}>
+                <Grid item xs={12}>
                   <Button onClick = {() => acceptInvite(invite._id)}variant="outlined" disabled = {roundInvites.currentRound ? true : false} className={classes.accept}>Accept</Button>
-                </Grid>
-                <Grid item xs={6} className={classes.buttons}>
                   <Button onClick = {() => declineInvite(invite._id)} variant="outlined" color="secondary">Decline</Button>
                 </Grid>
               </FriendCard>
