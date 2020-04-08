@@ -15,6 +15,7 @@ const recReqDisplayStyles = makeStyles((theme) => ({
   accept: {
     borderColor: 'green',
     color: 'green',
+    marginRight: '1vh',
     // marginLeft: '3rem',
     // marginRight: '10rem',
 

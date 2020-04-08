@@ -42,12 +42,12 @@ export default function WelcomeDialog() {
             <p>
               Use the navbar on the left to explore the various other features of this app.
           </p>
-          <p>These icons are how you navigate the site, just click!.</p>
-          <p><HomeIcon /> View home page which contains your round history.</p>
-          <p><GolfCourseIcon />View courses and choose which course to create a new round in.</p>
-          <p><GroupAddIcon />View your friends list or add, find, and decline friends.</p>
-          <p><NotificationsIcon />When you see a little red number on this one, it means someone wants to play with you!</p>
-          <p><ExitToAppIcon />Log out :(</p>
+            <p>These icons are how you navigate the site, just click!.</p>
+            <p><HomeIcon /> View home page which contains your round history.</p>
+            <p><GolfCourseIcon />View courses and choose which course to create a new round in.</p>
+            <p><GroupAddIcon />View your friends list or add, find, and decline friends.</p>
+            <p><NotificationsIcon />When you see a little red number on this one, it means someone wants to play with you!</p>
+            <p><ExitToAppIcon className={classes.flipExitIcon} />Log out :(</p>
             <h2 id="simple-modal-title">Happy Golfing!</h2>
           </div>
 

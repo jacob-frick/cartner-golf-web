@@ -7,13 +7,7 @@ import RecReqDisplay from '../../components/RecReqDisplay'
 import SentReqDisplay from '../../components/SentReqDisplay'
 import Protected from './../../components/Protected'
 import FriendsContext from '../../utils/FriendsContext'
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
-const btnClasses = createMuiTheme({
-    palette: {
-        primary: green
-    }
-});
+
 
 const Friends = () => {
     const [friendState, setFriendState] = useState({
@@ -36,15 +30,12 @@ const Friends = () => {
         <Protected>
             <OuterNavbar head="Friends">
                 <FriendsContext.Provider value={friendState}>
-                    <ThemeProvider theme={btnClasses}>
-                        <SearchBar />
-                    </ThemeProvider>
+                    <SearchBar />
                     <Grid container spacing={1}>
                         <Grid
                             item md={6} xs={12}
                             className='nameFix'>
                             <h1>Friends List</h1>
-
                             <FriendsDisplay />
                         </Grid>
                         <Grid item md={6} xs={12}>

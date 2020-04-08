@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const MenuDropdownStyles = makeStyles((theme) => ({
   accept: {
     borderColor: 'green',
-    color: 'green'
+    color: 'green',
+    marginRight: '1vh',
   },
   buttons: {
     textAlign: 'center'

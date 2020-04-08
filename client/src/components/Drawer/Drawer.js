@@ -134,7 +134,7 @@ const DrawerComponent = () => {
               window.location.reload(false)
             }}>
             <ListItemIcon>
-              <ExitToAppIcon />
+              <ExitToAppIcon className={classes.flipExitIcon} />
             </ListItemIcon>
             <ListItemText primary="Log Out"
               aria-label='Log Out' />
