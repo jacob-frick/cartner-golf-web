@@ -31,4 +31,4 @@ const WelcomeDialogStyles = makeStyles((theme) => ({
   },
 }
 ))
-export default WelcomeDialogStyles
+export default WelcomeDialogStyles 
