@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button'
 import FriendCard from '../FriendCard'
 import MenuDropdownStyles from './style.js'
 import User from '../../utils/User'
+import {Redirect} from 'react-router-dom'
 const MenuDropdown = props => {
 
   const classes = MenuDropdownStyles()
@@ -25,7 +26,8 @@ const MenuDropdown = props => {
   const [roundInvites, setRoundInvites] = useState({
     status: '',
     invites: [],
-    currentRound: ''
+    currentRound: '',
+    roundId: null
   })
   const getInvites = () => {
     User.getPendingRounds()
@@ -46,6 +48,7 @@ const MenuDropdown = props => {
     User.acceptRoundInvite(id)
     .then( () => {
       getInvites()
+      setRoundInvites({...roundInvites, roundId: id, status: 'REDIRECT'})
     })
     .catch( e => console.error(e))
   }
@@ -115,6 +118,9 @@ const MenuDropdown = props => {
         </Menu>
       </div>
     )
+  }
+  else if(roundInvites.status ==='REDIRECT'){
+    return <Redirect to = {`/scorecard/${roundInvites.roundId}`}/>
   }
   else{
     return (
