@@ -9,9 +9,6 @@ const logInStyles = makeStyles((theme) => ({
     },
     loginStyle: {
         backgroundColor: 'white',
-        maxHeight: '50%',
-        marginTop: '50%',
-        marginBottom: '50%',
         paddingBottom: '2rem',
         paddingRight: '2rem',
         paddingLeft: '2rem',
@@ -46,12 +43,10 @@ const logInStyles = makeStyles((theme) => ({
     backgroundImage: {
         display: 'flex',
         position: 'absolute',
-        width: '100%',
-        height: '100%',
+        width: '100vw',
+        height: '100vh',
         backgroundImage: `url(${"../assets/images/backgroundImage.jpg"})`,
-        ['@media (min-width:780px)']: { // eslint-disable-line no-useless-computed-key
-            backgroundRepeat: 'round'
-        },
+        backgroundRepeat: 'no-repeat'
     },
     textCenter: {
         textAlign: 'center',
@@ -67,6 +62,7 @@ const logInStyles = makeStyles((theme) => ({
             backgroundColor: 'green',
             color: '#ffffff',
         },
-    }
+    },
+
 }))
 export default logInStyles

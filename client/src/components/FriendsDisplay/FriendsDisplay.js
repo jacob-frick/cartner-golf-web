@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext} from 'react'
 import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid'
 // import List from '@material-ui/core/List'
@@ -39,7 +39,7 @@ const FriendDisplay = () => {
 
   useEffect(() => {
     displayFriends()
-  }, [status, hasFriends])
+  }, [status, hasFriends,displayFriends])
 
 
 
@@ -57,7 +57,7 @@ const FriendDisplay = () => {
             <CardContent className={classes.inviteCard} >
               {friends.map(person =>
                 <FriendCard
-                  key={person._id}
+                  key={'friend-' + person._id}
                   name={`${person.fname} ${person.lname}`}
                   text={`Currently playing at course 1!`}
                   // className={classes.root}

@@ -15,7 +15,7 @@ const RoundProtected = (props) => {
           }
         })
     }
-  }, [authStatus])
+  }, [authStatus, props.rid])
   if (authStatus === 'NO_AUTH') {
     return (<Redirect to='/' />)
   } else if (authStatus === 'AUTH') {

@@ -75,7 +75,12 @@ const friendCardStyles = makeStyles((theme) => ({
   cardMarg: {
     marginBottom: 4,
     marginRight: 2
-  }
+  },
+  buttonsStyle: {
+    display: 'flex', 
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
+  },
 }));
 
 export default friendCardStyles

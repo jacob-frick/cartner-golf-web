@@ -56,7 +56,7 @@ const SentReqDisplay = () => {
             <CardContent className={classes.inviteCard} >
               {sentRequests.map(person =>
                 <FriendCard
-                  key={person._id}
+                  key={'sent-'+ person._id}
                   name={`${person.fname} ${person.lname}`}
                   text={`Pending acceptance.`}
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}

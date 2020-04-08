@@ -8,14 +8,14 @@ import Typography from '@material-ui/core/Typography'
 // import { spacing } from '@material-ui/system'
 const FriendCard = props => {
   const classes = friendCardStyles();
-  const { name, course, type, initials, text } = props
+  const { name, initials } = props
   return (
 
     <Grid container className={classes.cardMarg}>
-      <Grid item className={classes.icon}>
+      <Grid className={classes.icon} item xs={3} md={1}>
         <Avatar className={classes.orange}>{initials}</Avatar>
       </Grid>
-      <Grid item>
+      <Grid item md={6} xs={9}>
         <Typography
           variant="h6"
           component='h6'
@@ -23,7 +23,7 @@ const FriendCard = props => {
         >{name}
         </Typography>
       </Grid>
-      <Grid className={window.innerWidth < 800 ? null : classes.buttonsStyle}>
+      <Grid item md={5} xs={12} className={window.innerWidth < 800 ? null : classes.buttonsStyle}>
         {/* Buttons here */}
         {props.children}
         {/* Buttons end */}

@@ -12,6 +12,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 import CustomModel from './../../components/CustomModal'
 import User from './../../utils/User'
 import FriendsCard from './../../components/FriendCard'
@@ -34,12 +35,20 @@ const useStyles = makeStyles((theme) => ({
   },
   addFriendsBtn: {
     maxWidth: 200,
-    width: "100%",
+    width: "100%"
   },
   inviteCard: {
     margin: "5px",
     maxWidth: 600,
     width: "100%"
+  },
+  buttonPadding: {
+    padding: '8px'
+  },
+  buttonStylePhone: {
+    display: 'flex',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 }))
 
@@ -83,6 +92,7 @@ const RoundCreation = () => {
               <Button
                 variant="contained"
                 color="primary"
+                className = {classes.buttonStylePhone}
                 onClick={(event) => {
                   event.currentTarget.className += " Mui-disabled"
                   setInvited(prev => [...prev, person._id])
@@ -90,6 +100,7 @@ const RoundCreation = () => {
                 id={index}
                 disabled={isInvited}
               >Invite</Button>
+              <br />
             </FriendsCard>
           )
         })}
@@ -145,22 +156,32 @@ const RoundCreation = () => {
                   <Typography gutterBottom variant="h5" component="h3">{courseData.course.name}</Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
-                <Button variant="contained" size="medium" color="primary" className={classes.addFriendsBtn} onClick={openModal}>
-                  Invite Friends
-                  </Button>
-                {modal}
-              </CardActions>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Tee Box:</FormLabel>
-                <RadioGroup aria-label="gender" name="gender1" value={radioValue} onChange={handleChange}>
-                  <FormControlLabel value="Blues" control={<Radio />} label="Blues" />
-                  <FormControlLabel value="Whites" control={<Radio />} label="Whites" />
-                </RadioGroup>
-              </FormControl>
-              <Button variant="contained" size="medium" color="primary" className={classes.addFriendsBtn} onClick={didTapCreate}>
-                Create Round
-                  </Button>
+              <Grid container spacing = {3}>
+                <Grid item xs={12}>
+                  <FormControl component="fieldset">
+                    <FormLabel component="legend">Tee Box:</FormLabel>
+                    <RadioGroup aria-label="gender" name="gender1" value={radioValue} onChange={handleChange}>
+                      <FormControlLabel value="Blues" control={<Radio />} label="Blues" />
+                      <FormControlLabel value="Whites" control={<Radio />} label="Whites" />
+                    </RadioGroup>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <CardActions>
+                    <Button variant="contained" size="medium" color="primary" className={classes.addFriendsBtn} onClick={openModal}>
+                      Invite Friends
+                    </Button>
+                    {modal}
+                  </CardActions>
+                </Grid>
+                <Grid item xs={12}>
+                  <div className = {classes.buttonPadding}>
+                    <Button variant="contained" size="medium" color="primary" className={classes.addFriendsBtn} onClick={didTapCreate}>
+                      Create Round
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
             </Card>
           </Container>
         </OuterNavbar>

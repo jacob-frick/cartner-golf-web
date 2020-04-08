@@ -6,10 +6,10 @@ import OuterNavbar from './../../components/OuterNavbar'
 import WelcomeDialog from './../../components/WelcomeDialog'
 import HomeContext from './../../utils/HomeContext'
 import Round from './../../utils/Round'
-import Roundcard from './../../components/RoundCard'
-import RoundContext from './../../utils/RoundContext'
+import RoundHistoryExpansPanel from './../../components/RoundHistoryExpansPanel'
 export default function Dashboard(props) {
   const { isNewAcc } = useContext(HomeContext)
+
   const [rounds, setRounds] = useState([])
   const isNewAccModel = () => {
     if (isNewAcc) {
@@ -17,28 +17,24 @@ export default function Dashboard(props) {
     }
     return <></>
   }
-  useEffect(()=> {
+  useEffect(() => {
     Round.getAllRounds()
-    .then(({data}) => {
-      console.log(data)
-      if(data.message) {
-      setRounds(<h1>{data.message}</h1>)
-      } else {
-        let roundsArr = []
-        data.forEach(element => {
-          roundsArr.push()
-        })
-        setRounds(roundsArr)
-      }
-    })
+      .then(({ data }) => {
+        console.log(data)
+        if (data.message) {
+          setRounds(<h1>{data.message}</h1>)
+        } else {
+          console.log(data)
+          setRounds(data)
+        }
+      })
   }, [])
 
   const model = isNewAccModel()
   return (
     <OuterNavbar>
       {model}
-      {rounds}
-      
+      <RoundHistoryExpansPanel rounds={rounds} />
     </OuterNavbar>
   )
 }

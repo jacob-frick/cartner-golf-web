@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, {useContext } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Paper from '@material-ui/core/Paper'
@@ -12,7 +11,7 @@ import RoundContext from '../../utils/RoundContext'
 const RoundCard = props => {
   const classes = roundCardStyles()
   const holes = props.round.course_id.holes
-  const {inputChange, memberContext} = useContext(RoundContext)
+  const { inputChange, memberContext } = useContext(RoundContext)
   const getHalfScorecard = (isBack) => {
     let start, finish
     isBack ? start = 9 : start = 0
@@ -34,29 +33,35 @@ const RoundCard = props => {
             <Grid item xs={2} className={`${classes.center} ${classes.underline}`}>S.I.</Grid>
             {holes.map((elem, index) => {
               if (index >= start && index <= finish) {
-                return (<Grid item xs={1} className={` ${classes.center} ${classes.underline}`}>{elem.handicap}</Grid>)
+                return (<Grid item xs={1} className={` ${classes.center} ${classes.underline}`}  key={`${props.round._id}-handicap-${elem.handicap}`}>{elem.handicap}</Grid>)
+              }else {
+                return(<></>)
               }
             })}
           </ListItem>
           {/* Begin mapping user */}
           {props.round.members.map((elem, i) => {
             return (
-              <ListItem>
+              <ListItem key={`${props.round._id}-score-${i}`}>
                 <Grid item xs={2} className={`${classes.center}`}>{elem.user_id.fname}</Grid>
                 {elem.score.map((sc, indx) => {
                   if (indx >= start && indx <= finish) {
                     return (
-                      <Grid item xs={1} className={`${classes.center}`}>
-                        <TextField 
-                        id={`${i}-${sc.hole_num}`} 
-                        className={classes.input} size="small" 
-                        inputProps={{ style: { textAlign: 'center' } }} 
-                        value={memberContext[i].score[indx].score} 
-                        onChange = {event => inputChange(event.target.value, i, indx)}
+                      <Grid item xs={1} className={`${classes.center}`}  key={`${props.round._id}-score-${sc.hole_num}-${sc._id}`}>
+                        <TextField
+                          id={`${i}-${sc.hole_num}-${Math.random()}-${elem.user_id._id.toString()}`}
+                          className={classes.input} size="small"
+                          inputProps={{ style: { textAlign: 'center' } }}
+                          value={props.isHistory ? sc.score : memberContext[i].score[indx].score}
+                          onChange={event => inputChange(event.target.value, i, indx)}
                         />
-                      </Grid>)
-                  }
+                      </Grid>
+                    )
+                  } else{return(<></>)}
                 })}
+                <Grid item xs={1} className={`${classes.center} ${classes.underline}`}>
+                  {isBack ? `${props.isHistory ? elem.total_back : memberContext[i].total_back}` : `${props.isHistory ? elem.total_front : memberContext[i].total_front}`}
+                </Grid>
               </ListItem >
             )
           })}
@@ -68,18 +73,16 @@ const RoundCard = props => {
   const displayHoles = (x, y) => {
     let holeArr = []
     for (let i = x; i <= y; i++) {
-      holeArr[i] = <Grid item xs={1} className={` ${classes.center} ${classes.underline}`}>{i + 1}</Grid>
+      holeArr[i] = <Grid item xs={1} className={` ${classes.center} ${classes.underline}`} key={`${props.round._id}-hole-${i+1}`}>{i + 1}</Grid>
     }
     return holeArr
   }
 
   return (
     <>
-      <Typography className={`${classes.center} ${classes.underline}`} variant="h6" gutterBottom>
-        Scorecard
-        </Typography>
-      <br />
-      <br />
+      {props.isHistory ? <></> : <><Typography className={`${classes.center} ${classes.underline}`} variant="h6" gutterBottom>Scorecard</Typography>
+        <br />
+        <br /></>}
       <Paper className={classes.min}>
         <List>
           <Grid container spacing={3}>

@@ -46,52 +46,7 @@ const Profile = () => {
                </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2bh-content"
-            id="panel2bh-header">
-            <Typography className={classes.heading}>Handicap</Typography>
-            <Typography className={classes.secondaryHeading}>
-              Your Current Handicap Level
-               </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Handicap: Par + 3
-                </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3bh-content"
-            id="panel3bh-header">
-            <Typography className={classes.heading}>Last Session Stats</Typography>
-            <Typography className={classes.secondaryHeading}>
-              Pebble Beach Course 18 Holes
-                </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Par 4 Total
-               </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4bh-content"
-            id="panel4bh-header">
-            <Typography className={classes.heading}>Personal Data & Stats</Typography>
-            <Typography className={classes.secondaryHeading}>All About You</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Personal Data About You and your stats
-                </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+
       </OuterNavbar>
     )
   } else if (authStatus === 'NO_AUTH') {
