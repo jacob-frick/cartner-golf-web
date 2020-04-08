@@ -20,8 +20,7 @@ import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 import DrawerContext from '../../utils/DrawerContext'
 import drawerStyles from './styles.js'
-// import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import HomeIcon from '@material-ui/icons/Home'
 import User from '../../utils/User'
 //import HomeContext from './../../utils/HomeContext'
@@ -135,7 +134,7 @@ const DrawerComponent = () => {
               window.location.reload(false)
             }}>
             <ListItemIcon>
-              <ArrowBackOutlinedIcon />
+              <ExitToAppIcon className={classes.flipExitIcon} />
             </ListItemIcon>
             <ListItemText primary="Log Out"
               aria-label='Log Out' />

@@ -47,6 +47,9 @@ const drawerStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
-  }
+  },
+  flipExitIcon: {
+    transform: 'rotate(180deg)',
+  },
 }))
 export default drawerStyles
