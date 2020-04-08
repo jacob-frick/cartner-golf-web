@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   buttonPadding: {
     padding: '8px'
   },
+  formControlMargin: {
+    marginLeft: '1vh',
+  },
   buttonStylePhone: {
     display: 'flex',
     marginLeft: 'auto',
@@ -61,7 +64,7 @@ const RoundCreation = () => {
   const [friends, setFriends] = React.useState([])
   const [invited, setInvited] = React.useState([])
   const [radioValue, setRadioValue] = React.useState('Blues')
-  const [createdData, setCreated] = React.useState({created: false, id: ''})
+  const [createdData, setCreated] = React.useState({ created: false, id: '' })
   useEffect(() => {
     if (courseData.courseRequested === 'NO') {
       Course.findById(id)
@@ -92,7 +95,7 @@ const RoundCreation = () => {
               <Button
                 variant="contained"
                 color="primary"
-                className = {window.innerWidth < 800 ? classes.buttonStylePhone: null}
+                className={window.innerWidth < 800 ? classes.buttonStylePhone : null}
                 onClick={(event) => {
                   event.currentTarget.className += " Mui-disabled"
                   setInvited(prev => [...prev, person._id])
@@ -135,11 +138,11 @@ const RoundCreation = () => {
       pending_members: invited,
       course_id: id,
       teebox: radioValue.toLocaleLowerCase()
-    }).then(({data}) => {
-      setCreated({created: true, id: data.roundId})
+    }).then(({ data }) => {
+      setCreated({ created: true, id: data.roundId })
     })
   }
-  if(createdData.created) {
+  if (createdData.created) {
     return (<Redirect to={`/scorecard/${createdData.id}`} />)
   } else {
     return (
@@ -156,9 +159,9 @@ const RoundCreation = () => {
                   <Typography gutterBottom variant="h5" component="h3">{courseData.course.name}</Typography>
                 </CardContent>
               </CardActionArea>
-              <Grid container spacing = {3}>
+              <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <FormControl component="fieldset">
+                  <FormControl component="fieldset" className={classes.formControlMargin}>
                     <FormLabel component="legend">Tee Box:</FormLabel>
                     <RadioGroup aria-label="gender" name="gender1" value={radioValue} onChange={handleChange}>
                       <FormControlLabel value="Blues" control={<Radio />} label="Blues" />
@@ -175,7 +178,7 @@ const RoundCreation = () => {
                   </CardActions>
                 </Grid>
                 <Grid item xs={12}>
-                  <div className = {classes.buttonPadding}>
+                  <div className={classes.buttonPadding}>
                     <Button variant="contained" size="medium" color="primary" className={classes.addFriendsBtn} onClick={didTapCreate}>
                       Create Round
                     </Button>
