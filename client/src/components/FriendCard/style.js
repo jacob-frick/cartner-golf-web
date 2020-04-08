@@ -15,7 +15,7 @@ const friendCardStyles = makeStyles((theme) => ({
   },
   icon: {
     marginTop: 'auto !important',
-    marginRight: '1rem !important',
+    // marginRight: '1rem !important',
     display: 'flex !important',
     alignItems: 'start !important',
     justifyContent: 'start !important',

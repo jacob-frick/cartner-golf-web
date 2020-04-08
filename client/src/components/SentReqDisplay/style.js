@@ -5,6 +5,11 @@ const sentReqDisplayStyles = makeStyles((theme) => ({
   },
   listStyle: {
     display: 'contents'
+  },
+  buttonStylePhone: {
+    display: 'flex',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 }));
 

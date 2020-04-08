@@ -51,6 +51,11 @@ const recReqDisplayStyles = makeStyles((theme) => ({
     boxSizing: 'borderBox',
 
   },
+  buttonStylePhone: {
+    display: 'table',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
 }))
 
 export default recReqDisplayStyles

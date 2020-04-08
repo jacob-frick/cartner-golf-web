@@ -62,7 +62,7 @@ const SentReqDisplay = () => {
                   initials={`${person.fname.charAt(0).toUpperCase()}${person.lname.charAt(0).toUpperCase()}`}
                   cancelSentRequest={cancelSentRequest}
                 >
-                  <Button onClick={() => cancelSentRequest(person._id)} variant="outlined" color="secondary">Cancel</Button>
+                  <Button onClick={() => cancelSentRequest(person._id)} variant="outlined" color="secondary" className = {window.innerWidth < 800 ? classes.buttonStylePhone : null}>Cancel</Button>
                 </FriendCard>
               )}
             </CardContent>
