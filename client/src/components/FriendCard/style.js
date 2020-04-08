@@ -51,6 +51,7 @@ const friendCardStyles = makeStyles((theme) => ({
     '&: hover': {
       backgroundColor: '#ffffff',
     },
+    marginRight: '1vh',
     borderColor: '#4caf50',
     color: '#4caf50'
   },
@@ -74,7 +75,7 @@ const friendCardStyles = makeStyles((theme) => ({
   },
   cardMarg: {
     marginBottom: 4,
-    marginRight: 2
+    marginRight: 6,
   },
   buttonsStyle: {
     display: 'flex',

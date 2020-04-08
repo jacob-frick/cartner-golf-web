@@ -29,6 +29,7 @@ const FriendCard = props => {
         {/* Buttons end */}
       </Grid>
     </Grid >
+
   )
 }
 

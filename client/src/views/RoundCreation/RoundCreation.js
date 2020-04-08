@@ -45,9 +45,6 @@ const useStyles = makeStyles((theme) => ({
   buttonPadding: {
     padding: '8px'
   },
-  formControlMargin: {
-    marginLeft: '1vh',
-  },
   buttonStylePhone: {
     display: 'flex',
     marginLeft: 'auto',
@@ -74,7 +71,6 @@ const RoundCreation = () => {
     }
     User.getFriends()
       .then(({ data }) => {
-        console.log(data)
         setFriends(data)
       })
   }, [courseData, id])
@@ -162,7 +158,7 @@ const RoundCreation = () => {
               </CardActionArea>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <FormControl component="fieldset" className={classes.formControlMargin}>
+                  <FormControl component="fieldset">
                     <FormLabel component="legend">Tee Box:</FormLabel>
                     <RadioGroup aria-label="gender" name="gender1" value={radioValue} onChange={handleChange}>
                       <FormControlLabel value="Blues" control={<Radio />} label="Blues" />
