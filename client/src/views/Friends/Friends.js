@@ -28,7 +28,7 @@ const Friends = () => {
 
     return (
         <Protected>
-            <OuterNavbar>
+            <OuterNavbar head="Friends">
                 <FriendsContext.Provider value={friendState}>
                     <SearchBar />
                     <Grid container spacing={1}>

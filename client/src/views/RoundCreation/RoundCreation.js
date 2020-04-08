@@ -144,7 +144,7 @@ const RoundCreation = () => {
   } else {
     return (
       <Protected>
-        <OuterNavbar>
+        <OuterNavbar head="Round Creation">
           <Container color="primary" maxWidth="lg" disableGutters={true}>
             <Card className={classes.root}>
               <CardActionArea>
