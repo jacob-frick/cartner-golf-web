@@ -34,7 +34,7 @@ const Friends = () => {
 
     return (
         <Protected>
-            <OuterNavbar>
+            <OuterNavbar head="Friends">
                 <FriendsContext.Provider value={friendState}>
                     <ThemeProvider theme={btnClasses}>
                         <SearchBar />

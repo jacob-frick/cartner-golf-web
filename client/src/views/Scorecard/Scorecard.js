@@ -92,7 +92,7 @@ const Scorecard = () => {
   else {
     return (
       <RoundProtected rid={rid}>
-        <OuterNavbar>
+        <OuterNavbar head="Scorecard">
           <CssBaseline />
           <RoundContext.Provider value = {members}>
             <Summary round={roundData.round} />

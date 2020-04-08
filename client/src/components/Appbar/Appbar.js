@@ -13,7 +13,7 @@ import DrawerContext from '../../utils/DrawerContext'
 import MenuDropdown from '../MenuDropdown';
 import appbarStyles from './styles';
 
-const AppbarComponent = () => {
+const AppbarComponent = props => {
 
   let { open, handleDrawerOpen } = useContext(DrawerContext)
   const classes = appbarStyles();
@@ -32,7 +32,7 @@ const AppbarComponent = () => {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            {props.head}
           </Typography>
           <MenuDropdown />
         </Toolbar>

@@ -19,7 +19,7 @@ const Courses = () => {
 
   return (
     <Protected>
-      <OuterNavBar>
+      <OuterNavBar head='Courses'>
         <Grid container spacing={3}>
           {courseData.courses.map((elem, index) => {
             return (

@@ -32,7 +32,7 @@ export default function Dashboard(props) {
 
   const model = isNewAccModel()
   return (
-    <OuterNavbar>
+    <OuterNavbar head='Round History'>
       {model}
       <RoundHistoryExpansPanel rounds={rounds} />
     </OuterNavbar>

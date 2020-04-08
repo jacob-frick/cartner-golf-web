@@ -46,7 +46,7 @@ const OuterNavbar = props => {
           <DrawerContext.Provider value={open}>
             <div className={classes.root}>
               <CssBaseline />
-              <Appbar />
+              <Appbar head={props.head ? props.head : ''}/>
               <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="xl" className={classes.container}>
