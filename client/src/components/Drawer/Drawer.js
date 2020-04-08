@@ -114,7 +114,7 @@ const DrawerComponent = () => {
               aria-label='Round History' />
           </ListItem>
         </Tooltip>
-        <Tooltip title='Profile'>
+        {/* <Tooltip title='Profile'>
           <ListItem
             button
             component={Link} to="/profile">
@@ -124,7 +124,7 @@ const DrawerComponent = () => {
             <ListItemText primary="Profile"
               aria-label='Profile' />
           </ListItem>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip title='Log Out'>
           <ListItem
             button
