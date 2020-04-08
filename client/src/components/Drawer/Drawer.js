@@ -9,11 +9,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 //import DashboardIcon from '@material-ui/icons/Dashboard';
 import GolfCourseIcon from '@material-ui/icons/GolfCourse';
-import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+//import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 // import PeopleIcon from '@material-ui/icons/People';
 // import LayersIcon from '@material-ui/icons/Layers';
 import GroupAddIcon from '@material-ui/icons/GroupAdd'
-import MenuBookIcon from '@material-ui/icons/MenuBook'
+//import MenuBookIcon from '@material-ui/icons/MenuBook'
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import Badge from '@material-ui/core/Badge';
@@ -103,7 +103,7 @@ const DrawerComponent = () => {
             </Badge>
           </ListItem>
         </Tooltip>
-        <Tooltip title='Round History'>
+        {/* <Tooltip title='Round History'>
           <ListItem
             button
             component={Link} to="/roundHistory">
@@ -113,7 +113,7 @@ const DrawerComponent = () => {
             <ListItemText primary="Round History"
               aria-label='Round History' />
           </ListItem>
-        </Tooltip>
+        </Tooltip> */}
         {/* <Tooltip title='Profile'>
           <ListItem
             button
