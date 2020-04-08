@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 //import DashboardIcon from '@material-ui/icons/Dashboard';
-import EventNoteIcon from '@material-ui/icons/EventNote'
+import GolfCourseIcon from '@material-ui/icons/GolfCourse';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 // import PeopleIcon from '@material-ui/icons/People';
 // import LayersIcon from '@material-ui/icons/Layers';
@@ -79,7 +79,7 @@ const DrawerComponent = () => {
           <ListItem button
             component={Link} to="/courses">
             <ListItemIcon>
-              <EventNoteIcon />
+              <GolfCourseIcon />
             </ListItemIcon>
             <ListItemText
               primary="Courses"
