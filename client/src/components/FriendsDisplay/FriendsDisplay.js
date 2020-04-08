@@ -68,7 +68,7 @@ const FriendDisplay = () => {
                     onClick={() => removeFriend(person._id)}
                     variant="outlined"
                     color="secondary"
-                    className="buttons"
+                    className={`${window.innerWidth < 800 ? classes.buttonStylePhone : null}`}
                   >Remove</Button>
                 </FriendCard>
               )}

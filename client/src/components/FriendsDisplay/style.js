@@ -11,9 +11,6 @@ const friendDisplayStyles = makeStyles((theme) => ({
     display: 'contents',
     marginLeft: '-.5rem'
   },
-  buttons: {
-    left: '6%',
-  },
   buttonGroup: {
     '&: hover': {
       backgroundColor: '#ffffff',
@@ -22,6 +19,11 @@ const friendDisplayStyles = makeStyles((theme) => ({
   },
   removeButton: {
     float: 'left',
+  },
+  buttonStylePhone: {
+    display: 'flex',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 }));
 

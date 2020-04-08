@@ -70,7 +70,7 @@ const RecReqDisplay = () => {
                   acceptRequest={acceptRequest}
                   declineRequest={declineRequest}
                 >
-                  <Grid>
+                  <Grid className={window.innerWidth < 800 ? classes.buttonStylePhone : null}>
                     <Button
                       onClick={() => acceptRequest(person._id)}
                       variant="outlined"

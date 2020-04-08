@@ -92,7 +92,7 @@ const RoundCreation = () => {
               <Button
                 variant="contained"
                 color="primary"
-                className = {classes.buttonStylePhone}
+                className = {window.innerWidth < 800 ? classes.buttonStylePhone: null}
                 onClick={(event) => {
                   event.currentTarget.className += " Mui-disabled"
                   setInvited(prev => [...prev, person._id])
