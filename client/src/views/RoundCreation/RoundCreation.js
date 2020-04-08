@@ -74,6 +74,7 @@ const RoundCreation = () => {
     }
     User.getFriends()
       .then(({ data }) => {
+        console.log(data)
         setFriends(data)
       })
   }, [courseData, id])
