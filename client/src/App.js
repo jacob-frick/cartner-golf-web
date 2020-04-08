@@ -30,9 +30,9 @@ const App = props => {
   return (
     <Router>
       <Switch>
-        <Route path="/profile">
+        {/* <Route path="/profile">
           <Profile />
-        </Route>
+        </Route> */}
         <Route path="/friends">
           <Friends />
         </Route>
