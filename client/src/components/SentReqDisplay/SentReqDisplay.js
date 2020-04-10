@@ -16,9 +16,9 @@ const SentReqDisplay = () => {
   //   requests: []
   // })
 
-  let { sentRequests, updateSentRequests, hasRequests, statusSent } = useContext(FriendsContext)
+  let { sentRequests, updateSentRequests, hasRequests} = useContext(FriendsContext)
 
-  const getRequests = () => {
+  const getRequests = React.useCallback(() => {
     User.getSentFriendRequests()
       .then(({ data: requests }) => {
         // console.log(requests)
@@ -29,7 +29,8 @@ const SentReqDisplay = () => {
         }
       })
       .catch(error => console.error(error))
-  }
+  },[updateSentRequests])
+
   const cancelSentRequest = id => {
     User.cancelRequest(id)
       .then(() => {
@@ -38,10 +39,9 @@ const SentReqDisplay = () => {
       .catch(e => console.error(e))
   }
 
-  useEffect(() => {
+ useEffect(()=> {
     getRequests()
-  }, [hasRequests, statusSent])
-
+  },[getRequests])
 
   if (hasRequests === 'NONE') {
     return (

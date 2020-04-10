@@ -119,7 +119,7 @@ export default function Login() {
                 variant="contained"
                 color="primary"
                 fullWidth
-                className={classes.margin, classes.submit}
+                className={classes.margin + ' ' + classes.submit}
               >Sign In
               </Button>
             </ThemeProvider>

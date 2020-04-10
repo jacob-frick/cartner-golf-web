@@ -164,7 +164,7 @@ const CreateAccount = props => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                className={classes.margin, classes.submit}
+                className={classes.margin + ' ' + classes.submit}
                 disabled={user.fname && user.lname && user.email && user.password ? false : true}
               >Create Account
               </Button>

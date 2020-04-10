@@ -14,9 +14,9 @@ import CardContent from '@material-ui/core/CardContent'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
-  const { friends, hasFriends, updateFriends, status } = useContext(FriendsContext)
+  const { friends, hasFriends, updateFriends } = useContext(FriendsContext)
 
-  const displayFriends = () => {
+  const displayFriends = React.useCallback(() => {
     User.getFriends()
       .then(({ data: friends }) => {
         // console.log(friends)
@@ -27,7 +27,7 @@ const FriendDisplay = () => {
         }
       })
       .catch(error => console.error(error))
-  }
+  },[updateFriends])
 
   const removeFriend = id => {
     User.removeFriend(id)
@@ -39,7 +39,7 @@ const FriendDisplay = () => {
 
   useEffect(() => {
     displayFriends()
-  }, [status, hasFriends,displayFriends])
+  }, [displayFriends])
 
 
 

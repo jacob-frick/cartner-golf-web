@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import Profile from './views/Profile'
 import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'

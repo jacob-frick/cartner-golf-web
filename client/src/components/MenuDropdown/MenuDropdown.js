@@ -29,7 +29,7 @@ const MenuDropdown = props => {
     currentRound: '',
     roundId: null
   })
-  const getInvites = () => {
+  const getInvites = React.useCallback(() => {
     User.getPendingRounds()
       .then(({ data: invites }) => {
         if (invites.pending_round_invites.length < 1) {
@@ -39,10 +39,10 @@ const MenuDropdown = props => {
         }
       })
       .catch(e => console.error(e))
-  }
+  },[setRoundInvites, roundInvites])
   useEffect( () => {
     getInvites()
-  },[])
+  },[getInvites])
 
   const acceptInvite = id => {
     User.acceptRoundInvite(id)

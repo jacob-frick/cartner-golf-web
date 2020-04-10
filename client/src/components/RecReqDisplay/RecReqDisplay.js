@@ -18,7 +18,7 @@ const RecReqDisplay = () => {
     requests: []
   })
 
-  const getFriendRequest = () => {
+  const getFriendRequest = React.useCallback(() => {
     User.getRecFriendRequests()
       .then(({ data: requests }) => {
         if (requests.length < 1) {
@@ -28,7 +28,7 @@ const RecReqDisplay = () => {
         }
       })
       .catch(error => console.error(error))
-  }
+  },[setRecRequest, recRequest])
 
   const acceptRequest = id => {
     User.acceptRequest(id)
@@ -47,7 +47,7 @@ const RecReqDisplay = () => {
   }
   useEffect(() => {
     getFriendRequest()
-  }, [])
+  }, [getFriendRequest])
 
 
   if (recRequest.hasRequests === 'NONE') {
