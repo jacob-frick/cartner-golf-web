@@ -25,7 +25,10 @@ const WelcomeDialogStyles = makeStyles((theme) => ({
   dialogStyle: {
     position: "inherit",
     display: 'inherit'
-  }
+  },
+  flipExitIcon: {
+    transform: 'rotate(180deg)',
+  },
 }
 ))
-export default WelcomeDialogStyles
+export default WelcomeDialogStyles 

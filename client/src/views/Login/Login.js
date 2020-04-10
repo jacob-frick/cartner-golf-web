@@ -19,7 +19,7 @@ const btnClasses = createMuiTheme({
   palette: {
     primary: green
   }
-});
+})
 // import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export default function Login() {

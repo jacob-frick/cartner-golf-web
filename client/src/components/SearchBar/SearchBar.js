@@ -8,6 +8,15 @@ import Button from '@material-ui/core/Button'
 import User from './../../utils/User'
 import TextField from '@material-ui/core/TextField'
 import SendFriendReqModel from './../SendFriendReqModel'
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+const btnClasses = createMuiTheme({
+  overrides: {
+    palette: {
+      primary: green
+    }
+  }
+})
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,12 +52,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '15px',
     color: 'white',
     border: '1px solid rgba(63, 151, 181, 0.5)',
-    backgroundColor: '#4caf50',
     boxShadow: '0 3px 5px 2px #90ee9066',
     borderRadius: '3px',
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'block',
+    backgroundColor: '#4caf50 !important',
+    '&:hover': {
+      backgroundColor: 'green !important',
+    },
   },
   onLinkHover: {
     '&: hover': {
@@ -56,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'green',
       color: '#ffffff',
     },
-  }
+  },
+
 }))
 
 const SearchBar = () => {
@@ -110,23 +123,22 @@ const SearchBar = () => {
             onChange={handleChange('searchVal')}
           />
         </Grid>
-        <Grid
-          item sm={2}
-          xs={12}
-        >
-          {/* <ThemeProvider theme={btnClasses}> */}
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            className={classes.margin + ' ' +  classes.submit}
-            onClick={onSubmit}
-          >Search Friends
+        <ThemeProvider theme={btnClasses}>
+          <Grid
+            item sm={2}
+            xs={12}
+          >
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              className={classes.margin, classes.submit}
+              onClick={onSubmit}
+            >Search
             </Button>
-          {/* </ThemeProvider> */}
-
-        </Grid>
+          </Grid>
+        </ThemeProvider>
       </Grid>
     </FormControl >
   )

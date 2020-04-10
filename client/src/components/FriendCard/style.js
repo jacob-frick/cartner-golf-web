@@ -15,7 +15,7 @@ const friendCardStyles = makeStyles((theme) => ({
   },
   icon: {
     marginTop: 'auto !important',
-    // marginRight: '1vh',
+    marginRight: '1vh',
     display: 'flex !important',
     alignItems: 'start !important',
     justifyContent: 'start !important',
@@ -51,6 +51,7 @@ const friendCardStyles = makeStyles((theme) => ({
     '&: hover': {
       backgroundColor: '#ffffff',
     },
+    marginRight: '1vh',
     borderColor: '#4caf50',
     color: '#4caf50'
   },
@@ -74,10 +75,10 @@ const friendCardStyles = makeStyles((theme) => ({
   },
   cardMarg: {
     marginBottom: 4,
-    marginRight: 2
+    marginRight: 6,
   },
   buttonsStyle: {
-    display: 'flex', 
+    display: 'flex',
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
   },
