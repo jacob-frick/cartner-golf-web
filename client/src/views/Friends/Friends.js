@@ -44,7 +44,7 @@ const Friends = () => {
                                 <RecReqDisplay />
                             </Grid>
                             <Grid item xs={12}>
-                                <h1>Sent Requests</h1>
+                                <h1>Sent Requests</h1>-
                                 <SentReqDisplay />
                             </Grid>
                         </Grid>
