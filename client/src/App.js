@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'
 import RoundHistory from './views/RoundHistory'
 import Scorecard from './views/Scorecard'
+import TableTest from './views/TableTest/TableTest.js'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,7 +21,7 @@ const App = props => {
     window.addEventListener("beforeunload", (ev) => {
       ev.preventDefault()
       //if there is no rememberMe in localStorage, remove JWT when tab closes
-      if(!localStorage.getItem('rememberMe')){
+      if (!localStorage.getItem('rememberMe')) {
         localStorage.removeItem('jwt')
       }
     })
@@ -29,6 +30,9 @@ const App = props => {
   return (
     <Router>
       <Switch>
+        <Route path="/table">
+          <TableTest />
+        </Route>
         {/* <Route path="/profile">
           <Profile />
         </Route> */}
