@@ -14,12 +14,26 @@ app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use(new JWTStrategy({
+passport.use('user', new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET
   }, (jwtPayload, cb) => User.findById(jwtPayload.id)
       .then( user => {
         cb(null, user)
+      })
+      .catch( error => cb(error))
+  ))
+passport.use('admin', new JWTStrategy({
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.SECRET
+  }, (jwtPayload, cb) => User.findById(jwtPayload.id)
+      .then( user => {
+        console.log('hello')
+        if(user.accType === 'admin') {
+          cb('Not admin', null)
+        } else {
+          cb(null, user)
+        }
       })
       .catch( error => cb(error))
   ))

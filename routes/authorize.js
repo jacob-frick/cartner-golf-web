@@ -3,10 +3,10 @@ const router = express.Router()
 const {Round, User} = require('../models')
 const passport = require('passport')
 
-router.get('/authorize', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.get('/authorize', passport.authenticate( {session: false}), (req, res) => {
     res.sendStatus(200)
 })
-router.get('/authorize/round/:rid', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.get('/authorize/round/:rid', passport.authenticate('admin', {session: false}), (req, res) => {
     Round.findById(req.params.rid)
     .then(round => {
         if(!round) res.sendStatus(401)
