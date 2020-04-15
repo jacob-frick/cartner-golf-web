@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use('user', new JWTStrategy({
+passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET
   }, (jwtPayload, cb) => User.findById(jwtPayload.id)
@@ -30,9 +30,9 @@ passport.use('admin', new JWTStrategy({
       .then( user => {
         console.log('hello')
         if(user.accType === 'admin') {
-          cb('Not admin', null)
-        } else {
           cb(null, user)
+        } else {
+          cb(null, null)
         }
       })
       .catch( error => cb(error))
