@@ -35,7 +35,7 @@ const Scorecard = () => {
       setMemberContext({...members, memberContext: tempArr})
 
   }
-
+  
   //run every 10 secs
   const saveRound = (id, members) => {
     let totalFront = 0
