@@ -43,5 +43,8 @@ app.get('/*', (request, response) => {
   response.sendFile(join(__dirname, 'client', 'build', 'index.html'))
 })
 require('./config/db.js')
-    .then(() => app.listen(process.env.PORT || 3001))
+    .then(() => {
+      require('./config/seed.js')
+      app.listen(process.env.PORT || 3001))
+    }
     .catch(e => console.error(e))
