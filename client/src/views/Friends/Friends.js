@@ -12,10 +12,10 @@ import FriendsContext from '../../utils/FriendsContext'
 const Friends = () => {
     const [friendState, setFriendState] = useState({
         friends: [],
-        hasFriends: '',
+        hasFriends: 'NONE',
         status: '',
         sentRequests: [],
-        hasRequests: '',
+        hasRequests: 'NONE',
         statusSent: ''
     })
     friendState.updateFriends = (hasFriends, friends) => {

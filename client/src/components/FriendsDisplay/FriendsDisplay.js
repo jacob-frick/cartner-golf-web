@@ -14,14 +14,14 @@ import CardContent from '@material-ui/core/CardContent'
 const FriendDisplay = () => {
   const classes = friendDisplayStyles()
 
-  const { friends, hasFriends, updateFriends } = useContext(FriendsContext)
+  const { friends, hasFriends, updateFriends, status } = useContext(FriendsContext)
 
   const [removeId, setRemoveId] = useState(null)
 
   const displayFriends = () => {
-    if(friends.length < 1){
       User.getFriends()
         .then(({ data: response}) => {
+          console.log(response)
           if (response.length < 1) {
             updateFriends('NONE', [])
           }else{
@@ -29,7 +29,6 @@ const FriendDisplay = () => {
           }
         })
         .catch(error => console.error(error))
-    }
   }
 
   const removeFriend = id => {
@@ -41,8 +40,9 @@ const FriendDisplay = () => {
   }
 
   useEffect(() => {
+    console.log('ping')
     displayFriends()
-  }, [hasFriends])
+  }, [hasFriends, status, removeId])
 
 
 
