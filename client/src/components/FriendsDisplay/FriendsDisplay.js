@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from 'react'
+import React, { useEffect, useContext, useState} from 'react'
 import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid'
 // import List from '@material-ui/core/List'
@@ -16,30 +16,33 @@ const FriendDisplay = () => {
 
   const { friends, hasFriends, updateFriends } = useContext(FriendsContext)
 
-  const displayFriends = React.useCallback(() => {
-    User.getFriends()
-      .then(({ data: friends }) => {
-        // console.log(friends)
-        if (friends.length < 1) {
-          updateFriends('NONE', [])
-        } else {
-          updateFriends('FRIENDS', friends)
-        }
-      })
-      .catch(error => console.error(error))
-  },[updateFriends])
+  const [removeId, setRemoveId] = useState(null)
+
+  const displayFriends = () => {
+    if(friends.length < 1){
+      User.getFriends()
+        .then(({ data: response}) => {
+          if (response.length < 1) {
+            updateFriends('NONE', [])
+          }else{
+            updateFriends('FRIENDS', response)
+          }
+        })
+        .catch(error => console.error(error))
+    }
+  }
 
   const removeFriend = id => {
     User.removeFriend(id)
       .then(() => {
-        displayFriends()
+        setRemoveId(id)
       })
       .catch(e => console.error(e))
   }
 
   useEffect(() => {
     displayFriends()
-  }, [displayFriends])
+  }, [hasFriends])
 
 
 

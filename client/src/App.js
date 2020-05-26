@@ -4,7 +4,7 @@ import Friends from './views/Friends'
 import Courses from './views/Courses'
 import RoundHistory from './views/RoundHistory'
 import Scorecard from './views/Scorecard'
-import TableTest from './views/TableTest/TableTest.js'
+// import TableTest from './views/TableTest/TableTest.js'
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,9 +39,9 @@ const App = props => {
   return (
     <Router>
       <Switch>
-        <Route path="/table">
+        {/* <Route path="/table">
           <TableTest />
-        </Route>
+        </Route> */}
         {/* <Route path="/profile">
           <Profile />
         </Route> */}

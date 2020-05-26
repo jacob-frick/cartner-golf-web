@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid'
 // import List from '@material-ui/core/List'
@@ -18,7 +18,9 @@ const SentReqDisplay = () => {
 
   let { sentRequests, updateSentRequests, hasRequests} = useContext(FriendsContext)
 
-  const getRequests = React.useCallback(() => {
+  const [cancelRequestId, setCancelRequestId] = useState(null)
+  
+  const getRequests = () => {
     User.getSentFriendRequests()
       .then(({ data: requests }) => {
         // console.log(requests)
@@ -29,19 +31,19 @@ const SentReqDisplay = () => {
         }
       })
       .catch(error => console.error(error))
-  },[updateSentRequests])
+  }
 
   const cancelSentRequest = id => {
     User.cancelRequest(id)
       .then(() => {
-        getRequests()
+        setCancelRequestId(id)
       })
       .catch(e => console.error(e))
   }
 
  useEffect(()=> {
     getRequests()
-  },[getRequests])
+ }, [cancelRequestId])
 
   if (hasRequests === 'NONE') {
     return (
