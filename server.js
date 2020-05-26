@@ -45,6 +45,6 @@ app.get('/*', (request, response) => {
 require('./config/db.js')
     .then(() => {
       // require('./config/seed.js')
-      app.listen(process.env.PORT || 3001))
+      app.listen(process.env.PORT || 3001)
     }
     .catch(e => console.error(e))
