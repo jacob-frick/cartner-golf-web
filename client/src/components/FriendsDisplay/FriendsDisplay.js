@@ -21,7 +21,6 @@ const FriendDisplay = () => {
   const displayFriends = () => {
       User.getFriends()
         .then(({ data: response}) => {
-          console.log(response)
           if (response.length < 1) {
             updateFriends('NONE', [])
           }else{
@@ -40,7 +39,6 @@ const FriendDisplay = () => {
   }
 
   useEffect(() => {
-    console.log('ping')
     displayFriends()
   }, [hasFriends, status, removeId])
 

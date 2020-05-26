@@ -19,10 +19,12 @@ const SentReqDisplay = () => {
   let { sentRequests, updateSentRequests, hasRequests, statusSent} = useContext(FriendsContext)
 
   const [cancelRequestId, setCancelRequestId] = useState(null)
-  
+
   const getRequests = () => {
     User.getSentFriendRequests()
       .then(({ data: requests }) => {
+        console.log('requests')
+        console.log(requests)
         if (requests.length < 1) {
           updateSentRequests('NONE', [])
         } else {
@@ -41,8 +43,9 @@ const SentReqDisplay = () => {
   }
 
  useEffect(()=> {
+    console.log('ping')
     getRequests()
- }, [cancelRequestId, statusSent])
+ }, [cancelRequestId, statusSent, hasRequests])
 
   if (hasRequests === 'NONE') {
     return (
