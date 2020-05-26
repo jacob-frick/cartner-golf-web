@@ -3,6 +3,7 @@ const express = require('express')
 const { join } = require('path')
 const passport = require('passport')
 require('./config/passport.js')(passport)
+require('./config/seed.js')
 //Strategy for deployment using JSON web token
 const {Strategy: JWTStrategy, ExtractJwt} = require('passport-jwt')
 
