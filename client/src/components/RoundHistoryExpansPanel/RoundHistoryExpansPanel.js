@@ -20,6 +20,7 @@ const RoundHistoryExpansPanel = props => {
     setExpanded(isExpanded ? panel : false);
   }
 
+  if(props.rounds.length > 0)
   return (
     props.rounds.map(elem => {
       return (
@@ -43,8 +44,8 @@ const RoundHistoryExpansPanel = props => {
         </ExpansionPanel>
       )
     })
-
   )
+  else return (<p>No past rounds to display</p>)
 
 }
 
