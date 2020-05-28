@@ -12,13 +12,14 @@ import CardContent from '@material-ui/core/CardContent'
 const RecReqDisplay = () => {
   const classes = recReqDisplayStyles()
 
-  const { updateStatus } = useContext(FriendsContext)
+  const { updateStatus, status } = useContext(FriendsContext)
   const [recRequest, setRecRequest] = useState({
     hasRequests: '',
     requests: []
   })
 
-  const getFriendRequest = React.useCallback(() => {
+  const [requestId, setRequestId] = useState(null)
+  const getFriendRequest = () => {
     User.getRecFriendRequests()
       .then(({ data: requests }) => {
         if (requests.length < 1) {
@@ -28,12 +29,11 @@ const RecReqDisplay = () => {
         }
       })
       .catch(error => console.error(error))
-  },[setRecRequest, recRequest])
+  }
 
   const acceptRequest = id => {
     User.acceptRequest(id)
       .then(({ data }) => {
-        getFriendRequest()
         updateStatus('ACCEPTED' + id.toString())
       })
       .catch(error => console.error(error))
@@ -41,13 +41,13 @@ const RecReqDisplay = () => {
   const declineRequest = id => {
     User.declineRequest(id)
       .then(() => {
-        getFriendRequest()
+        setRequestId(id)
       })
       .catch(e => console.error(e))
   }
   useEffect(() => {
     getFriendRequest()
-  }, [getFriendRequest])
+  }, [requestId, status])
 
 
   if (recRequest.hasRequests === 'NONE') {

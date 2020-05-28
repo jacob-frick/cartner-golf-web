@@ -10,7 +10,7 @@ import RoundHistoryExpansPanel from './../../components/RoundHistoryExpansPanel'
 export default function Dashboard(props) {
   const { isNewAcc } = useContext(HomeContext)
 
-  const [rounds, setRounds] = useState([])
+  const [rounds, setRounds] = useState()
   const isNewAccModel = () => {
     if (isNewAcc) {
       return (<WelcomeDialog />)
@@ -34,7 +34,7 @@ export default function Dashboard(props) {
   return (
     <OuterNavbar head='Round History'>
       {model}
-      <RoundHistoryExpansPanel rounds={rounds} />
+      {rounds ? <RoundHistoryExpansPanel rounds={rounds} /> : <p></p>}
     </OuterNavbar>
   )
 }
