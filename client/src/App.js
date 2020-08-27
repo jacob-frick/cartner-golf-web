@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Home from './views/Home'
 import Friends from './views/Friends'
 import Courses from './views/Courses'
